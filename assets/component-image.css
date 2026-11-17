@@ -1,0 +1,33 @@
+/* Image. Spec: design/components/image.md */
+@layer components {
+  .ut-image {
+    --_fit: cover;
+
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: var(--ut-image-ratio, auto);
+    background: var(--ut-color-bg-muted);
+  }
+
+  .ut-image--square    { --ut-image-ratio: var(--ut-ratio-square); }
+  .ut-image--portrait  { --ut-image-ratio: var(--ut-ratio-portrait); }
+  .ut-image--landscape { --ut-image-ratio: var(--ut-ratio-landscape); }
+  .ut-image--wide      { --ut-image-ratio: var(--ut-ratio-wide); }
+
+  .ut-image--contain {
+    --_fit: contain;
+  }
+
+  .ut-image__img,
+  .ut-image__placeholder {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: var(--_fit);
+  }
+
+  .ut-image__placeholder {
+    fill: var(--ut-color-text-subtle);
+  }
+}

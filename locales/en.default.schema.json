@@ -27,10 +27,14 @@
     }
   },
   "sections": {
-    "placeholder": {
-      "name": "Placeholder",
+    "styleguide": {
+      "name": "Styleguide (development)",
       "settings": {
-        "heading": "Heading"
+        "info": "Shows all base components. Development only, removed before launch.",
+        "product": "Sample product",
+        "product_sale": "Sample product on sale",
+        "image": "Sample image",
+        "richtext": "Sample text"
       }
     }
   }

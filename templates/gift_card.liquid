@@ -1,0 +1,95 @@
+{%- comment -%}
+  Gift card page. Blueprint: design/blueprints/gift-card.md
+  Renders without the theme layout (no header, footer, cart drawer).
+{%- endcomment -%}
+{%- layout none -%}
+{%- liquid
+  assign formatted_initial_value = gift_card.initial_value | money
+  assign formatted_balance = gift_card.balance | money
+  assign date_format = 'gift_cards.issued.date_format' | t
+  assign shop_label = 'gift_cards.issued.shop_link' | t
+  assign label_expired = 'gift_cards.issued.expired' | t
+  assign label_disabled = 'gift_cards.issued.disabled' | t
+-%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{{ 'gift_cards.issued.title' | t: value: formatted_initial_value, shop: shop.name }}</title>
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {{ 'tokens.css' | asset_url | stylesheet_tag }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'component-button.css' | asset_url | stylesheet_tag }}
+    {{ 'component-badge.css' | asset_url | stylesheet_tag }}
+    {{ 'component-gift-card.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <main class="ut-gift-card">
+      <header class="ut-gift-card__shop">
+        {%- if settings.logo != blank -%}
+          {{
+            settings.logo
+            | image_url: width: 320
+            | image_tag: class: 'ut-gift-card__logo', alt: shop.name, widths: '160, 320', sizes: '160px'
+          }}
+        {%- else -%}
+          <span class="ut-gift-card__shop-name">{{ shop.name }}</span>
+        {%- endif -%}
+      </header>
+
+      <h1 class="ut-gift-card__title">
+        {{ 'gift_cards.issued.heading' | t: value: formatted_initial_value }}
+      </h1>
+
+      {%- if gift_card.expired -%}
+        {%- render 'badge', label: label_expired, tone: 'muted' -%}
+      {%- elsif gift_card.enabled == false -%}
+        {%- render 'badge', label: label_disabled, tone: 'muted' -%}
+      {%- endif -%}
+
+      <dl class="ut-gift-card__details">
+        {%- if gift_card.balance != gift_card.initial_value -%}
+          <div class="ut-gift-card__row">
+            <dt>{{ 'gift_cards.issued.balance' | t }}</dt>
+            <dd>{{ formatted_balance }}</dd>
+          </div>
+        {%- endif -%}
+        <div class="ut-gift-card__row">
+          <dt>{{ 'gift_cards.issued.code' | t }}</dt>
+          <dd><code class="ut-gift-card__code">{{ gift_card.code | format_code }}</code></dd>
+        </div>
+        {%- if gift_card.expires_on -%}
+          <div class="ut-gift-card__row">
+            <dt>{{ 'gift_cards.issued.expires_on_label' | t }}</dt>
+            <dd>{{ gift_card.expires_on | date: date_format }}</dd>
+          </div>
+        {%- endif -%}
+      </dl>
+
+      <p class="ut-gift-card__hint">{{ 'gift_cards.issued.how_to_use' | t }}</p>
+
+      <div class="ut-gift-card__actions">
+        {%- render 'button', label: shop_label, url: routes.root_url, full: true -%}
+        {%- if gift_card.pass_url -%}
+          <a class="ut-gift-card__wallet" href="{{ gift_card.pass_url }}">
+            <img
+              src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
+              width="120"
+              height="40"
+              alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t | escape }}"
+              loading="lazy"
+            >
+          </a>
+        {%- endif -%}
+      </div>
+    </main>
+  </body>
+</html>

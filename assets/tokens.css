@@ -21,6 +21,7 @@
   --ut-color-brand-primary: #111111;
   --ut-color-brand-primary-contrast: #ffffff;
   --ut-color-brand-accent: #ff4d00;
+  --ut-color-brand-accent-strong: #c23a00;
   --ut-color-brand-accent-contrast: #111111;
   --ut-color-signal-success: #1f7a3a;
   --ut-color-signal-warning: #b36b00;
@@ -31,18 +32,22 @@
   --ut-color-text-subtle: var(--ut-color-neutral-400);
   --ut-color-text-inverse: var(--ut-color-neutral-0);
   --ut-color-text-link: var(--ut-color-neutral-900);
-  --ut-color-text-sale: var(--ut-color-brand-accent);
+  --ut-color-text-sale: var(--ut-color-brand-accent-strong);
   --ut-color-text-error: var(--ut-color-signal-error);
   --ut-color-text-success: var(--ut-color-signal-success);
+  --ut-color-text-on-accent: var(--ut-color-brand-accent-contrast);
+  --ut-color-text-on-signal: var(--ut-color-neutral-0);
   --ut-color-bg-default: var(--ut-color-neutral-0);
   --ut-color-bg-subtle: var(--ut-color-neutral-50);
   --ut-color-bg-muted: var(--ut-color-neutral-100);
   --ut-color-bg-inverse: var(--ut-color-neutral-900);
   --ut-color-bg-accent: var(--ut-color-brand-accent);
+  --ut-color-bg-success: var(--ut-color-signal-success);
   --ut-color-bg-overlay: rgb(0 0 0 / 0.55);
   --ut-color-border-default: var(--ut-color-neutral-200);
   --ut-color-border-strong: var(--ut-color-neutral-900);
   --ut-color-border-subtle: var(--ut-color-neutral-100);
+  --ut-color-border-control: var(--ut-color-neutral-500);
   --ut-color-border-focus: var(--ut-color-brand-accent);
   --ut-color-action-primary-bg: var(--ut-color-brand-primary);
   --ut-color-action-primary-bg-hover: var(--ut-color-neutral-700);
@@ -101,11 +106,30 @@
   --ut-radius-lg: 0.5rem;
   --ut-radius-xl: 1rem;
   --ut-radius-full: 9999px;
+  --ut-radius-control: var(--ut-radius-none);
+  --ut-radius-badge: var(--ut-radius-none);
 
   /* border-width */
   --ut-border-width-hairline: 1px;
   --ut-border-width-thick: 2px;
   --ut-border-width-focus: 2px;
+  --ut-border-width-focus-offset: 2px;
+
+  /* size */
+  --ut-size-control-sm: 2.25rem;
+  --ut-size-control-md: 2.75rem;
+  --ut-size-control-lg: 3.25rem;
+  --ut-size-icon-sm: 1rem;
+  --ut-size-icon-md: 1.25rem;
+  --ut-size-icon-lg: 1.5rem;
+  --ut-size-icon-xl: 2.5rem;
+  --ut-size-icon-stroke: 1.5;
+
+  /* ratio */
+  --ut-ratio-square: 1 / 1;
+  --ut-ratio-portrait: 4 / 5;
+  --ut-ratio-landscape: 3 / 2;
+  --ut-ratio-wide: 16 / 9;
 
   /* shadow */
   --ut-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
@@ -154,6 +178,7 @@
   --ut-color-text-subtle: var(--ut-color-neutral-400);
   --ut-color-text-inverse: var(--ut-color-neutral-900);
   --ut-color-text-link: var(--ut-color-neutral-0);
+  --ut-color-text-sale: var(--ut-color-brand-accent);
   --ut-color-bg-default: var(--ut-color-neutral-900);
   --ut-color-bg-subtle: var(--ut-color-neutral-800);
   --ut-color-bg-muted: var(--ut-color-neutral-700);
@@ -161,6 +186,7 @@
   --ut-color-border-default: var(--ut-color-neutral-700);
   --ut-color-border-strong: var(--ut-color-neutral-0);
   --ut-color-border-subtle: var(--ut-color-neutral-800);
+  --ut-color-border-control: var(--ut-color-neutral-400);
   --ut-color-action-primary-bg: var(--ut-color-neutral-0);
   --ut-color-action-primary-bg-hover: var(--ut-color-neutral-200);
   --ut-color-action-primary-text: var(--ut-color-neutral-900);

@@ -49,8 +49,9 @@ Anzahl der Sections sind im Editor frei, das hier ist der Default.
 `tone: inverse` ist das einzige „Design“-Setting und zeigt auf einen Token-Scope.
 Die Section setzt `data-tone="inverse"` auf ihr Wurzelelement. Der Scope ist in
 `tokens.json` unter `$scopes.inverse` definiert und wird generiert (ADR 0001, 0004).
-Sections mit Tone-Setting setzen auf ihrem Wurzelelement
-`background: var(--ut-color-bg-default)` und `color: var(--ut-color-text-default)`.
+`base.css` wendet auf jedes `[data-tone]` Hintergrund und Textfarbe aus den
+Semantik-Tokens an. Das ist keine Token-Zuordnung, die Werte kommen aus dem
+generierten Scope.
 
 ## Datenbedarf
 

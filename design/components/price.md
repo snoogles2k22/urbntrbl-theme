@@ -89,13 +89,13 @@ Snippet-Parameter: `product`/`variant`, `compact` (bool), `size` (`sm`/`md`/`lg`
 | regular       | kein compareAt oder compareAt ≤ amount | nur `__amount`                                     |
 | sale          | compareAt > amount                  | `.ut-price--sale`, `__compare` als `<s>`, `__amount` in `text-sale` |
 | from          | `isFrom`                            | `__from` sichtbar                                     |
-| unavailable   | `available == false`                | `.ut-price--unavailable`, Farbe `text-subtle`         |
+| unavailable   | `available == false`                | `.ut-price--unavailable`, Farbe `text-muted` (nicht `text-subtle`: 3.2:1 reicht für Text nicht) |
 | compact       | Card-Kontext                        | `.ut-price--compact`, `__notes` nicht gerendert, stattdessen `__marker` „*“. `__unit` nach Setting wie in der vollen Variante. Footer enthält den Fußnotentext (Spec `footer.md`) |
 | unit price    | `price_show_unit_price` und `unitPrice` vorhanden | `__unit` sichtbar                      |
 
 ## 6. Verwendete Tokens
 
-- `--ut-color-text-default`, `--ut-color-text-muted`, `--ut-color-text-subtle`, `--ut-color-text-sale`, `--ut-color-text-link`
+- `--ut-color-text-default`, `--ut-color-text-muted`, `--ut-color-text-sale`, `--ut-color-text-link`
 - `--ut-font-size-sm`, `--ut-font-size-md`, `--ut-font-size-lg`, `--ut-font-size-xs` (notes)
 - `--ut-font-weight-regular`, `--ut-font-weight-semibold`
 - `--ut-font-family-body`

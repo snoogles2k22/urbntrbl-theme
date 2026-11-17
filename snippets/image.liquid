@@ -1,0 +1,70 @@
+{% doc %}
+  Responsive image with ratio frame and placeholder. Requires component-image.css.
+  Single place in the theme that calls image_url / image_tag.
+  Spec: design/components/image.md
+
+  @param {object} [image] - Shopify image or media; blank renders a placeholder
+  @param {string} [ratio] - natural (default), square, portrait, landscape, wide
+  @param {string} [fit] - cover (default) or contain
+  @param {string} [sizes] - sizes attribute, default 100vw
+  @param {string} [widths] - srcset widths, default '360, 540, 720, 960, 1200, 1440, 1920'
+  @param {boolean} [priority] - LCP image: eager loading, fetchpriority high
+  @param {string} [alt] - Overrides image.alt
+  @param {boolean} [decorative] - Empty alt
+  @param {string} [placeholder] - placeholder_svg_tag name, default 'image'
+  @param {string} [class] - Extra class on the frame
+
+  @example
+  {% render 'image', image: product.featured_media, ratio: 'portrait', sizes: '(min-width: 1024px) 25vw, 50vw' %}
+{% enddoc %}
+{%- liquid
+  assign image_ratio = ratio | default: 'natural'
+  assign image_sizes = sizes | default: '100vw'
+  assign image_widths = widths | default: '360, 540, 720, 960, 1200, 1440, 1920'
+
+  if priority
+    assign image_loading = 'eager'
+    assign image_priority = 'high'
+  else
+    assign image_loading = 'lazy'
+    assign image_priority = 'auto'
+  endif
+
+  if decorative
+    assign image_alt = ''
+  elsif alt != blank
+    assign image_alt = alt
+  else
+    assign image_alt = image.alt | default: ''
+  endif
+
+  assign frame_class = 'ut-image ut-image--' | append: image_ratio
+  if fit == 'contain'
+    assign frame_class = frame_class | append: ' ut-image--contain'
+  endif
+  if class != blank
+    assign frame_class = frame_class | append: ' ' | append: class
+  endif
+-%}
+<div
+  class="{{ frame_class }}"
+  {% if image_ratio == 'natural' and image != blank %}
+    style="--ut-image-ratio: {{ image.aspect_ratio }};"
+  {% endif %}
+>
+  {%- if image != blank -%}
+    {{
+      image
+      | image_url: width: 1920
+      | image_tag:
+        widths: image_widths,
+        sizes: image_sizes,
+        loading: image_loading,
+        fetchpriority: image_priority,
+        alt: image_alt,
+        class: 'ut-image__img'
+    }}
+  {%- else -%}
+    {{ placeholder | default: 'image' | placeholder_svg_tag: 'ut-image__placeholder' }}
+  {%- endif -%}
+</div>

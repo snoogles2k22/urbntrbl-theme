@@ -4,22 +4,26 @@ Abgeleitet aus `design/blueprints/`. Es steht nur drin, was mindestens ein Bluep
 braucht. Eine Spec pro Komponente nach `_TEMPLATE.md`. Alle BEM-Blöcke tragen den
 Präfix `ut-`, alle Custom Elements ebenfalls.
 
-Spalte **Seiten**: H = Home, C = Collection, P = PDP, D = Drop, K = Cart (Drawer + Seite), R = Rahmen (Header/Footer).
+Spalte **Seiten**: H = Home, C = Collection, P = PDP, D = Drop, K = Cart (Drawer + Seite), R = Rahmen (Header/Footer), G = Gutschein-Seite.
+
+Seiten-Blöcke ohne eigene Komponenten-Spec (der Blueprint ist die Spec):
+`.ut-gift-card` (`blueprints/gift-card.md`, nutzt Button und Badge), `.ut-styleguide`
+(temporär, Entwicklung).
 Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 
 ## Primitive (kein JS)
 
 | Komponente       | BEM-Block              | Seiten        | Spec-Datei           | Status |
 |------------------|------------------------|---------------|----------------------|--------|
-| Button           | `.ut-button`           | alle          | `button.md`          | offen  |
-| Icon             | `.ut-icon`             | alle          | `icon.md`            | offen  |
-| Image            | `.ut-image`            | alle          | `image.md`           | offen  |
-| Badge            | `.ut-badge`            | H C P D       | `badge.md`           | offen  |
-| Price            | `.ut-price`            | H C P D K     | `price.md`           | Spec   |
-| Rich Text        | `.ut-rich-text`        | H C P D       | `rich-text.md`       | offen  |
-| Form Field       | `.ut-form-field`       | H D K R       | `form-field.md`      | offen  |
-| Section Header   | `.ut-section-header`   | H P D K       | `section-header.md`  | offen  |
-| Empty State      | `.ut-empty-state`      | C K           | `empty-state.md`     | offen  |
+| Button           | `.ut-button`           | alle          | `button.md`          | In Arbeit |
+| Icon             | `.ut-icon`             | alle          | `icon.md`            | In Arbeit |
+| Image            | `.ut-image`            | alle          | `image.md`           | In Arbeit |
+| Badge            | `.ut-badge`            | H C P D       | `badge.md`           | In Arbeit |
+| Price            | `.ut-price`            | H C P D K     | `price.md`           | In Arbeit |
+| Rich Text        | `.ut-rich-text`        | H C P D       | `rich-text.md`       | In Arbeit |
+| Form Field       | `.ut-form-field`       | H D K R       | `form-field.md`      | In Arbeit |
+| Section Header   | `.ut-section-header`   | H P D K       | `section-header.md`  | In Arbeit |
+| Empty State      | `.ut-empty-state`      | C K           | `empty-state.md`     | In Arbeit |
 
 ## Zusammengesetzt (kein JS)
 

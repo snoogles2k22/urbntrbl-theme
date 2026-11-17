@@ -1,0 +1,51 @@
+{% doc %}
+  Inline SVG icon, 24px grid, stroke style, inherits currentColor.
+  Spec: design/components/icon.md
+
+  @param {string} name - menu, close, search, account, cart, chevron-up, chevron-down, chevron-left, chevron-right, arrow-right, plus, minus, check, alert
+  @param {string} [size] - sm, md (default), lg, xl
+  @param {string} [label] - Accessible name; without it the icon is decorative
+  @param {string} [class] - Extra class from the caller
+
+  @example
+  {% render 'icon', name: 'cart', size: 'lg' %}
+{% enddoc %}
+{%- liquid
+  assign icon_size = size | default: 'md'
+  assign icon_class = 'ut-icon ut-icon--' | append: icon_size
+  if class != blank
+    assign icon_class = icon_class | append: ' ' | append: class
+  endif
+-%}
+{%- capture paths -%}
+  {%- case name -%}
+    {%- when 'menu' -%}<path d="M3 6h18M3 12h18M3 18h18"/>
+    {%- when 'close' -%}<path d="M5 5l14 14M19 5L5 19"/>
+    {%- when 'search' -%}<circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/>
+    {%- when 'account' -%}<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+    {%- when 'cart' -%}<path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+    {%- when 'chevron-up' -%}<path d="M6 15l6-6 6 6"/>
+    {%- when 'chevron-down' -%}<path d="M6 9l6 6 6-6"/>
+    {%- when 'chevron-left' -%}<path d="M15 6l-6 6 6 6"/>
+    {%- when 'chevron-right' -%}<path d="M9 6l6 6-6 6"/>
+    {%- when 'arrow-right' -%}<path d="M4 12h16M14 6l6 6-6 6"/>
+    {%- when 'plus' -%}<path d="M12 5v14M5 12h14"/>
+    {%- when 'minus' -%}<path d="M5 12h14"/>
+    {%- when 'check' -%}<path d="M5 12.5l4.5 4.5L19 7"/>
+    {%- when 'alert' -%}<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16v1"/>
+  {%- endcase -%}
+{%- endcapture -%}
+{%- if paths != blank -%}
+  <svg
+    class="{{ icon_class }}"
+    viewBox="0 0 24 24"
+    focusable="false"
+    {% if label != blank %}
+      role="img" aria-label="{{ label | escape }}"
+    {% else %}
+      aria-hidden="true"
+    {% endif %}
+  >
+    {{- paths -}}
+  </svg>
+{%- endif -%}

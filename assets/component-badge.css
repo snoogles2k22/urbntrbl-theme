@@ -1,0 +1,48 @@
+/* Badge. Spec: design/components/badge.md */
+@layer components {
+  .ut-badge {
+    --_bg: var(--ut-color-bg-inverse);
+    --_fg: var(--ut-color-text-inverse);
+    --_border: var(--ut-color-bg-inverse);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ut-space-1);
+    padding-block: var(--ut-space-1);
+    padding-inline: var(--ut-space-2);
+    border: var(--ut-border-width-hairline) solid var(--_border);
+    border-radius: var(--ut-radius-badge);
+    background: var(--_bg);
+    color: var(--_fg);
+    font-size: var(--ut-font-size-xs);
+    font-weight: var(--ut-font-weight-semibold);
+    line-height: var(--ut-font-line-height-tight);
+    letter-spacing: var(--ut-font-letter-spacing-caps);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .ut-badge--accent {
+    --_bg: var(--ut-color-bg-accent);
+    --_fg: var(--ut-color-text-on-accent);
+    --_border: var(--ut-color-bg-accent);
+  }
+
+  .ut-badge--muted {
+    --_bg: var(--ut-color-bg-muted);
+    --_fg: var(--ut-color-text-muted);
+    --_border: var(--ut-color-bg-muted);
+  }
+
+  .ut-badge--outline {
+    --_bg: transparent;
+    --_fg: var(--ut-color-text-default);
+    --_border: var(--ut-color-border-strong);
+  }
+
+  .ut-badge--success {
+    --_bg: var(--ut-color-bg-success);
+    --_fg: var(--ut-color-text-on-signal);
+    --_border: var(--ut-color-bg-success);
+  }
+}

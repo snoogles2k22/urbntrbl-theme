@@ -1,0 +1,79 @@
+/* Gift card page. Blueprint: design/blueprints/gift-card.md */
+@layer components {
+  .ut-gift-card {
+    display: grid;
+    justify-items: start;
+    gap: var(--ut-space-6);
+    max-inline-size: var(--ut-layout-container-narrow);
+    margin-inline: auto;
+    padding-block: var(--ut-layout-section-gap);
+    padding-inline: var(--ut-layout-gutter);
+  }
+
+  .ut-gift-card__shop-name {
+    font-size: var(--ut-font-size-lg);
+    font-weight: var(--ut-font-weight-bold);
+    letter-spacing: var(--ut-font-letter-spacing-caps);
+    text-transform: uppercase;
+  }
+
+  .ut-gift-card__logo {
+    inline-size: auto;
+    max-block-size: var(--ut-size-control-lg);
+  }
+
+  .ut-gift-card__title {
+    font-size: var(--ut-font-size-3xl);
+  }
+
+  .ut-gift-card__details {
+    display: grid;
+    gap: var(--ut-space-4);
+    inline-size: 100%;
+    margin: 0;
+  }
+
+  .ut-gift-card__row {
+    display: grid;
+    gap: var(--ut-space-1);
+    padding-block-end: var(--ut-space-4);
+    border-block-end: var(--ut-border-width-hairline) solid var(--ut-color-border-default);
+  }
+
+  .ut-gift-card__row dt {
+    font-size: var(--ut-font-size-xs);
+    font-weight: var(--ut-font-weight-semibold);
+    letter-spacing: var(--ut-font-letter-spacing-caps);
+    text-transform: uppercase;
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-gift-card__row dd {
+    margin: 0;
+    font-size: var(--ut-font-size-lg);
+  }
+
+  .ut-gift-card__code {
+    font-family: var(--ut-font-family-mono);
+    font-size: var(--ut-font-size-xl);
+    letter-spacing: var(--ut-font-letter-spacing-wide);
+    user-select: all;
+  }
+
+  .ut-gift-card__hint {
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-gift-card__actions {
+    display: grid;
+    justify-items: start;
+    gap: var(--ut-space-4);
+    inline-size: 100%;
+  }
+
+  @media print {
+    .ut-gift-card__actions {
+      display: none;
+    }
+  }
+}

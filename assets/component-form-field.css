@@ -1,0 +1,109 @@
+/* Form field. Spec: design/components/form-field.md */
+@layer components {
+  .ut-form-field {
+    display: grid;
+    gap: var(--ut-space-1);
+  }
+
+  .ut-form-field__label {
+    font-size: var(--ut-font-size-sm);
+    font-weight: var(--ut-font-weight-medium);
+    color: var(--ut-color-text-default);
+  }
+
+  .ut-form-field__required {
+    color: var(--ut-color-text-error);
+  }
+
+  .ut-form-field__control {
+    inline-size: 100%;
+    min-block-size: var(--ut-size-control-md);
+    padding-inline: var(--ut-space-3);
+    border: var(--ut-border-width-hairline) solid var(--ut-color-border-control);
+    border-radius: var(--ut-radius-control);
+    background: var(--ut-color-bg-default);
+    color: var(--ut-color-text-default);
+    font-size: var(--ut-font-size-md);
+  }
+
+  textarea.ut-form-field__control {
+    padding-block: var(--ut-space-2);
+    min-block-size: calc(var(--ut-size-control-md) * 2);
+    resize: vertical;
+  }
+
+  .ut-form-field__control::placeholder {
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-form-field__control[aria-invalid='true'] {
+    border-color: var(--ut-color-text-error);
+  }
+
+  .ut-form-field__control:disabled {
+    background: var(--ut-color-action-disabled-bg);
+    color: var(--ut-color-action-disabled-text);
+    cursor: not-allowed;
+  }
+
+  .ut-form-field__hint,
+  .ut-form-field__error {
+    font-size: var(--ut-font-size-xs);
+    line-height: var(--ut-font-line-height-snug);
+  }
+
+  .ut-form-field__hint {
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-form-field__error {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ut-space-1);
+    color: var(--ut-color-text-error);
+  }
+
+  /* Inline: input and submit button in one row */
+  .ut-form-field__group {
+    display: flex;
+  }
+
+  .ut-form-field--inline .ut-form-field__control {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .ut-form-field--inline .ut-button {
+    flex-shrink: 0;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  /* Checkbox */
+  .ut-form-field--checkbox {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    column-gap: var(--ut-space-2);
+  }
+
+  .ut-form-field--checkbox .ut-form-field__control {
+    inline-size: var(--ut-size-icon-md);
+    min-block-size: var(--ut-size-icon-md);
+    block-size: var(--ut-size-icon-md);
+    margin: 0;
+    padding: 0;
+    accent-color: var(--ut-color-action-primary-bg);
+  }
+
+  .ut-form-field--checkbox .ut-form-field__label {
+    font-weight: var(--ut-font-weight-regular);
+  }
+
+  .ut-form-field--checkbox :is(.ut-form-field__hint, .ut-form-field__error) {
+    grid-column: 2;
+  }
+
+  /* --hidden-label: the label gets .ut-visually-hidden in the snippet. */
+}

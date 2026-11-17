@@ -1,0 +1,157 @@
+/*
+ * Button. Spec: design/components/button.md
+ *
+ * Local custom properties (--_*) are set per variant/state and only ever point
+ * at tokens. Hover reads the *-hover props into real properties; it never
+ * reassigns a custom property, so no var() cycle can occur.
+ */
+@layer components {
+  .ut-button {
+    --_bg: var(--ut-color-action-primary-bg);
+    --_fg: var(--ut-color-action-primary-text);
+    --_border: var(--ut-color-action-primary-bg);
+    --_bg-hover: var(--ut-color-action-primary-bg-hover);
+    --_fg-hover: var(--ut-color-action-primary-text);
+    --_border-hover: var(--ut-color-action-primary-bg-hover);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ut-space-2);
+    min-block-size: var(--ut-size-control-md);
+    padding-inline: var(--ut-space-6);
+    border: var(--ut-border-width-hairline) solid var(--_border);
+    border-radius: var(--ut-radius-control);
+    background: var(--_bg);
+    color: var(--_fg);
+    font-family: var(--ut-font-family-body);
+    font-size: var(--ut-font-size-sm);
+    font-weight: var(--ut-font-weight-semibold);
+    line-height: var(--ut-font-line-height-tight);
+    letter-spacing: var(--ut-font-letter-spacing-wide);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--ut-motion-duration-fast) var(--ut-motion-easing-standard),
+      color var(--ut-motion-duration-fast) var(--ut-motion-easing-standard),
+      border-color var(--ut-motion-duration-fast) var(--ut-motion-easing-standard);
+  }
+
+  .ut-button:hover {
+    background: var(--_bg-hover);
+    color: var(--_fg-hover);
+    border-color: var(--_border-hover);
+  }
+
+  /* Variants */
+  .ut-button--secondary {
+    --_bg: var(--ut-color-action-secondary-bg);
+    --_fg: var(--ut-color-action-secondary-text);
+    --_border: var(--ut-color-action-secondary-border);
+    --_bg-hover: var(--ut-color-action-secondary-text);
+    --_fg-hover: var(--ut-color-bg-default);
+    --_border-hover: var(--ut-color-action-secondary-border);
+  }
+
+  .ut-button--text {
+    --_bg: transparent;
+    --_fg: var(--ut-color-text-link);
+    --_border: transparent;
+    --_bg-hover: transparent;
+    --_fg-hover: var(--ut-color-text-link);
+    --_border-hover: transparent;
+
+    min-block-size: var(--ut-size-control-sm);
+    padding-inline: 0;
+    text-decoration: underline;
+    text-decoration-thickness: var(--ut-border-width-hairline);
+    text-underline-offset: 0.2em;
+  }
+
+  .ut-button--text:hover {
+    text-decoration-thickness: var(--ut-border-width-thick);
+  }
+
+  /* Sizes */
+  .ut-button--sm {
+    min-block-size: var(--ut-size-control-sm);
+    padding-inline: var(--ut-space-4);
+    font-size: var(--ut-font-size-xs);
+  }
+
+  .ut-button--lg {
+    min-block-size: var(--ut-size-control-lg);
+    padding-inline: var(--ut-space-8);
+    font-size: var(--ut-font-size-md);
+  }
+
+  .ut-button--text.ut-button--sm,
+  .ut-button--text.ut-button--lg {
+    padding-inline: 0;
+  }
+
+  .ut-button--full {
+    inline-size: 100%;
+  }
+
+  .ut-button--icon-end {
+    flex-direction: row-reverse;
+  }
+
+  /* Parts */
+  .ut-button__icon {
+    flex-shrink: 0;
+  }
+
+  .ut-button__spinner {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    inline-size: var(--ut-size-icon-sm);
+    block-size: var(--ut-size-icon-sm);
+    border: var(--ut-border-width-thick) solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: var(--ut-radius-full);
+    opacity: 0;
+  }
+
+  /* States */
+  .ut-button:is([disabled], [aria-disabled='true']) {
+    --_bg: var(--ut-color-action-disabled-bg);
+    --_fg: var(--ut-color-action-disabled-text);
+    --_border: var(--ut-color-action-disabled-bg);
+    --_bg-hover: var(--ut-color-action-disabled-bg);
+    --_fg-hover: var(--ut-color-action-disabled-text);
+    --_border-hover: var(--ut-color-action-disabled-bg);
+
+    cursor: not-allowed;
+  }
+
+  .ut-button--text:is([disabled], [aria-disabled='true']) {
+    --_bg: transparent;
+    --_border: transparent;
+    --_bg-hover: transparent;
+    --_border-hover: transparent;
+  }
+
+  .ut-button[aria-busy='true'] {
+    cursor: progress;
+  }
+
+  .ut-button[aria-busy='true'] > :not(.ut-button__spinner) {
+    opacity: 0;
+  }
+
+  .ut-button[aria-busy='true'] .ut-button__spinner {
+    opacity: 1;
+    animation: ut-button-spin calc(var(--ut-motion-duration-slow) * 2.5) linear infinite;
+  }
+
+  @keyframes ut-button-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}

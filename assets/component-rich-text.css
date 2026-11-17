@@ -1,0 +1,100 @@
+/*
+ * Rich text. Spec: design/components/rich-text.md
+ * Styles foreign HTML (descriptions, metafield_tag output), so element
+ * selectors are scoped under the block on purpose.
+ */
+@layer components {
+  .ut-rich-text {
+    color: var(--ut-color-text-default);
+    font-size: var(--ut-font-size-md);
+    line-height: var(--ut-font-line-height-normal);
+  }
+
+  .ut-rich-text > * + * {
+    margin-block-start: var(--ut-space-4);
+  }
+
+  .ut-rich-text :is(h1, h2, h3, h4) {
+    line-height: var(--ut-font-line-height-snug);
+    font-weight: var(--ut-font-weight-bold);
+  }
+
+  .ut-rich-text > :is(h1, h2, h3, h4) {
+    margin-block-start: var(--ut-space-8);
+  }
+
+  .ut-rich-text > :first-child {
+    margin-block-start: 0;
+  }
+
+  .ut-rich-text :is(h1, h2) { font-size: var(--ut-font-size-xl); }
+  .ut-rich-text h3 { font-size: var(--ut-font-size-lg); }
+  .ut-rich-text h4 { font-size: var(--ut-font-size-md); }
+
+  .ut-rich-text a {
+    color: var(--ut-color-text-link);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .ut-rich-text strong {
+    font-weight: var(--ut-font-weight-semibold);
+  }
+
+  .ut-rich-text :is(ul, ol) {
+    padding-inline-start: var(--ut-space-6);
+  }
+
+  .ut-rich-text li + li {
+    margin-block-start: var(--ut-space-2);
+  }
+
+  .ut-rich-text blockquote {
+    padding-inline-start: var(--ut-space-4);
+    border-inline-start: var(--ut-border-width-thick) solid var(--ut-color-border-strong);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-rich-text hr {
+    border: 0;
+    border-block-start: var(--ut-border-width-hairline) solid var(--ut-color-border-default);
+  }
+
+  .ut-rich-text img {
+    block-size: auto;
+  }
+
+  .ut-rich-text table {
+    display: block;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: var(--ut-font-size-sm);
+  }
+
+  .ut-rich-text :is(th, td) {
+    padding: var(--ut-space-2) var(--ut-space-3);
+    border-block-end: var(--ut-border-width-hairline) solid var(--ut-color-border-default);
+    text-align: start;
+    white-space: nowrap;
+  }
+
+  .ut-rich-text th {
+    font-weight: var(--ut-font-weight-semibold);
+    background: var(--ut-color-bg-subtle);
+  }
+
+  /* Modifiers */
+  .ut-rich-text--narrow {
+    max-inline-size: var(--ut-layout-container-narrow);
+  }
+
+  .ut-rich-text--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .ut-rich-text--sm {
+    font-size: var(--ut-font-size-sm);
+  }
+}

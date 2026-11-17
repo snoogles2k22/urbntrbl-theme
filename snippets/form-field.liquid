@@ -1,0 +1,92 @@
+{% doc %}
+  Form field with label, hint and error. Requires component-form-field.css
+  (and component-button.css when inline_button is set).
+  Spec: design/components/form-field.md
+
+  @param {string} id - Unique on the page
+  @param {string} name - Form name, e.g. 'contact[email]'
+  @param {string} label - Always required, visually hidden with hide_label
+  @param {string} [type] - text (default), email, tel, textarea, checkbox
+  @param {string} [value]
+  @param {string} [placeholder] - Never a replacement for the label
+  @param {string} [autocomplete]
+  @param {boolean} [required]
+  @param {boolean} [checked] - Checkbox only
+  @param {string} [hint]
+  @param {string} [error] - Sets aria-invalid
+  @param {boolean} [hide_label]
+  @param {string} [inline_button] - Submit button label; renders input and button in one row
+  @param {string} [attributes] - Extra raw attributes on the control
+
+  @example
+  {% render 'form-field', id: 'NewsletterEmail', name: 'contact[email]', type: 'email', label: 'E-Mail', autocomplete: 'email', required: true, inline_button: 'Anmelden' %}
+{% enddoc %}
+{%- liquid
+  assign field_type = type | default: 'text'
+  assign field_class = 'ut-form-field'
+  if field_type == 'checkbox'
+    assign field_class = field_class | append: ' ut-form-field--checkbox'
+  endif
+  if inline_button != blank
+    assign field_class = field_class | append: ' ut-form-field--inline'
+  endif
+
+  assign hint_id = id | append: '-hint'
+  assign error_id = id | append: '-error'
+  assign describedby = ''
+  if hint != blank
+    assign describedby = hint_id
+  endif
+  if error != blank
+    assign describedby = describedby | append: ' ' | append: error_id | strip
+  endif
+-%}
+{%- capture label_html -%}
+  <label
+    for="{{ id }}"
+    class="ut-form-field__label{% if hide_label %} ut-visually-hidden{% endif %}"
+  >
+    {{- label -}}
+    {%- if required -%}
+      <span class="ut-form-field__required" aria-hidden="true">&nbsp;*</span>
+    {%- endif -%}
+  </label>
+{%- endcapture -%}
+{%- capture control_attrs -%}
+  id="{{ id }}" name="{{ name }}" class="ut-form-field__control"
+  {%- if required %} required{% endif -%}
+  {%- if autocomplete != blank %} autocomplete="{{ autocomplete }}"{% endif -%}
+  {%- if placeholder != blank %} placeholder="{{ placeholder | escape }}"{% endif -%}
+  {%- if describedby != blank %} aria-describedby="{{ describedby }}"{% endif -%}
+  {%- if error != blank %} aria-invalid="true"{% endif -%}
+  {%- if attributes != blank %} {{ attributes }}{% endif -%}
+{%- endcapture -%}
+<div class="{{ field_class }}">
+  {%- case field_type -%}
+    {%- when 'checkbox' -%}
+      <input type="checkbox" value="{{ value | default: 'true' | escape }}" {{ control_attrs }}{% if checked %} checked{% endif %}>
+      {{ label_html }}
+    {%- when 'textarea' -%}
+      {{ label_html }}
+      <textarea {{ control_attrs }}>{{ value | escape }}</textarea>
+    {%- else -%}
+      {{ label_html }}
+      {%- if inline_button != blank -%}
+        <div class="ut-form-field__group">
+          <input type="{{ field_type }}" value="{{ value | escape }}" {{ control_attrs }}>
+          {%- render 'button', label: inline_button, type: 'submit' -%}
+        </div>
+      {%- else -%}
+        <input type="{{ field_type }}" value="{{ value | escape }}" {{ control_attrs }}>
+      {%- endif -%}
+  {%- endcase -%}
+  {%- if hint != blank -%}
+    <p id="{{ hint_id }}" class="ut-form-field__hint">{{ hint }}</p>
+  {%- endif -%}
+  {%- if error != blank -%}
+    <p id="{{ error_id }}" class="ut-form-field__error">
+      {%- render 'icon', name: 'alert', size: 'sm' -%}
+      <span>{{ error }}</span>
+    </p>
+  {%- endif -%}
+</div>

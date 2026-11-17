@@ -1,13 +1,22 @@
 # Files Shopify CLI must never push to the store.
+# Patterns are globs matched against paths relative to the theme root.
+# A bare directory name ("design/") does not match the files inside it;
+# use "dir/**".
 # The CLI only syncs the known theme folders anyway; this makes it explicit
 # and catches stray files inside those folders.
-design/
-docs/
-scripts/
+
+# Portable, non-theme folders
+design/**
+docs/**
+scripts/**
+
+# Repo files in the root
 CLAUDE.md
 README.md
 package.json
 .editorconfig
 .theme-check.yml
+
+# Placeholders and build artefacts inside theme folders
+**/.gitkeep
 assets/*.map
-assets/.gitkeep

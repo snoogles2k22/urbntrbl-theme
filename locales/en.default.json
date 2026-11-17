@@ -2,6 +2,25 @@
   "accessibility": {
     "skip_to_content": "Skip to content"
   },
+  "general": {
+    "loading": "Loading",
+    "view_all": "View all"
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Your {{ value }} gift card for {{ shop }}",
+      "heading": "Your {{ value }} gift card",
+      "balance": "Remaining balance",
+      "code": "Gift card code",
+      "expires_on_label": "Valid until",
+      "date_format": "%B %-d, %Y",
+      "expired": "Expired",
+      "disabled": "Disabled",
+      "how_to_use": "Enter the code at checkout. Any remaining balance stays on the card for your next order.",
+      "shop_link": "Start shopping",
+      "add_to_apple_wallet": "Add to Apple Wallet"
+    }
+  },
   "products": {
     "price": {
       "from": "from",
@@ -18,9 +37,51 @@
       "footnote_included": "* incl. VAT, plus shipping"
     }
   },
-  "sections": {
-    "placeholder": {
-      "text": "Theme skeleton is live. Tokens, layers and BEM are wired up."
+  "styleguide": {
+    "title": "Styleguide",
+    "intro": "Every primitive in every state, once in the default tone and once in tone \"inverse\". Temporary until phase F.",
+    "tone": "Tone",
+    "groups": {
+      "colors": "Colors (semantic)",
+      "typography": "Typography",
+      "buttons": "Buttons",
+      "icons": "Icons",
+      "badges": "Badges",
+      "prices": "Prices",
+      "images": "Images",
+      "rich_text": "Rich text",
+      "form_fields": "Form fields",
+      "section_header": "Section header",
+      "empty_state": "Empty state"
+    },
+    "sample": {
+      "primary": "Add to cart",
+      "secondary": "Learn more",
+      "text_link": "Size guide",
+      "with_icon": "Go to drop",
+      "disabled": "Sold out",
+      "busy": "Adding",
+      "badge_new": "New",
+      "badge_sale": "Sale",
+      "badge_sold_out": "Sold out",
+      "badge_upcoming": "Upcoming",
+      "badge_live": "Live",
+      "price_full": "Full (PDP, cart)",
+      "price_compact": "Compact (product card)",
+      "price_hint": "Pick products in the section settings to see real prices.",
+      "email": "Email address",
+      "hint": "We only write about drops.",
+      "error": "Please enter a valid email address.",
+      "submit": "Sign up",
+      "consent": "Email me when the drop goes live.",
+      "consent_hint": "Unsubscribe at any time.",
+      "note": "Order note",
+      "eyebrow": "Drop 01",
+      "heading": "New in",
+      "body": "Heavy fabrics, clean cuts, small runs. Every drop happens once.",
+      "empty_heading": "Your cart is empty",
+      "empty_text": "The current drop is still running. Take a look before it is gone.",
+      "empty_cta": "Go to current drop"
     }
   }
 }

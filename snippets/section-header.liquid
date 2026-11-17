@@ -1,0 +1,57 @@
+{% doc %}
+  Section heading block with optional eyebrow, text and "view all" link.
+  Requires component-section-header.css and component-button.css (for the link).
+  Spec: design/components/section-header.md
+
+  @param {string} heading
+  @param {string} [eyebrow]
+  @param {string} [text]
+  @param {string} [link_url] - Shows the link when set
+  @param {string} [link_label] - Default general.view_all
+  @param {string} [level] - h1, h2 (default), h3
+  @param {string} [align] - start (default) or center
+
+  @example
+  {% render 'section-header', eyebrow: 'Drop 01', heading: section.settings.heading, link_url: collection.url %}
+{% enddoc %}
+{%- liquid
+  assign heading_tag = level | default: 'h2'
+  unless heading_tag == 'h1' or heading_tag == 'h3'
+    assign heading_tag = 'h2'
+  endunless
+  assign header_class = 'ut-section-header'
+  if align == 'center'
+    assign header_class = header_class | append: ' ut-section-header--center'
+  endif
+  if link_label != blank
+    assign view_all = link_label
+  else
+    assign view_all = 'general.view_all' | t
+  endif
+-%}
+{%- if heading != blank -%}
+  <header class="{{ header_class }}">
+    <div class="ut-section-header__content">
+      {%- if eyebrow != blank -%}
+        <p class="ut-section-header__eyebrow">{{ eyebrow }}</p>
+      {%- endif -%}
+      <{{ heading_tag }} class="ut-section-header__heading">{{ heading }}</{{ heading_tag }}>
+      {%- if text != blank -%}
+        <div class="ut-section-header__text">{{ text }}</div>
+      {%- endif -%}
+    </div>
+    {%- if link_url != blank -%}
+      {%- capture link_label_full -%}
+        {{ view_all }}<span class="ut-visually-hidden">: {{ heading | strip_html }}</span>
+      {%- endcapture -%}
+      {%- render 'button',
+        label: link_label_full,
+        url: link_url,
+        variant: 'text',
+        icon: 'arrow-right',
+        icon_end: true,
+        class: 'ut-section-header__link'
+      -%}
+    {%- endif -%}
+  </header>
+{%- endif -%}

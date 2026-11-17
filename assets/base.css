@@ -99,7 +99,12 @@
 
   :focus-visible {
     outline: var(--ut-border-width-focus) solid var(--ut-color-border-focus);
-    outline-offset: 2px;
+    outline-offset: var(--ut-border-width-focus-offset);
+  }
+
+  [data-tone] {
+    background: var(--ut-color-bg-default);
+    color: var(--ut-color-text-default);
   }
 
   .ut-skip-link {

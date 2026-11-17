@@ -22,6 +22,7 @@ Komponenten), `collection.md`, `drop.md` (eigenes Datenmodell), `cart.md`, `home
 | `product.md`    | `templates/product.json`               | `/products/<handle>`      |
 | `drop.md`       | `templates/metaobject/drop.json` und `templates/page.drops.json` | `/drops/<handle>`, `/pages/drops` |
 | `cart.md`       | `templates/cart.json` und Cart Drawer  | `/cart`, overlay überall  |
+| `gift-card.md`  | `templates/gift_card.liquid` (ohne Layout) | `/gift_cards/<token>` |
 
 ## Lesart der Tabellen
 

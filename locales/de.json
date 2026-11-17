@@ -2,6 +2,25 @@
   "accessibility": {
     "skip_to_content": "Zum Inhalt springen"
   },
+  "general": {
+    "loading": "Wird geladen",
+    "view_all": "Alle ansehen"
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Dein Gutschein über {{ value }} für {{ shop }}",
+      "heading": "Dein Gutschein über {{ value }}",
+      "balance": "Restguthaben",
+      "code": "Gutscheincode",
+      "expires_on_label": "Gültig bis",
+      "date_format": "%d.%m.%Y",
+      "expired": "Abgelaufen",
+      "disabled": "Deaktiviert",
+      "how_to_use": "Gib den Code im Checkout ein. Ein Restbetrag bleibt für den nächsten Einkauf erhalten.",
+      "shop_link": "Jetzt einkaufen",
+      "add_to_apple_wallet": "Zu Apple Wallet hinzufügen"
+    }
+  },
   "products": {
     "price": {
       "from": "ab",
@@ -18,9 +37,51 @@
       "footnote_included": "* inkl. MwSt., zzgl. Versandkosten"
     }
   },
-  "sections": {
-    "placeholder": {
-      "text": "Theme-Skelett läuft. Tokens, Layer und BEM sind verdrahtet."
+  "styleguide": {
+    "title": "Styleguide",
+    "intro": "Alle Primitive in allen Zuständen, einmal im Standard-Ton und einmal im Ton „inverse“. Temporär bis Phase F.",
+    "tone": "Ton",
+    "groups": {
+      "colors": "Farben (Semantik)",
+      "typography": "Typografie",
+      "buttons": "Buttons",
+      "icons": "Icons",
+      "badges": "Badges",
+      "prices": "Preise",
+      "images": "Bilder",
+      "rich_text": "Rich Text",
+      "form_fields": "Formularfelder",
+      "section_header": "Section Header",
+      "empty_state": "Empty State"
+    },
+    "sample": {
+      "primary": "In den Warenkorb",
+      "secondary": "Mehr erfahren",
+      "text_link": "Größentabelle",
+      "with_icon": "Zum Drop",
+      "disabled": "Ausverkauft",
+      "busy": "Wird hinzugefügt",
+      "badge_new": "Neu",
+      "badge_sale": "Sale",
+      "badge_sold_out": "Ausverkauft",
+      "badge_upcoming": "Demnächst",
+      "badge_live": "Live",
+      "price_full": "Voll (PDP, Warenkorb)",
+      "price_compact": "Kompakt (Product Card)",
+      "price_hint": "Produkte in den Section-Einstellungen wählen, um echte Preise zu sehen.",
+      "email": "E-Mail-Adresse",
+      "hint": "Wir schreiben dir nur zu Drops.",
+      "error": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "submit": "Anmelden",
+      "consent": "Ich möchte per E-Mail benachrichtigt werden, wenn der Drop live geht.",
+      "consent_hint": "Abmeldung jederzeit möglich.",
+      "note": "Notiz zur Bestellung",
+      "eyebrow": "Drop 01",
+      "heading": "Neu im Shop",
+      "body": "Schwere Stoffe, klare Schnitte, kleine Auflagen. Jeder Drop erscheint einmal.",
+      "empty_heading": "Dein Warenkorb ist leer",
+      "empty_text": "Der aktuelle Drop läuft noch. Schau rein, bevor er weg ist.",
+      "empty_cta": "Zum aktuellen Drop"
     }
   }
 }

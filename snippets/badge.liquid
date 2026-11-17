@@ -1,0 +1,15 @@
+{% doc %}
+  Short status label. Requires component-badge.css.
+  Which badge a product gets is decided by product-badge.liquid (phase C), not here.
+  Spec: design/components/badge.md
+
+  @param {string} label - Translated text, written normally (uppercase comes from CSS)
+  @param {string} [tone] - neutral (default), accent, muted, outline, success
+
+  @example
+  {% assign sale_label = 'products.badge.sale' | t %}
+  {% render 'badge', label: sale_label, tone: 'accent' %}
+{% enddoc %}
+{%- if label != blank -%}
+  <span class="ut-badge ut-badge--{{ tone | default: 'neutral' }}">{{ label }}</span>
+{%- endif -%}

@@ -1,0 +1,66 @@
+/* Price. Spec: design/components/price.md */
+@layer components {
+  .ut-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: var(--ut-space-2);
+    row-gap: var(--ut-space-1);
+    font-family: var(--ut-font-family-body);
+    font-size: var(--ut-font-size-md);
+    color: var(--ut-color-text-default);
+  }
+
+  .ut-price__amount {
+    font-weight: var(--ut-font-weight-semibold);
+  }
+
+  .ut-price--sale .ut-price__amount {
+    color: var(--ut-color-text-sale);
+  }
+
+  .ut-price__compare {
+    font-weight: var(--ut-font-weight-regular);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-price__marker {
+    align-self: flex-start;
+    font-size: var(--ut-font-size-xs);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-price__compare-label,
+  .ut-price__unit,
+  .ut-price__notes {
+    flex-basis: 100%;
+    font-size: var(--ut-font-size-xs);
+    line-height: var(--ut-font-line-height-snug);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-price__notes {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--ut-space-1);
+  }
+
+  .ut-price__notes a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .ut-price--size-sm {
+    font-size: var(--ut-font-size-sm);
+  }
+
+  .ut-price--size-lg {
+    font-size: var(--ut-font-size-lg);
+  }
+
+  .ut-price--unavailable,
+  .ut-price--unavailable .ut-price__amount {
+    color: var(--ut-color-text-muted);
+  }
+}

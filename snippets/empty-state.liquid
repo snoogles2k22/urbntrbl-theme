@@ -1,0 +1,41 @@
+{% doc %}
+  Empty state with at least one way out. Requires component-empty-state.css,
+  component-button.css and component-icon.css.
+  Spec: design/components/empty-state.md
+
+  @param {string} heading
+  @param {string} button_label
+  @param {string} button_url
+  @param {string} [text]
+  @param {string} [icon] - Icon name
+  @param {string} [secondary_label]
+  @param {string} [secondary_url]
+  @param {string} [heading_level] - h2 (default) or h3
+
+  @example
+  {% assign empty_heading = 'cart.empty.heading' | t %}
+  {% assign empty_cta = 'cart.empty.cta' | t %}
+  {% render 'empty-state', heading: empty_heading, button_label: empty_cta, button_url: routes.all_products_collection_url, icon: 'cart' %}
+  Note: render arguments do not evaluate filters; assign translated text first.
+{% enddoc %}
+{%- liquid
+  assign heading_tag = heading_level | default: 'h2'
+  unless heading_tag == 'h3'
+    assign heading_tag = 'h2'
+  endunless
+-%}
+<div class="ut-empty-state">
+  {%- if icon != blank -%}
+    {%- render 'icon', name: icon, size: 'xl', class: 'ut-empty-state__icon' -%}
+  {%- endif -%}
+  <{{ heading_tag }} class="ut-empty-state__heading">{{ heading }}</{{ heading_tag }}>
+  {%- if text != blank -%}
+    <p class="ut-empty-state__text">{{ text }}</p>
+  {%- endif -%}
+  <div class="ut-empty-state__actions">
+    {%- render 'button', label: button_label, url: button_url -%}
+    {%- if secondary_label != blank and secondary_url != blank -%}
+      {%- render 'button', label: secondary_label, url: secondary_url, variant: 'secondary' -%}
+    {%- endif -%}
+  </div>
+</div>

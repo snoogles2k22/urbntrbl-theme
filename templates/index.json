@@ -1,11 +1,9 @@
 {
   "sections": {
-    "main": {
-      "type": "placeholder",
-      "settings": {
-        "heading": "URBN TRBL"
-      }
+    "styleguide": {
+      "type": "styleguide",
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": ["styleguide"]
 }

@@ -2,4 +2,10 @@ root: .
 extends: theme-check:recommended
 
 # Theme Check ships with Shopify CLI. Run: npm run check
-# Tightened rules follow once real sections exist.
+
+# OrphanedSnippet is disabled: with Shopify CLI 5.0.1 it flags every snippet,
+# even one rendered directly from layout/theme.liquid (verified 2026-11-17 in a
+# scratch copy). Re-enable after a CLI update and check that it reports only
+# real orphans.
+OrphanedSnippet:
+  enabled: false

@@ -1,0 +1,295 @@
+{%- comment -%}
+  Styleguide (temporary, phase A). Renders every primitive in every state,
+  once in the default tone and once in tone "inverse". Replaced on the home
+  page in phase F; stays reachable via the page template "styleguide".
+
+  Note: render arguments do not evaluate filters. Every translated or
+  computed value is assigned first and passed as a variable.
+{%- endcomment -%}
+
+{{ 'component-styleguide.css' | asset_url | stylesheet_tag }}
+{{ 'component-icon.css' | asset_url | stylesheet_tag }}
+{{ 'component-button.css' | asset_url | stylesheet_tag }}
+{{ 'component-badge.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-image.css' | asset_url | stylesheet_tag }}
+{{ 'component-rich-text.css' | asset_url | stylesheet_tag }}
+{{ 'component-form-field.css' | asset_url | stylesheet_tag }}
+{{ 'component-section-header.css' | asset_url | stylesheet_tag }}
+{{ 'component-empty-state.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign swatches = 'text-default,text-muted,text-sale,text-error,bg-default,bg-subtle,bg-muted,bg-inverse,bg-accent,bg-success,border-default,border-control,border-strong,border-focus,action-primary-bg,action-disabled-bg' | split: ','
+  assign icons = 'menu,close,search,account,cart,chevron-up,chevron-down,chevron-left,chevron-right,arrow-right,plus,minus,check,alert' | split: ','
+  assign tones = 'default,inverse' | split: ','
+
+  assign t_primary = 'styleguide.sample.primary' | t
+  assign t_secondary = 'styleguide.sample.secondary' | t
+  assign t_text_link = 'styleguide.sample.text_link' | t
+  assign t_with_icon = 'styleguide.sample.with_icon' | t
+  assign t_disabled = 'styleguide.sample.disabled' | t
+  assign t_busy = 'styleguide.sample.busy' | t
+
+  assign t_badge_new = 'styleguide.sample.badge_new' | t
+  assign t_badge_sale = 'styleguide.sample.badge_sale' | t
+  assign t_badge_sold_out = 'styleguide.sample.badge_sold_out' | t
+  assign t_badge_upcoming = 'styleguide.sample.badge_upcoming' | t
+  assign t_badge_live = 'styleguide.sample.badge_live' | t
+
+  assign t_email = 'styleguide.sample.email' | t
+  assign t_hint = 'styleguide.sample.hint' | t
+  assign t_error = 'styleguide.sample.error' | t
+  assign t_submit = 'styleguide.sample.submit' | t
+  assign t_consent = 'styleguide.sample.consent' | t
+  assign t_consent_hint = 'styleguide.sample.consent_hint' | t
+  assign t_note = 'styleguide.sample.note' | t
+
+  assign t_eyebrow = 'styleguide.sample.eyebrow' | t
+  assign t_heading = 'styleguide.sample.heading' | t
+  assign t_body = 'styleguide.sample.body' | t
+
+  assign t_empty_heading = 'styleguide.sample.empty_heading' | t
+  assign t_empty_text = 'styleguide.sample.empty_text' | t
+  assign t_empty_cta = 'styleguide.sample.empty_cta' | t
+
+  assign product_regular = section.settings.product
+  assign product_sale = section.settings.product_sale
+  assign sample_image = section.settings.image
+  assign all_products_url = routes.all_products_collection_url
+-%}
+
+<div class="ut-styleguide">
+  <header class="ut-styleguide__intro">
+    <h1 class="ut-styleguide__title">{{ 'styleguide.title' | t }}</h1>
+    <p>{{ 'styleguide.intro' | t }}</p>
+  </header>
+
+  {%- for tone in tones -%}
+    {%- liquid
+      assign id_email = 'SgEmail-' | append: tone
+      assign id_email_error = 'SgEmailError-' | append: tone
+      assign id_inline = 'SgInline-' | append: tone
+      assign id_consent = 'SgConsent-' | append: tone
+      assign id_note = 'SgNote-' | append: tone
+    -%}
+    <div class="ut-styleguide__tone" data-tone="{{ tone }}">
+      <h2 class="ut-styleguide__tone-title">{{ 'styleguide.tone' | t }}: {{ tone }}</h2>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.colors' | t }}</h3>
+        <ul class="ut-styleguide__swatches" role="list">
+          {%- for swatch in swatches -%}
+            <li class="ut-styleguide__swatch">
+              <span class="ut-styleguide__swatch-chip" style="--_swatch: var(--ut-color-{{ swatch }});"></span>
+              <code>{{ swatch }}</code>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.typography' | t }}</h3>
+        <p class="ut-styleguide__type ut-styleguide__type--display">URBN TRBL</p>
+        <p class="ut-styleguide__type ut-styleguide__type--3xl">{{ t_heading }}</p>
+        <p class="ut-styleguide__type ut-styleguide__type--2xl">{{ t_heading }}</p>
+        <p class="ut-styleguide__type ut-styleguide__type--xl">{{ t_heading }}</p>
+        <p class="ut-styleguide__type">{{ t_body }}</p>
+        <p class="ut-styleguide__type ut-styleguide__type--sm">{{ t_body }}</p>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.buttons' | t }}</h3>
+        <div class="ut-styleguide__row">
+          {%- render 'button', label: t_primary -%}
+          {%- render 'button', label: t_secondary, variant: 'secondary' -%}
+          {%- render 'button', label: t_text_link, variant: 'text', url: '#' -%}
+          {%- render 'button', label: t_with_icon, icon: 'arrow-right', icon_end: true, url: '#' -%}
+        </div>
+        <div class="ut-styleguide__row">
+          {%- render 'button', label: t_primary, size: 'sm' -%}
+          {%- render 'button', label: t_primary, size: 'lg' -%}
+          {%- render 'button', label: t_disabled, disabled: true -%}
+          {%- render 'button', label: t_disabled, variant: 'secondary', disabled: true -%}
+          {%- render 'button', label: t_busy, busy: true -%}
+        </div>
+        <div class="ut-styleguide__row ut-styleguide__row--narrow">
+          {%- render 'button', label: t_primary, full: true, icon: 'cart' -%}
+        </div>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.icons' | t }}</h3>
+        <ul class="ut-styleguide__icons" role="list">
+          {%- for icon_name in icons -%}
+            <li class="ut-styleguide__icon">
+              {%- render 'icon', name: icon_name, size: 'lg' -%}
+              <code>{{ icon_name }}</code>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.badges' | t }}</h3>
+        <div class="ut-styleguide__row">
+          {%- render 'badge', label: t_badge_new -%}
+          {%- render 'badge', label: t_badge_sale, tone: 'accent' -%}
+          {%- render 'badge', label: t_badge_sold_out, tone: 'muted' -%}
+          {%- render 'badge', label: t_badge_upcoming, tone: 'outline' -%}
+          {%- render 'badge', label: t_badge_live, tone: 'success' -%}
+        </div>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.prices' | t }}</h3>
+        {%- if product_regular != blank or product_sale != blank -%}
+          <div class="ut-styleguide__grid">
+            {%- if product_regular != blank -%}
+              <div>
+                <p class="ut-styleguide__label">{{ 'styleguide.sample.price_full' | t }}</p>
+                {%- render 'price', product: product_regular, variant: product_regular.selected_or_first_available_variant, size: 'lg' -%}
+                <p class="ut-styleguide__label">{{ 'styleguide.sample.price_compact' | t }}</p>
+                {%- render 'price', product: product_regular, compact: true, size: 'sm' -%}
+              </div>
+            {%- endif -%}
+            {%- if product_sale != blank -%}
+              <div>
+                <p class="ut-styleguide__label">{{ 'styleguide.sample.price_full' | t }}</p>
+                {%- render 'price', product: product_sale, variant: product_sale.selected_or_first_available_variant, size: 'lg' -%}
+                <p class="ut-styleguide__label">{{ 'styleguide.sample.price_compact' | t }}</p>
+                {%- render 'price', product: product_sale, compact: true, size: 'sm' -%}
+              </div>
+            {%- endif -%}
+          </div>
+          <p class="ut-styleguide__label">
+            {%- if settings.price_tax_mode == 'included' -%}
+              {{ 'products.price.footnote_included' | t }}
+            {%- else -%}
+              {{ 'products.price.footnote_kleinunternehmer' | t }}
+            {%- endif -%}
+          </p>
+        {%- else -%}
+          <p class="ut-styleguide__label">{{ 'styleguide.sample.price_hint' | t }}</p>
+        {%- endif -%}
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.images' | t }}</h3>
+        <div class="ut-styleguide__grid ut-styleguide__grid--4">
+          {%- render 'image', image: sample_image, ratio: 'square', sizes: '25vw', placeholder: 'product-1' -%}
+          {%- render 'image', image: sample_image, ratio: 'portrait', sizes: '25vw', placeholder: 'product-2' -%}
+          {%- render 'image', image: sample_image, ratio: 'landscape', sizes: '25vw', placeholder: 'lifestyle-1' -%}
+          {%- render 'image', image: sample_image, ratio: 'wide', sizes: '25vw', fit: 'contain', placeholder: 'lifestyle-2' -%}
+        </div>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.rich_text' | t }}</h3>
+        <div class="ut-rich-text ut-rich-text--narrow">{{ section.settings.richtext }}</div>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.form_fields' | t }}</h3>
+        <div class="ut-styleguide__grid">
+          {%- render 'form-field',
+            id: id_email,
+            name: 'styleguide[email]',
+            type: 'email',
+            label: t_email,
+            hint: t_hint,
+            autocomplete: 'email',
+            required: true
+          -%}
+          {%- render 'form-field',
+            id: id_email_error,
+            name: 'styleguide[email_error]',
+            type: 'email',
+            label: t_email,
+            value: 'nicht-gueltig',
+            error: t_error,
+            required: true
+          -%}
+          {%- render 'form-field',
+            id: id_inline,
+            name: 'styleguide[inline]',
+            type: 'email',
+            label: t_email,
+            hide_label: true,
+            placeholder: t_email,
+            inline_button: t_submit
+          -%}
+          {%- render 'form-field',
+            id: id_consent,
+            name: 'styleguide[consent]',
+            type: 'checkbox',
+            label: t_consent,
+            hint: t_consent_hint
+          -%}
+          {%- render 'form-field', id: id_note, name: 'styleguide[note]', type: 'textarea', label: t_note -%}
+        </div>
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.section_header' | t }}</h3>
+        {%- render 'section-header',
+          eyebrow: t_eyebrow,
+          heading: t_heading,
+          text: t_body,
+          link_url: all_products_url,
+          level: 'h3'
+        -%}
+        {%- render 'section-header', eyebrow: t_eyebrow, heading: t_heading, align: 'center', level: 'h3' -%}
+      </section>
+
+      <section class="ut-styleguide__group">
+        <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.empty_state' | t }}</h3>
+        {%- render 'empty-state',
+          icon: 'cart',
+          heading: t_empty_heading,
+          text: t_empty_text,
+          button_label: t_empty_cta,
+          button_url: all_products_url,
+          heading_level: 'h3'
+        -%}
+      </section>
+    </div>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.styleguide.name",
+  "tag": "section",
+  "class": "ut-section-styleguide",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.styleguide.settings.info"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:sections.styleguide.settings.product"
+    },
+    {
+      "type": "product",
+      "id": "product_sale",
+      "label": "t:sections.styleguide.settings.product_sale"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.styleguide.settings.image"
+    },
+    {
+      "type": "richtext",
+      "id": "richtext",
+      "label": "t:sections.styleguide.settings.richtext",
+      "default": "<h2>Material und Passform</h2><p>Schwerer Baumwoll-Jersey, garment dyed. Boxy Fit mit tiefer Schulter. <a href=\"#\">Größentabelle</a> ansehen.</p><ul><li>100 % Bio-Baumwolle</li><li>Bei 30 °C auf links waschen</li></ul><p><strong>Hinweis:</strong> Durch das Färbeverfahren ist jedes Teil leicht unterschiedlich.</p>"
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.styleguide.name" }
+  ]
+}
+{% endschema %}

@@ -12,6 +12,8 @@
     "tokens:check": "node scripts/build-tokens.mjs --check",
     "dev": "shopify theme dev --store urbntrbl-dev-9tgmoc6p",
     "check": "shopify theme check",
-    "push:unpublished": "shopify theme push --store urbntrbl-dev-9tgmoc6p --unpublished"
+    "push:unpublished": "shopify theme push --store urbntrbl-dev-9tgmoc6p --unpublished",
+    "predev": "npm run tokens:build",
+    "prepush:unpublished": "npm run tokens:check"
   }
 }

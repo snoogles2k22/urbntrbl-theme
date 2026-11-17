@@ -1,0 +1,122 @@
+{% doc %}
+  Price with sale, unit price and legal notes. Requires component-price.css.
+  Spec: design/components/price.md ([RECHT-PRÜFEN] notes live there)
+
+  @param {product} product
+  @param {variant} [variant] - Exact variant (PDP, cart); without it the product's lowest price is shown
+  @param {boolean} [compact] - Card variant: footnote marker instead of notes
+  @param {string} [size] - sm, md (default), lg
+  @param {boolean} [show_notes] - Set false to hide tax/shipping notes in the full variant (cart setting)
+
+  @example
+  {% render 'price', product: product, compact: true, size: 'sm' %}
+  {% render 'price', product: product, variant: product.selected_or_first_available_variant, size: 'lg' %}
+{% enddoc %}
+{%- liquid
+  if variant != blank
+    assign target = variant
+    assign amount = variant.price
+    assign compare = variant.compare_at_price
+    assign is_from = false
+    assign is_available = variant.available
+  else
+    assign target = product.selected_or_first_available_variant
+    assign amount = product.price
+    assign compare = product.compare_at_price
+    assign is_from = product.price_varies
+    assign is_available = product.available
+  endif
+
+  assign on_sale = false
+  if compare != blank and compare > amount
+    assign on_sale = true
+  endif
+
+  assign show_unit = false
+  if settings.price_show_unit_price and target.unit_price_measurement
+    assign show_unit = true
+  endif
+
+  assign price_class = 'ut-price'
+  if on_sale
+    assign price_class = price_class | append: ' ut-price--sale'
+  endif
+  if compact
+    assign price_class = price_class | append: ' ut-price--compact'
+  endif
+  if size == 'sm' or size == 'lg'
+    assign price_class = price_class | append: ' ut-price--size-' | append: size
+  endif
+  unless is_available
+    assign price_class = price_class | append: ' ut-price--unavailable'
+  endunless
+
+  case settings.price_tax_mode
+    when 'included'
+      assign tax_note = 'products.price.tax_note_included' | t
+    when 'kleinunternehmer'
+      assign tax_note = 'products.price.tax_note_kleinunternehmer' | t
+    else
+      assign tax_note = ''
+  endcase
+
+  assign shipping_url = ''
+  if shop.shipping_policy.body != blank
+    assign shipping_url = shop.shipping_policy.url
+  elsif settings.price_shipping_page != blank
+    assign shipping_url = settings.price_shipping_page
+  endif
+-%}
+<div class="{{ price_class }}">
+  {%- if is_from -%}
+    <span class="ut-price__from">{{ 'products.price.from' | t }}</span>
+  {%- endif -%}
+
+  {%- if on_sale -%}
+    <span class="ut-visually-hidden">{{ 'products.price.sale_price' | t }}</span>
+  {%- endif -%}
+  <span class="ut-price__amount">{{ amount | money }}</span>
+
+  {%- if on_sale -%}
+    <span class="ut-visually-hidden">{{ 'products.price.regular_price' | t }}</span>
+    <s class="ut-price__compare">{{ compare | money }}</s>
+  {%- endif -%}
+
+  {%- if compact -%}
+    <span class="ut-price__marker" aria-hidden="true">*</span>
+  {%- endif -%}
+
+  {%- if on_sale -%}
+    {%- case settings.price_compare_label -%}
+      {%- when 'lowest_30d' -%}
+        <span class="ut-price__compare-label">{{ 'products.price.compare_label_lowest_30d' | t }}</span>
+      {%- when 'rrp' -%}
+        <span class="ut-price__compare-label">{{ 'products.price.compare_label_rrp' | t }}</span>
+    {%- endcase -%}
+  {%- endif -%}
+
+  {%- if show_unit -%}
+    <span class="ut-price__unit">
+      {%- assign ref_value = target.unit_price_measurement.reference_value -%}
+      ({{ target.unit_price | money }}&nbsp;{{ 'products.price.unit_price_separator' | t }}&nbsp;
+      {%- if ref_value != 1 -%}{{ ref_value }}&nbsp;{%- endif -%}
+      {{ target.unit_price_measurement.reference_unit }})
+    </span>
+  {%- endif -%}
+
+  {%- unless compact or show_notes == false -%}
+    <small class="ut-price__notes">
+      {%- if tax_note != blank -%}
+        <span class="ut-price__tax-note">{{ tax_note }}</span>
+      {%- endif -%}
+      {%- capture shipping_link -%}
+        {%- if shipping_url != blank -%}
+          <a href="{{ shipping_url }}">{{ 'products.price.shipping_link_text' | t }}</a>
+        {%- else -%}
+          {{- 'products.price.shipping_link_text' | t -}}
+        {%- endif -%}
+      {%- endcapture -%}
+      <span class="ut-price__shipping-note">{{ 'products.price.shipping_note_html' | t: link: shipping_link }}</span>
+    </small>
+  {%- endunless -%}
+</div>

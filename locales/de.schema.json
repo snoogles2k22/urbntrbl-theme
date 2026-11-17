@@ -27,10 +27,14 @@
     }
   },
   "sections": {
-    "placeholder": {
-      "name": "Platzhalter",
+    "styleguide": {
+      "name": "Styleguide (Entwicklung)",
       "settings": {
-        "heading": "Überschrift"
+        "info": "Zeigt alle Basis-Komponenten. Nur für die Entwicklung, wird vor Launch entfernt.",
+        "product": "Beispielprodukt",
+        "product_sale": "Beispielprodukt im Sale",
+        "image": "Beispielbild",
+        "richtext": "Beispieltext"
       }
     }
   }

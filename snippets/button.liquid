@@ -1,0 +1,62 @@
+{% doc %}
+  Button or link styled as button. Requires component-button.css.
+  Spec: design/components/button.md
+
+  @param {string} label - Visible label
+  @param {string} [url] - Renders <a href> when set (ignored when disabled)
+  @param {string} [type] - button (default) or submit
+  @param {string} [variant] - primary (default), secondary, text
+  @param {string} [size] - sm, md (default), lg
+  @param {boolean} [full] - Full width
+  @param {string} [icon] - Icon name, see snippets/icon.liquid
+  @param {boolean} [icon_end] - Icon after the label
+  @param {boolean} [disabled] - Forces a disabled <button>
+  @param {boolean} [busy] - Initial aria-busy state
+  @param {string} [class] - Extra class from the caller
+  @param {string} [attributes] - Extra raw attributes, e.g. 'name="add" form="product-form"'
+
+  @example
+  {% render 'button', label: 'In den Warenkorb', type: 'submit', full: true %}
+{% enddoc %}
+{%- liquid
+  assign button_variant = variant | default: 'primary'
+  assign button_class = 'ut-button ut-button--' | append: button_variant
+  if size == 'sm' or size == 'lg'
+    assign button_class = button_class | append: ' ut-button--' | append: size
+  endif
+  if full
+    assign button_class = button_class | append: ' ut-button--full'
+  endif
+  if icon != blank and icon_end
+    assign button_class = button_class | append: ' ut-button--icon-end'
+  endif
+  if class != blank
+    assign button_class = button_class | append: ' ' | append: class
+  endif
+-%}
+{%- capture inner -%}
+  {%- if icon != blank -%}
+    {%- render 'icon', name: icon, size: 'sm', class: 'ut-button__icon' -%}
+  {%- endif -%}
+  <span class="ut-button__label">{{ label }}</span>
+  <span class="ut-button__spinner" aria-hidden="true"></span>
+{%- endcapture -%}
+{%- if url != blank and disabled != true -%}
+  <a href="{{ url }}" class="{{ button_class }}" {{ attributes }}>
+    {{- inner -}}
+  </a>
+{%- else -%}
+  <button
+    type="{{ type | default: 'button' }}"
+    class="{{ button_class }}"
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if busy %}
+      aria-busy="true"
+    {% endif %}
+    {{ attributes }}
+  >
+    {{- inner -}}
+  </button>
+{%- endif -%}

@@ -1,0 +1,30 @@
+/* Icon. Spec: design/components/icon.md */
+@layer components {
+  .ut-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    inline-size: var(--ut-size-icon-md);
+    block-size: var(--ut-size-icon-md);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--ut-size-icon-stroke);
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    vertical-align: middle;
+  }
+
+  .ut-icon--sm {
+    inline-size: var(--ut-size-icon-sm);
+    block-size: var(--ut-size-icon-sm);
+  }
+
+  .ut-icon--lg {
+    inline-size: var(--ut-size-icon-lg);
+    block-size: var(--ut-size-icon-lg);
+  }
+
+  .ut-icon--xl {
+    inline-size: var(--ut-size-icon-xl);
+    block-size: var(--ut-size-icon-xl);
+  }
+}

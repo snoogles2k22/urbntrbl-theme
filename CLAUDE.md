@@ -15,6 +15,13 @@ Sprache: Doku und Specs auf Deutsch, Code, Kommentare im Code und Identifier auf
    Nach jeder Token-Änderung: `npm run tokens:build`. CI/Pre-Push: `npm run tokens:check`.
    In Komponenten-CSS kommen **keine** Rohwerte (Hex, px für Abstände) vor, nur `var(--ut-…)`.
    Ausnahme: `0`, `1px`-Hairlines und `100%`/`auto`.
+   Komponenten nutzen nur Semantik-Tokens (`color.text.*`, `color.bg.*`, `color.action.*`,
+   `radius.control` …), nie Primitive (`color.neutral.*`, `color.brand.*`).
+   Scopes (z. B. `tone: inverse`) stehen in `tokens.json` unter `$scopes`, nie als
+   Handmapping in CSS. Text-Paare halten 4.5:1, Bedienelement-Rahmen 3:1; neue Paare
+   vor dem Einsatz nachrechnen und den Wert in `$description` notieren.
+   Lokale Custom Properties einer Komponente heißen `--_name`. Sie zeigen nur auf Tokens
+   und werden in `:hover`/Zuständen nie aus sich selbst neu berechnet (var()-Zyklen).
 2. **Reines CSS, kein Sass/PostCSS/Tailwind.** BEM mit Präfix `ut-`: `.ut-block`,
    `.ut-block__element`, `.ut-block--modifier`. Der Präfix verhindert Kollisionen mit
    CSS von Shopify-Apps und Drittskripten. Eine Datei pro Komponente:
@@ -32,6 +39,9 @@ Sprache: Doku und Specs auf Deutsch, Code, Kommentare im Code und Identifier auf
    sonst erst den Blueprint ändern.
    Die Spec beschreibt Anatomie (BEM), Datenvertrag (plattformneutral), Zustände,
    Accessibility, verwendete Tokens und Port-Hinweise.
+   Snippets beginnen mit einem LiquidDoc-Block (`{% doc %}` mit `@param`, `@example`).
+   **Render-Argumente werten keine Filter aus:** `{% render 'x', label: 'key' | t %}`
+   übergibt den rohen Key. Übersetzte oder berechnete Werte immer vorher `assign`en.
 5. **Jedes Metafeld ist dokumentiert** in `docs/metafields.md`, bevor es im Theme
    verwendet wird. Namespace immer `urbntrbl`. Jedes globale Theme-Setting steht in
    der Theme-Settings-Registry in `docs/data-model.md`.

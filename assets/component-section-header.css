@@ -1,0 +1,46 @@
+/* Section header. Spec: design/components/section-header.md */
+@layer components {
+  .ut-section-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--ut-space-4);
+    margin-block-end: var(--ut-space-8);
+  }
+
+  .ut-section-header__content {
+    display: grid;
+    gap: var(--ut-space-2);
+    max-inline-size: var(--ut-layout-container-narrow);
+  }
+
+  .ut-section-header__eyebrow {
+    font-size: var(--ut-font-size-xs);
+    font-weight: var(--ut-font-weight-semibold);
+    letter-spacing: var(--ut-font-letter-spacing-caps);
+    text-transform: uppercase;
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-section-header__heading {
+    font-size: var(--ut-font-size-2xl);
+    font-weight: var(--ut-font-weight-bold);
+    line-height: var(--ut-font-line-height-tight);
+  }
+
+  .ut-section-header__text {
+    font-size: var(--ut-font-size-md);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-section-header--center {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ut-section-header--center .ut-section-header__content {
+    justify-items: center;
+  }
+}
