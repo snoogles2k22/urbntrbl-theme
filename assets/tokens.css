@@ -1,0 +1,147 @@
+/* GENERATED FILE. DO NOT EDIT.
+ * Source: design/tokens/tokens.json
+ * Build:  npm run tokens:build
+ * Check:  npm run tokens:check
+ */
+:root {
+
+  /* color */
+  --ut-color-neutral-0: #ffffff;
+  --ut-color-neutral-50: #f7f7f7;
+  --ut-color-neutral-100: #ededed;
+  --ut-color-neutral-200: #d9d9d9;
+  --ut-color-neutral-300: #b8b8b8;
+  --ut-color-neutral-400: #8f8f8f;
+  --ut-color-neutral-500: #6b6b6b;
+  --ut-color-neutral-600: #4d4d4d;
+  --ut-color-neutral-700: #333333;
+  --ut-color-neutral-800: #1f1f1f;
+  --ut-color-neutral-900: #111111;
+  --ut-color-neutral-1000: #000000;
+  --ut-color-brand-primary: #111111;
+  --ut-color-brand-primary-contrast: #ffffff;
+  --ut-color-brand-accent: #ff4d00;
+  --ut-color-brand-accent-contrast: #111111;
+  --ut-color-signal-success: #1f7a3a;
+  --ut-color-signal-warning: #b36b00;
+  --ut-color-signal-error: #b3261e;
+  --ut-color-signal-info: #1f5fa8;
+  --ut-color-text-default: var(--ut-color-neutral-900);
+  --ut-color-text-muted: var(--ut-color-neutral-500);
+  --ut-color-text-subtle: var(--ut-color-neutral-400);
+  --ut-color-text-inverse: var(--ut-color-neutral-0);
+  --ut-color-text-link: var(--ut-color-neutral-900);
+  --ut-color-text-sale: var(--ut-color-brand-accent);
+  --ut-color-text-error: var(--ut-color-signal-error);
+  --ut-color-text-success: var(--ut-color-signal-success);
+  --ut-color-bg-default: var(--ut-color-neutral-0);
+  --ut-color-bg-subtle: var(--ut-color-neutral-50);
+  --ut-color-bg-muted: var(--ut-color-neutral-100);
+  --ut-color-bg-inverse: var(--ut-color-neutral-900);
+  --ut-color-bg-accent: var(--ut-color-brand-accent);
+  --ut-color-bg-overlay: rgb(0 0 0 / 0.55);
+  --ut-color-border-default: var(--ut-color-neutral-200);
+  --ut-color-border-strong: var(--ut-color-neutral-900);
+  --ut-color-border-subtle: var(--ut-color-neutral-100);
+  --ut-color-border-focus: var(--ut-color-brand-accent);
+  --ut-color-action-primary-bg: var(--ut-color-brand-primary);
+  --ut-color-action-primary-bg-hover: var(--ut-color-neutral-700);
+  --ut-color-action-primary-text: var(--ut-color-brand-primary-contrast);
+  --ut-color-action-secondary-bg: transparent;
+  --ut-color-action-secondary-border: var(--ut-color-neutral-900);
+  --ut-color-action-secondary-text: var(--ut-color-neutral-900);
+  --ut-color-action-disabled-bg: var(--ut-color-neutral-100);
+  --ut-color-action-disabled-text: var(--ut-color-neutral-400);
+
+  /* font */
+  --ut-font-family-heading: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --ut-font-family-body: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --ut-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ut-font-weight-regular: 400;
+  --ut-font-weight-medium: 500;
+  --ut-font-weight-semibold: 600;
+  --ut-font-weight-bold: 700;
+  --ut-font-size-xs: 0.75rem;
+  --ut-font-size-sm: 0.875rem;
+  --ut-font-size-md: 1rem;
+  --ut-font-size-lg: 1.125rem;
+  --ut-font-size-xl: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --ut-font-size-2xl: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  --ut-font-size-3xl: clamp(1.875rem, 1.5rem + 1.7vw, 2.75rem);
+  --ut-font-size-display: clamp(2.5rem, 1.8rem + 3.1vw, 4.5rem);
+  --ut-font-line-height-tight: 1.1;
+  --ut-font-line-height-snug: 1.25;
+  --ut-font-line-height-normal: 1.5;
+  --ut-font-line-height-loose: 1.7;
+  --ut-font-letter-spacing-tight: -0.02em;
+  --ut-font-letter-spacing-normal: 0;
+  --ut-font-letter-spacing-wide: 0.06em;
+  --ut-font-letter-spacing-caps: 0.1em;
+
+  /* space */
+  --ut-space-0: 0;
+  --ut-space-1: 0.25rem;
+  --ut-space-2: 0.5rem;
+  --ut-space-3: 0.75rem;
+  --ut-space-4: 1rem;
+  --ut-space-5: 1.25rem;
+  --ut-space-6: 1.5rem;
+  --ut-space-8: 2rem;
+  --ut-space-10: 2.5rem;
+  --ut-space-12: 3rem;
+  --ut-space-16: 4rem;
+  --ut-space-20: 5rem;
+  --ut-space-24: 6rem;
+  --ut-space-32: 8rem;
+
+  /* radius */
+  --ut-radius-none: 0;
+  --ut-radius-sm: 0.125rem;
+  --ut-radius-md: 0.25rem;
+  --ut-radius-lg: 0.5rem;
+  --ut-radius-xl: 1rem;
+  --ut-radius-full: 9999px;
+
+  /* border-width */
+  --ut-border-width-hairline: 1px;
+  --ut-border-width-thick: 2px;
+  --ut-border-width-focus: 2px;
+
+  /* shadow */
+  --ut-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+  --ut-shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+  --ut-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.12);
+
+  /* layout */
+  --ut-layout-container-max: 1440px;
+  --ut-layout-container-narrow: 800px;
+  --ut-layout-gutter: var(--ut-space-4);
+  --ut-layout-gutter-lg: var(--ut-space-8);
+  --ut-layout-section-gap: clamp(3rem, 2rem + 4vw, 6rem);
+  --ut-layout-grid-gap: var(--ut-space-4);
+  --ut-layout-header-height: 64px;
+
+  /* breakpoint (reference only, use literal values in @media) */
+  /* sm: 640px */
+  /* md: 768px */
+  /* lg: 1024px */
+  /* xl: 1280px */
+
+  /* motion */
+  --ut-motion-duration-fast: 120ms;
+  --ut-motion-duration-base: 200ms;
+  --ut-motion-duration-slow: 320ms;
+  --ut-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ut-motion-easing-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ut-motion-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* z */
+  --ut-z-base: 0;
+  --ut-z-raised: 10;
+  --ut-z-dropdown: 100;
+  --ut-z-sticky: 200;
+  --ut-z-overlay: 300;
+  --ut-z-drawer: 400;
+  --ut-z-modal: 500;
+  --ut-z-toast: 600;
+}

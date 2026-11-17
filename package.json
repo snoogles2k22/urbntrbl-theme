@@ -1,0 +1,17 @@
+{
+  "name": "urbntrbl-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "URBN TRBL Shopify Theme. Tokens-first, pure CSS, Web Components. Built to be ported to Next.js + Medusa v2.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
+    "dev": "shopify theme dev --store urbntrbl-dev-9tgmoc6p",
+    "check": "shopify theme check",
+    "push:unpublished": "shopify theme push --store urbntrbl-dev-9tgmoc6p --unpublished"
+  }
+}

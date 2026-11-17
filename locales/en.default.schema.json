@@ -1,0 +1,30 @@
+{
+  "settings_schema": {
+    "general": {
+      "name": "General",
+      "tokens_notice": "Colors, fonts and spacing are not editable here by design. They live in design/tokens/tokens.json in the theme repository.",
+      "favicon": "Favicon",
+      "logo": "Logo",
+      "logo_info": "Placeholder until the brand assets are approved."
+    },
+    "price": {
+      "name": "Prices and legal notes",
+      "tax_mode": "Tax note",
+      "tax_mode_info": "Shown next to prices on product pages and in the cart.",
+      "tax_mode_kleinunternehmer": "§ 19 UStG (no VAT shown)",
+      "tax_mode_included": "incl. VAT",
+      "tax_mode_none": "No tax note",
+      "shipping_page": "Shipping costs page",
+      "shipping_page_info": "Fallback for the 'plus shipping' link if no shipping policy is set in Settings → Policies.",
+      "show_notes_in_cart": "Show tax and shipping notes in the cart"
+    }
+  },
+  "sections": {
+    "placeholder": {
+      "name": "Placeholder",
+      "settings": {
+        "heading": "Heading"
+      }
+    }
+  }
+}

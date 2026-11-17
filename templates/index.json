@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "placeholder",
+      "settings": {
+        "heading": "URBN TRBL"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,22 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "products": {
+    "price": {
+      "from": "from",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "unit_price_separator": "/",
+      "tax_note_included": "incl. VAT",
+      "tax_note_kleinunternehmer": "No VAT shown pursuant to § 19 UStG (German small business regulation).",
+      "shipping_note_html": "plus {{ link }}",
+      "shipping_link_text": "shipping costs"
+    }
+  },
+  "sections": {
+    "placeholder": {
+      "text": "Theme skeleton is live. Tokens, layers and BEM are wired up."
+    }
+  }
+}

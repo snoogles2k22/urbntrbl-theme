@@ -1,0 +1,36 @@
+{%- comment -%}
+  Temporary section so the theme is valid and `shopify theme dev` renders.
+  Will be deleted once real sections exist. Serves as a smoke test for tokens.
+{%- endcomment -%}
+
+{{ 'component-placeholder.css' | asset_url | stylesheet_tag }}
+
+<section class="ut-placeholder">
+  <div class="ut-placeholder__inner">
+    <h1 class="ut-placeholder__heading">{{ section.settings.heading | escape }}</h1>
+    <p class="ut-placeholder__text">{{ 'sections.placeholder.text' | t }}</p>
+    <div class="ut-placeholder__swatches" aria-hidden="true">
+      <span class="ut-placeholder__swatch ut-placeholder__swatch--primary"></span>
+      <span class="ut-placeholder__swatch ut-placeholder__swatch--accent"></span>
+      <span class="ut-placeholder__swatch ut-placeholder__swatch--muted"></span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.placeholder.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.placeholder.settings.heading",
+      "default": "URBN TRBL"
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.placeholder.name" }
+  ]
+}
+{% endschema %}

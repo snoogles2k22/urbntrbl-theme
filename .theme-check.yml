@@ -1,0 +1,5 @@
+root: .
+extends: theme-check:recommended
+
+# Theme Check ships with Shopify CLI. Run: npm run check
+# Tightened rules follow once real sections exist.

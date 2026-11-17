@@ -1,0 +1,30 @@
+{
+  "settings_schema": {
+    "general": {
+      "name": "Allgemein",
+      "tokens_notice": "Farben, Schriften und Abstände sind hier absichtlich nicht editierbar. Sie liegen in design/tokens/tokens.json im Theme-Repository.",
+      "favicon": "Favicon",
+      "logo": "Logo",
+      "logo_info": "Platzhalter, bis die Brand-Assets freigegeben sind."
+    },
+    "price": {
+      "name": "Preise und Rechtshinweise",
+      "tax_mode": "Steuerhinweis",
+      "tax_mode_info": "Wird neben Preisen auf Produktseiten und im Warenkorb angezeigt.",
+      "tax_mode_kleinunternehmer": "§ 19 UStG (keine Umsatzsteuer ausgewiesen)",
+      "tax_mode_included": "inkl. MwSt.",
+      "tax_mode_none": "Kein Steuerhinweis",
+      "shipping_page": "Seite Versandkosten",
+      "shipping_page_info": "Fallback für den Link „zzgl. Versandkosten“, wenn unter Einstellungen → Richtlinien keine Versandrichtlinie hinterlegt ist.",
+      "show_notes_in_cart": "Steuer- und Versandhinweis im Warenkorb anzeigen"
+    }
+  },
+  "sections": {
+    "placeholder": {
+      "name": "Platzhalter",
+      "settings": {
+        "heading": "Überschrift"
+      }
+    }
+  }
+}

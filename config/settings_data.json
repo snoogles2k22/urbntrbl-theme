@@ -1,0 +1,10 @@
+{
+  "current": {
+    "favicon": null,
+    "logo": null,
+    "price_tax_mode": "kleinunternehmer",
+    "price_shipping_page": "",
+    "price_show_notes_in_cart": true
+  },
+  "presets": {}
+}

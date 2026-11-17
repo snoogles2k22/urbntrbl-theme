@@ -1,0 +1,59 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "URBN TRBL",
+    "theme_version": "0.1.0",
+    "theme_author": "URBN TRBL",
+    "theme_documentation_url": "https://github.com/snoogles2k22/urbntrbl-theme",
+    "theme_support_url": "https://github.com/snoogles2k22/urbntrbl-theme/issues"
+  },
+  {
+    "name": "t:settings_schema.general.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.general.tokens_notice"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.general.favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:settings_schema.general.logo",
+        "info": "t:settings_schema.general.logo_info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.price.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "price_tax_mode",
+        "label": "t:settings_schema.price.tax_mode",
+        "info": "t:settings_schema.price.tax_mode_info",
+        "default": "kleinunternehmer",
+        "options": [
+          { "value": "kleinunternehmer", "label": "t:settings_schema.price.tax_mode_kleinunternehmer" },
+          { "value": "included", "label": "t:settings_schema.price.tax_mode_included" },
+          { "value": "none", "label": "t:settings_schema.price.tax_mode_none" }
+        ]
+      },
+      {
+        "type": "url",
+        "id": "price_shipping_page",
+        "label": "t:settings_schema.price.shipping_page",
+        "info": "t:settings_schema.price.shipping_page_info"
+      },
+      {
+        "type": "checkbox",
+        "id": "price_show_notes_in_cart",
+        "label": "t:settings_schema.price.show_notes_in_cart",
+        "default": true
+      }
+    ]
+  }
+]

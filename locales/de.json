@@ -1,0 +1,22 @@
+{
+  "accessibility": {
+    "skip_to_content": "Zum Inhalt springen"
+  },
+  "products": {
+    "price": {
+      "from": "ab",
+      "regular_price": "Regulärer Preis",
+      "sale_price": "Angebotspreis",
+      "unit_price_separator": "/",
+      "tax_note_included": "inkl. MwSt.",
+      "tax_note_kleinunternehmer": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
+      "shipping_note_html": "zzgl. {{ link }}",
+      "shipping_link_text": "Versandkosten"
+    }
+  },
+  "sections": {
+    "placeholder": {
+      "text": "Theme-Skelett läuft. Tokens, Layer und BEM sind verdrahtet."
+    }
+  }
+}

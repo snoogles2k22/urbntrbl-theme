@@ -1,0 +1,13 @@
+# Files Shopify CLI must never push to the store.
+# The CLI only syncs the known theme folders anyway; this makes it explicit
+# and catches stray files inside those folders.
+design/
+docs/
+scripts/
+CLAUDE.md
+README.md
+package.json
+.editorconfig
+.theme-check.yml
+assets/*.map
+assets/.gitkeep
