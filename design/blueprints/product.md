@@ -40,7 +40,7 @@ bleibt per Sticky-Bar erreichbar.
 
 | # | Section                      | Komponenten                                                                                   | Settings (Editor)                                                   |
 |---|------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| 1 | `main-product.liquid`        | `.ut-gallery` `<ut-gallery>`, `.ut-buy-box`, `.ut-price`, `.ut-badge`, `<ut-variant-picker>`, `<ut-quantity-input>`, `.ut-stock-status`, `.ut-button`, `.ut-accordion` (`<details>`), `<ut-dialog>` (Size Guide), `.ut-rich-text` | `show_quantity` (bool, default false), `gallery_layout` (`stacked`/`thumbnails`), `show_vendor` (bool), Accordion-Blöcke: `description`, `material_fit`, `care`, `shipping_returns` (je ein Block, Reihenfolge frei) |
+| 1 | `main-product.liquid`        | `.ut-gallery` `<ut-gallery>`, `.ut-buy-box`, `.ut-price`, `.ut-badge`, `<ut-variant-picker>`, `<ut-quantity-input>`, `<ut-stock-status>`, `.ut-waitlist`, `.ut-button`, `.ut-accordion` (`<details>`), `<ut-dialog>` (Size Guide), `.ut-rich-text` | `show_quantity` (bool, default false), `gallery_layout` (`stacked`/`thumbnails`), `show_vendor` (bool), Accordion-Blöcke: `description`, `material_fit`, `care`, `shipping_returns` (je ein Block, Reihenfolge frei) |
 | 2 | `product-lookbook.liquid`    | `.ut-lookbook`, `.ut-image`                                                                   | `heading` (text), `columns` (2/3)                                   |
 | 3 | `related-products.liquid`    | `.ut-section-header`, `<ut-carousel>`, `.ut-product-card`, `.ut-price--compact`                | `heading`, `source` (`same_drop`/`same_collection`/`recommendations`), `limit` (4–12) |
 | 4 | `sticky-buy-bar.liquid`      | `<ut-sticky-bar>`, `.ut-price--compact`, `.ut-button`                                          | `enabled` (bool)                                                    |
@@ -72,9 +72,9 @@ Reihenfolge im Editor frei, Default wie oben.
 | `shop.shippingReturnsText` | RichText                    | Theme-Setting `pdp_shipping_returns_text` | nein    |
 | Preis-Felder               | siehe `components/price.md` |                                           |         |
 
-Stock-Status wird abgeleitet: `sold_out` (keine Variante verfügbar), `low_stock`
-(`inventory_quantity <= low_stock_threshold`, Theme-Setting, Default 3),
-`available`. Bei `inventory_policy == continue` nie `low_stock`.
+Stock-Status, Restmenge und Ausverkauf folgen `design/logic/drop.md` (Abschnitte 3
+und 4). Außerhalb eines Drops gilt Modus `low_only`. Zusätzliche Felder:
+`product.editionSize` (Metafeld `urbntrbl.edition_size`) für Modus `edition`.
 
 ## Zustände
 
@@ -86,6 +86,8 @@ Stock-Status wird abgeleitet: `sold_out` (keine Variante verfügbar), `low_stock
 | variant sold out  | gewählte Variante nicht verfügbar           | Option im Picker durchgestrichen, Button disabled                        |
 | low stock         | siehe oben                                  | Stock-Status „Nur noch wenige“                                           |
 | in drop (live)    | `product.drop.status == live`               | Eyebrow „Drop: <Titel>“ mit Link, Badge „Drop“                           |
+| in drop (sold out/archived) | Drop-Status `sold_out` oder `archived` | Eyebrow mit Status, Restock-Waitlist laut `waitlist_mode`         |
+| restock waitlist  | Variante ausverkauft, Warteliste aktiv       | `.ut-waitlist` unter dem Button statt „Ausverkauft“ als Sackgasse       |
 | in drop (upcoming)| Produkt ist im Online-Store noch nicht veröffentlicht | Seite existiert nicht (404). Teaser läuft über die Drop-Seite.  |
 | purchase limit    | `purchaseLimit` gesetzt                     | Quantity-Input max = limit, Hinweis „Max. N pro Bestellung“              |
 

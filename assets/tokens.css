@@ -145,3 +145,27 @@
   --ut-z-modal: 500;
   --ut-z-toast: 600;
 }
+
+/* scope: inverse (Dunkle Flächen (Section-Setting tone: inverse). Überschreibt nur Semantik, nie Primitive. PLATZHALTER bis zur Brand-Freigabe.) */
+[data-tone="inverse"] {
+  /* overrides */
+  --ut-color-text-default: var(--ut-color-neutral-0);
+  --ut-color-text-muted: var(--ut-color-neutral-300);
+  --ut-color-text-subtle: var(--ut-color-neutral-400);
+  --ut-color-text-inverse: var(--ut-color-neutral-900);
+  --ut-color-text-link: var(--ut-color-neutral-0);
+  --ut-color-bg-default: var(--ut-color-neutral-900);
+  --ut-color-bg-subtle: var(--ut-color-neutral-800);
+  --ut-color-bg-muted: var(--ut-color-neutral-700);
+  --ut-color-bg-inverse: var(--ut-color-neutral-0);
+  --ut-color-border-default: var(--ut-color-neutral-700);
+  --ut-color-border-strong: var(--ut-color-neutral-0);
+  --ut-color-border-subtle: var(--ut-color-neutral-800);
+  --ut-color-action-primary-bg: var(--ut-color-neutral-0);
+  --ut-color-action-primary-bg-hover: var(--ut-color-neutral-200);
+  --ut-color-action-primary-text: var(--ut-color-neutral-900);
+  --ut-color-action-secondary-border: var(--ut-color-neutral-0);
+  --ut-color-action-secondary-text: var(--ut-color-neutral-0);
+  --ut-color-action-disabled-bg: var(--ut-color-neutral-800);
+  --ut-color-action-disabled-text: var(--ut-color-neutral-500);
+}

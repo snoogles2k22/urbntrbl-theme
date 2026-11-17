@@ -11,7 +11,11 @@
       "tax_note_included": "inkl. MwSt.",
       "tax_note_kleinunternehmer": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
       "shipping_note_html": "zzgl. {{ link }}",
-      "shipping_link_text": "Versandkosten"
+      "shipping_link_text": "Versandkosten",
+      "compare_label_lowest_30d": "Niedrigster Preis der letzten 30 Tage",
+      "compare_label_rrp": "UVP",
+      "footnote_kleinunternehmer": "* Gemäß § 19 UStG wird keine Umsatzsteuer berechnet, zzgl. Versandkosten.",
+      "footnote_included": "* inkl. MwSt., zzgl. Versandkosten"
     }
   },
   "sections": {

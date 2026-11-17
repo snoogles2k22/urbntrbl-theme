@@ -4,7 +4,9 @@
     "logo": null,
     "price_tax_mode": "kleinunternehmer",
     "price_shipping_page": "",
-    "price_show_notes_in_cart": true
+    "price_show_notes_in_cart": true,
+    "price_compare_label": "lowest_30d",
+    "price_show_unit_price": false
   },
   "presets": {}
 }

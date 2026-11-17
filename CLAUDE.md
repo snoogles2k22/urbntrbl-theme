@@ -22,8 +22,9 @@ Sprache: Doku und Specs auf Deutsch, Code, Kommentare im Code und Identifier auf
    Cascade Layers in dieser Reihenfolge: `reset, base, components, utilities`.
 3. **Vanilla JS, ES-Module, Web Components.** Custom Elements mit Prefix `ut-`
    (`<ut-cart-drawer>`), eine Datei pro Element: `assets/ut-<name>.js`. Kein jQuery, kein
-   Framework, kein Bundler. Alle Platform-Zugriffe (Cart, Produkt, Suche) laufen über
-   `assets/ut-api.js`, nie direkt im Element. Das ist die Stelle, die beim Port
+   Framework, kein Bundler. Alle Platform-Zugriffe (Cart, Produkt, Suche, Section
+   Rendering API, Serverzeit) laufen über `assets/ut-api.js`, nie direkt im Element.
+   Kein globales `window.*`-Objekt. Das ist die Stelle, die beim Port
    durch einen Medusa-Adapter ersetzt wird.
 4. **Jede Komponente hat eine Spezifikation** in `design/components/<name>.md`
    (Vorlage: `design/components/_TEMPLATE.md`), **bevor** Liquid/CSS/JS geschrieben wird.
@@ -32,7 +33,11 @@ Sprache: Doku und Specs auf Deutsch, Code, Kommentare im Code und Identifier auf
    Die Spec beschreibt Anatomie (BEM), Datenvertrag (plattformneutral), Zustände,
    Accessibility, verwendete Tokens und Port-Hinweise.
 5. **Jedes Metafeld ist dokumentiert** in `docs/metafields.md`, bevor es im Theme
-   verwendet wird. Namespace immer `urbntrbl`.
+   verwendet wird. Namespace immer `urbntrbl`. Jedes globale Theme-Setting steht in
+   der Theme-Settings-Registry in `docs/data-model.md`.
+   Änderungen an Blueprint, Inventar, Datenmodell oder Registry ziehen die anderen
+   drei nach. Punkte mit **[RECHT-PRÜFEN]** sind Annahmen, keine Rechtsberatung, und
+   werden vor Launch geprüft.
 6. **Vor jeder Installation (npm-Paket, CLI, Shopify-App, Skill):**
    Scan mit `nvidia-skillspector`, Risiko-Score nennen, **auf OK warten**. Keine
    Installation ohne explizites OK. Aktuell hat das Repo **null** npm-Dependencies,
@@ -58,10 +63,13 @@ templates/         JSON-Templates (+ templates/customers/)
 
 design/tokens/     tokens.json  ← Single Source of Truth
 design/blueprints/ Seiten-Blueprints (Home, Collection, PDP, Drop, Cart): Sections, Daten, Zustände
+design/logic/      Seitenübergreifendes Verhalten (drop.md: Status, Countdown, Restmenge, Ausverkauf, Warteliste)
 design/components/ Komponenten-Specs (Markdown), _TEMPLATE.md, README.md = Inventar + Bau-Reihenfolge
 docs/adr/          Architecture Decision Records (kurz, nummeriert)
-docs/data-model.md Entitäten und Felder, aus den Blueprints abgeleitet
+docs/data-model.md Entitäten, Felder und Theme-Settings-Registry, aus den Blueprints abgeleitet
 docs/metafields.md Metafeld-Registry
+docs/migration.md  Port-Plan Liquid → React/Medusa pro Komponente und Seite, Risiken, Aufwand
+docs/reviews/      Konsistenz-Reviews mit Befunden und offenen Entscheidungen
 docs/portability.md Mapping Liquid/Shopify → Next.js/Medusa
 scripts/           build-tokens.mjs (zero-dependency, Node ≥ 20)
 ```

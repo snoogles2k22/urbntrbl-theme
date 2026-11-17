@@ -15,7 +15,18 @@
 Zeigt den Preis eines Produkts oder einer Variante inklusive aller in Deutschland
 pflichtigen Zusatzangaben (PAngV): Streichpreis bei Angeboten, Grundpreis bei
 Mengenware, Steuerhinweis und Versandkostenhinweis mit Link. Wird in Product Card
-(kompakt, ohne Hinweise) und auf der Produktseite sowie im Warenkorb (voll) verwendet.
+(kompakt, Hinweise per Fußnote) und auf der Produktseite sowie im Warenkorb (voll) verwendet.
+
+**[RECHT-PRÜFEN]** Umsetzungsannahmen zur PAngV, keine Rechtsberatung. Vor Launch prüfen lassen:
+- Grundpreis ist **optional** (Setting `price_show_unit_price`). Stückware wie Kleidung
+  ist in der Regel nicht grundpreispflichtig. Ist das Setting aktiv und hat die Variante
+  einen Grundpreis, steht er überall neben dem Gesamtpreis, auch in Listen (§ 4 PAngV).
+  Kommt Mengenware ins Sortiment (z. B. Pflegemittel in ml), muss das Setting an sein.
+- Steuer- und Versandhinweis: auf PDP und im Warenkorb direkt am Preis; in Listen per
+  Fußnoten-Marker `*` mit Hinweistext im Footer.
+- Streichpreis bei Preisermäßigung: Referenz ist der niedrigste Preis der letzten
+  30 Tage (§ 11 PAngV). Shopify prüft das nicht. `compare_at_price` darf nur so gesetzt
+  werden (Admin-Regel in `docs/metafields.md`). UVP-Vergleiche brauchen den Zusatz „UVP“.
 Keine Logik zur Preisberechnung, nur Darstellung dessen, was die Plattform liefert.
 
 ## 2. Anatomie (BEM)
@@ -25,13 +36,15 @@ Keine Logik zur Preisberechnung, nur Darstellung dessen, was die Plattform liefe
 ├── .ut-price__from          „ab“-Präfix, wenn Varianten unterschiedlich kosten
 ├── .ut-price__amount        aktueller Preis (Gesamtpreis)
 ├── .ut-price__compare       Streichpreis (<s>), nur bei --sale
-├── .ut-price__unit          Grundpreis, z. B. „(12,50 € / 100 g)“
+├── .ut-price__compare-label optional „Niedrigster Preis der letzten 30 Tage“ bzw. „UVP“
+├── .ut-price__unit          Grundpreis, z. B. „(12,50 € / 100 g)“, nur wenn Setting aktiv und Daten vorhanden; dann in allen Varianten
+├── .ut-price__marker        Fußnoten-Marker „*“, nur in --compact
 ├── .ut-price__notes         Container für rechtliche Hinweise (nur voll-Variante)
 │   ├── .ut-price__tax-note      Slot: Steuerhinweis (siehe 4 und 9)
 │   └── .ut-price__shipping-note Slot: „zzgl. Versandkosten“ mit Link
 └── Modifier
     ├── .ut-price--sale        Angebot (compare > amount)
-    ├── .ut-price--compact     Card-Variante: ohne __notes, ohne __unit
+    ├── .ut-price--compact     Card-Variante: __notes ersetzt durch __marker, __unit wie in der vollen Variante
     ├── .ut-price--size-sm | --size-lg
     └── .ut-price--unavailable Variante nicht verfügbar (Preis ausgegraut)
 ```
@@ -64,6 +77,8 @@ Rechtliche Hinweise sind Verhalten, keine Design-Werte, darum erlaubt (ADR 0004)
 | `price_tax_mode`      | select | `kleinunternehmer`| `included` → „inkl. MwSt.“; `kleinunternehmer` → § 19-Hinweis; `none` → kein Steuerhinweis |
 | `price_shipping_page` | url    | leer              | Fallback-Link für den Versandhinweis, wenn keine Shipping Policy hinterlegt ist |
 | `price_show_notes_in_cart` | checkbox | true         | Hinweise auch im Warenkorb-Drawer zeigen                        |
+| `price_compare_label` | select | `lowest_30d`      | Label am Streichpreis: `lowest_30d`, `rrp` (UVP), `none`         |
+| `price_show_unit_price` | checkbox | false         | Grundpreis anzeigen, wenn die Variante einen hat. **[RECHT-PRÜFEN]** bei Mengenware Pflicht |
 
 Snippet-Parameter: `product`/`variant`, `compact` (bool), `size` (`sm`/`md`/`lg`).
 
@@ -75,7 +90,8 @@ Snippet-Parameter: `product`/`variant`, `compact` (bool), `size` (`sm`/`md`/`lg`
 | sale          | compareAt > amount                  | `.ut-price--sale`, `__compare` als `<s>`, `__amount` in `text-sale` |
 | from          | `isFrom`                            | `__from` sichtbar                                     |
 | unavailable   | `available == false`                | `.ut-price--unavailable`, Farbe `text-subtle`         |
-| compact       | Card-Kontext                        | `.ut-price--compact`, `__notes` und `__unit` nicht gerendert (nicht nur versteckt) |
+| compact       | Card-Kontext                        | `.ut-price--compact`, `__notes` nicht gerendert, stattdessen `__marker` „*“. `__unit` nach Setting wie in der vollen Variante. Footer enthält den Fußnotentext (Spec `footer.md`) |
+| unit price    | `price_show_unit_price` und `unitPrice` vorhanden | `__unit` sichtbar                      |
 
 ## 6. Verwendete Tokens
 
@@ -110,6 +126,10 @@ selbst bleibt statisch. Der Versand-Link ist ein normaler `<a>`.
 | `products.price.tax_note_kleinunternehmer`  | Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.   | No VAT shown pursuant to § 19 UStG (German small business regulation). |
 | `products.price.shipping_note_html`         | zzgl. {{ link }}                                     | plus {{ link }}                                 |
 | `products.price.shipping_link_text`         | Versandkosten                                        | shipping costs                                  |
+| `products.price.compare_label_lowest_30d`   | Niedrigster Preis der letzten 30 Tage                | Lowest price in the last 30 days                |
+| `products.price.compare_label_rrp`          | UVP                                                  | RRP                                             |
+| `products.price.footnote_kleinunternehmer`  | * Gemäß § 19 UStG wird keine Umsatzsteuer berechnet, zzgl. Versandkosten. | * No VAT pursuant to § 19 UStG, plus shipping. |
+| `products.price.footnote_included`          | * inkl. MwSt., zzgl. Versandkosten                   | * incl. VAT, plus shipping                      |
 
 Der Versandhinweis wird als `shipping_note_html` mit `link:` Parameter gerendert, damit
 Satzbau und Link-Position pro Sprache frei sind.
@@ -126,7 +146,8 @@ Satzbau und Link-Position pro Sprache frei sind.
 
 ## 11. Abnahme
 
-- [x] Alle Abschnitte gefüllt
+- [x] Alle Abschnitte gefüllt (Review K1, K2 eingearbeitet)
+- [ ] **[RECHT-PRÜFEN]** PAngV-Annahmen geprüft
 - [ ] CSS nur Tokens, Layer `components`, BEM
 - [ ] `shopify theme check` grün
 - [ ] Tastatur + Screenreader geprüft

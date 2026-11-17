@@ -30,4 +30,9 @@ Komponenten-Datei, die auf Semantik zeigen). Komponenten greifen nie auf Primiti
   Commit in einer Datei.
 - Breakpoints stehen in der JSON, werden aber in CSS als Literale geschrieben, weil
   Custom Properties in `@media` nicht funktionieren.
-- Kein Dark Mode vorgesehen. Falls nötig: eigene Semantik-Ebene unter `[data-theme]`.
+- Scopes (z. B. `tone: inverse`) stehen ebenfalls in `tokens.json` unter `$scopes`
+  mit `$selector`. Der Generator gibt sie als eigenen Regelblock aus und deklariert
+  abhängige Tokens im Scope neu, weil `var()` dort aufgelöst wird, wo die Custom
+  Property deklariert ist. Scopes überschreiben nur Semantik, nie Primitive.
+  Kein Handmapping in `base.css` (Entscheidung 2026-11-17, Review O1).
+- Kein Dark Mode vorgesehen. Falls nötig: weiterer Scope, z. B. `[data-theme="dark"]`.

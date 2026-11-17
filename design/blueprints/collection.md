@@ -44,6 +44,7 @@ muss die Seite ohne Header-Bild und ohne Intro auskommen können.
 | `collection.image`           | Image            | nativ (`collection.image`)               | nein    |
 | `collection.intro`           | RichText         | Metafeld `urbntrbl.intro` (ersetzt description, wenn gesetzt) | nein |
 | `collection.heroImage`       | Image            | Metafeld `urbntrbl.hero_image` (ersetzt `collection.image`, wenn gesetzt) | nein |
+| `collection.drop`            | Drop             | Metafeld `urbntrbl.drop` (Rückreferenz, manuell) | nein |
 | `collection.productsCount`   | int              | nativ                                    | ja      |
 | `collection.products[]`      | ProductCard      | nativ, paginiert                         | ja      |
 | `collection.filters[]`       | Filter           | nativ (`collection.filters`, Search & Discovery) | nein |
@@ -72,7 +73,7 @@ muss die Seite ohne Header-Bild und ohne Intro auskommen können.
 | filtered       | aktive Filter                         | Chips mit Entfernen-Button, „Alle zurücksetzen“, Treffer-Anzahl |
 | empty          | 0 Produkte (auch nach Filter)         | `.ut-empty-state`: Text + Reset-Button bzw. Link zur aktuellen Drop-/Hauptkollektion |
 | loading        | Filterwechsel via Section Rendering   | Grid `aria-busy`, Skeleton nicht nötig (Inhalt bleibt sichtbar) |
-| as drop lineup | aufgerufen von Drop-Seite             | Header ohne Bild/Intro, Eyebrow „Drop: <Titel>“ mit Link zurück (Setting in Drop-Collection oder per URL-Param `?drop=<handle>`, Entscheidung in `drop.md`) |
+| drop lineup    | Metafeld `collection.urbntrbl.drop` gesetzt | Eyebrow „Drop: <Titel>“ mit Link auf die Drop-Seite, Status-Badge. Header-Bild und Intro wie gewohnt, wenn gesetzt |
 
 ## Accessibility und SEO
 
@@ -80,6 +81,20 @@ muss die Seite ohne Header-Bild und ohne Intro auskommen können.
 - Sortierung: `<select>`, ohne JS Submit-Button.
 - Pagination: `rel="prev"/"next"` im `<head>`, Shopify-Standard-URLs (`?page=2`), kein Infinite Scroll in v1.
 - Grid als `<ul role="list">`, Card-Link umfasst Bild und Titel (ein Link pro Card).
+
+## Neutrales Facet-Format
+
+`<ut-facets>` und das Facet-Markup arbeiten gegen dieses Format, nicht gegen
+Shopify-Filterobjekte. Ein Snippet `facets-normalize.liquid` übersetzt
+`collection.filters` in diese Form (Migrations-Risiko R2).
+
+```
+Facet  { id, label, type: 'list' | 'price_range' | 'boolean',
+         values: [{ value, label, count, active, url_add, url_remove }],
+         range?: { min, max, activeMin, activeMax, currency } }
+Sort   { value, label, active }
+Active { facetId, value, label, url_remove }
+```
 
 ## Port-Hinweise
 

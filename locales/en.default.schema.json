@@ -16,7 +16,14 @@
       "tax_mode_none": "No tax note",
       "shipping_page": "Shipping costs page",
       "shipping_page_info": "Fallback for the 'plus shipping' link if no shipping policy is set in Settings → Policies.",
-      "show_notes_in_cart": "Show tax and shipping notes in the cart"
+      "show_notes_in_cart": "Show tax and shipping notes in the cart",
+      "compare_label": "Compare-at price label",
+      "compare_label_info": "For price reductions in Germany the compare-at price must be the lowest price of the last 30 days. Shopify does not check this.",
+      "compare_label_lowest_30d": "Lowest price in the last 30 days",
+      "compare_label_rrp": "RRP",
+      "compare_label_none": "No label",
+      "show_unit_price": "Show unit price",
+      "show_unit_price_info": "Shows the unit price (e.g. per 100 ml) when the variant has a unit price measurement. Required in Germany for goods sold by quantity."
     }
   },
   "sections": {

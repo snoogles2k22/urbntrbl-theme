@@ -53,6 +53,25 @@
         "id": "price_show_notes_in_cart",
         "label": "t:settings_schema.price.show_notes_in_cart",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "price_compare_label",
+        "label": "t:settings_schema.price.compare_label",
+        "info": "t:settings_schema.price.compare_label_info",
+        "default": "lowest_30d",
+        "options": [
+          { "value": "lowest_30d", "label": "t:settings_schema.price.compare_label_lowest_30d" },
+          { "value": "rrp", "label": "t:settings_schema.price.compare_label_rrp" },
+          { "value": "none", "label": "t:settings_schema.price.compare_label_none" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "price_show_unit_price",
+        "label": "t:settings_schema.price.show_unit_price",
+        "info": "t:settings_schema.price.show_unit_price_info",
+        "default": false
       }
     ]
   }

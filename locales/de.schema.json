@@ -16,7 +16,14 @@
       "tax_mode_none": "Kein Steuerhinweis",
       "shipping_page": "Seite Versandkosten",
       "shipping_page_info": "Fallback für den Link „zzgl. Versandkosten“, wenn unter Einstellungen → Richtlinien keine Versandrichtlinie hinterlegt ist.",
-      "show_notes_in_cart": "Steuer- und Versandhinweis im Warenkorb anzeigen"
+      "show_notes_in_cart": "Steuer- und Versandhinweis im Warenkorb anzeigen",
+      "compare_label": "Label am Streichpreis",
+      "compare_label_info": "Streichpreise bei Preisermäßigungen müssen der niedrigste Preis der letzten 30 Tage sein. Shopify prüft das nicht.",
+      "compare_label_lowest_30d": "Niedrigster Preis der letzten 30 Tage",
+      "compare_label_rrp": "UVP",
+      "compare_label_none": "Kein Label",
+      "show_unit_price": "Grundpreis anzeigen",
+      "show_unit_price_info": "Zeigt den Grundpreis (z. B. pro 100 ml), wenn bei der Variante eine Grundpreis-Angabe gepflegt ist. Bei Mengenware ist das Pflicht."
     }
   },
   "sections": {

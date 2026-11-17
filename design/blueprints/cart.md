@@ -42,25 +42,30 @@ Drawer (rechts, max 480px, lg)        Seite
 
 ## Datenbedarf
 
-Neutrale Form (aus `ut-api.js`, in Liquid aus `cart`):
+Spalte **JS** sagt, ob `ut-api.js` das Feld liefert (aus `/cart.js`). Felder ohne JS
+gibt es nur in Liquid. Weil der Drawer per Section Rendering neu gerendert wird, reicht
+das in v1. Im Port liefert der Medusa-Adapter alle Felder (Metadaten und Bestand
+hängen an der Variante).
 
-| Feld                     | Typ          | Quelle Shopify                                   |
-|--------------------------|--------------|--------------------------------------------------|
-| `cart.itemCount`         | int          | `cart.item_count`                                |
-| `cart.totalPrice`        | Money        | `cart.total_price`                               |
-| `cart.currency`          | ISO          | `cart.currency.iso_code`                         |
-| `cart.note`              | string       | `cart.note`                                      |
-| `cart.lines[]`           | Line         | `cart.items`                                     |
-| `line.key`               | string       | `item.key`                                       |
-| `line.title`, `variantTitle` | string   | `item.product_title`, `item.variant_title`       |
-| `line.image`             | Image        | `item.image`                                     |
-| `line.url`               | URL          | `item.url`                                       |
-| `line.quantity`          | int          | `item.quantity`                                  |
-| `line.price`, `comparePrice` | Money    | `item.final_line_price`, `item.original_line_price` |
-| `line.purchaseLimit`     | int \| null  | `item.product.metafields.urbntrbl.purchase_limit` |
-| `line.available`         | int          | `item.variant.inventory_quantity` (für max im Quantity-Input, wenn `inventory_policy == deny`) |
-| `line.dropTitle`         | string \| null | `item.product.metafields.urbntrbl.drop.title`  |
-| `settings.taxMode`, `shippingInfoUrl`, `showNotesInCart` | siehe `components/price.md` |             |
+| Feld                     | Typ          | Quelle Shopify                                   | JS  |
+|--------------------------|--------------|--------------------------------------------------|-----|
+| `cart.itemCount`         | int          | `cart.item_count`                                | ja  |
+| `cart.totalPrice`        | Money        | `cart.total_price`                               | ja  |
+| `cart.currency`          | ISO          | `cart.currency.iso_code`                         | ja  |
+| `cart.note`              | string       | `cart.note`                                      | nein (v1) |
+| `cart.lines[]`           | Line         | `cart.items`                                     | ja  |
+| `line.key`               | string       | `item.key`                                       | ja  |
+| `line.variantId`, `productId` | id      | `item.variant_id`, `item.product_id`             | ja  |
+| `line.title`, `variantTitle` | string   | `item.product_title`, `item.variant_title`       | ja  |
+| `line.image`             | Image        | `item.image`                                     | ja  |
+| `line.url`               | URL          | `item.url`                                       | ja  |
+| `line.quantity`          | int          | `item.quantity`                                  | ja  |
+| `line.price`             | Money        | `item.final_line_price`                          | ja  |
+| `line.comparePrice`      | Money        | `item.original_line_price`                       | ja  |
+| `line.purchaseLimit`     | int \| null  | `item.product.metafields.urbntrbl.purchase_limit` | nein |
+| `line.available`         | int          | `item.variant.inventory_quantity` (für max im Quantity-Input, wenn `inventory_policy == deny`) | nein |
+| `line.dropTitle`         | string \| null | `item.product.metafields.urbntrbl.drop.value.title` | nein |
+| `settings.taxMode`, `shippingInfoUrl`, `showNotesInCart` | siehe `components/price.md` | | nein |
 
 Rabattcodes werden **nicht** im Warenkorb eingegeben (Shopify erlaubt das nur im
 Checkout). Stattdessen Hinweis „Rabattcodes im Checkout einlösen“ (Setting).
@@ -78,8 +83,9 @@ Checkout). Stattdessen Hinweis „Rabattcodes im Checkout einlösen“ (Setting)
 
 ## Verhalten (`<ut-cart-drawer>`)
 
-- Öffnet auf Event `ut:cart:updated` (wenn Quelle `add`) und auf Klick `<ut-cart-count>`.
-- Rendert aus der neutralen Cart-Form: in v1 per Section Rendering API (`?sections=cart-drawer`) nachgeladen, nicht clientseitig templated. So bleibt Liquid die einzige Template-Sprache.
+- Öffnet auf Event `ut:cart:updated` mit `detail.source == 'add'` und auf Klick `<ut-cart-count>`.
+- In v1 per Section Rendering API nachgeladen (über `ut-api.js`, `sections.render('cart-drawer')`), nicht clientseitig templated. So bleibt Liquid die einzige Template-Sprache.
+- Während eines Live-Drops zeigt der Drawer optional „Artikel im Warenkorb sind nicht reserviert“ (Setting `drop_cart_hint`, siehe `logic/drop.md` Abschnitt 4).
 - Focus Trap, `Escape` schließt, Fokus kehrt zum Auslöser zurück, `inert` auf dem Rest.
 - Ohne JS: Header-Icon linkt auf `/cart`, PDP-Formular postet nach `/cart/add` mit Redirect auf `/cart`.
 

@@ -8,6 +8,9 @@ Zuständen die Seite sein kann. Aus den Blueprints sind abgeleitet:
 - `docs/data-model.md`: Entitäten und Felder, die das Theme liest
 - `docs/metafields.md`: die Metafelder und Metaobjekte, die über Shopify-Standard hinausgehen
 
+Verhalten, das mehrere Seiten betrifft, steht nicht im Blueprint, sondern in
+`design/logic/` (derzeit `drop.md`). Port-Plan: `docs/migration.md`.
+
 Reihenfolge, in der die Blueprints gelesen werden sollten: `product.md` (meiste
 Komponenten), `collection.md`, `drop.md` (eigenes Datenmodell), `cart.md`, `home.md`
 (setzt alle anderen zusammen).

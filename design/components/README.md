@@ -20,7 +20,6 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Form Field       | `.ut-form-field`       | H D K R       | `form-field.md`      | offen  |
 | Section Header   | `.ut-section-header`   | H P D K       | `section-header.md`  | offen  |
 | Empty State      | `.ut-empty-state`      | C K           | `empty-state.md`     | offen  |
-| Stock Status     | `.ut-stock-status`     | P             | `stock-status.md`    | offen  |
 
 ## Zusammengesetzt (kein JS)
 
@@ -37,9 +36,10 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Ticker            | `.ut-ticker`             | H         | `ticker.md`             | offen  |
 | Accordion         | `.ut-accordion` (`<details>`) | P    | `accordion.md`          | offen  |
 | Pagination        | `.ut-pagination`         | C         | `pagination.md`         | offen  |
-| Newsletter        | `.ut-newsletter`         | H D R     | `newsletter.md`         | offen  |
+| Newsletter        | `.ut-newsletter`         | H R       | `newsletter.md`         | offen  |
+| Waitlist          | `.ut-waitlist`           | P D       | `waitlist.md`           | offen  |
 | Buy Box           | `.ut-buy-box`            | P         | `buy-box.md`            | offen  |
-| Cart (Seite)      | `.ut-cart`               | K         | `cart.md`               | offen  |
+| Cart (Seite)      | `.ut-cart`               | K         | `cart-page.md`          | offen  |
 | Cart Line         | `.ut-cart-line`          | K         | `cart-line.md`          | offen  |
 | Cart Summary      | `.ut-cart-summary`       | K         | `cart-summary.md`       | offen  |
 | Announcement Bar  | `.ut-announcement-bar`   | R         | `announcement-bar.md`   | offen  |
@@ -52,19 +52,25 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Header           | `<ut-header>`          | `.ut-header`        | R       | nein           | `header.md`          | offen  |
 | Drawer           | `<ut-drawer>`          | `.ut-drawer`        | R C K   | nein           | `drawer.md`          | offen  |
 | Cart Count       | `<ut-cart-count>`      | `.ut-cart-count`    | R       | Event          | `cart-count.md`      | offen  |
-| Cart Drawer      | `<ut-cart-drawer>`     | `.ut-cart-drawer`   | K       | ja             | `cart-drawer.md`     | offen  |
+| Cart Drawer      | `<ut-cart-drawer>`     | `.ut-cart-drawer`   | K       | cart, sections | `cart-drawer.md`     | offen  |
 | Dialog           | `<ut-dialog>`          | `.ut-dialog`        | P       | nein           | `dialog.md`          | offen  |
 | Gallery          | `<ut-gallery>`         | `.ut-gallery`       | P       | nein           | `gallery.md`         | offen  |
-| Variant Picker   | `<ut-variant-picker>`  | `.ut-variant-picker`| P       | nein           | `variant-picker.md`  | offen  |
+| Variant Picker   | `<ut-variant-picker>`  | `.ut-variant-picker`| P       | sections       | `variant-picker.md`  | offen  |
+| Stock Status     | `<ut-stock-status>`    | `.ut-stock-status`  | P       | sections       | `stock-status.md`    | offen  |
 | Quantity Input   | `<ut-quantity-input>`  | `.ut-quantity`      | P K     | nein           | `quantity-input.md`  | offen  |
-| Product Form     | `<ut-product-form>`    | –                   | P       | ja             | `product-form.md`    | offen  |
+| Product Form     | `<ut-product-form>`    | –                   | P       | cart           | `product-form.md`    | offen  |
 | Carousel         | `<ut-carousel>`        | `.ut-carousel`      | H P K   | nein           | `carousel.md`        | offen  |
-| Facets           | `<ut-facets>`          | `.ut-facets`        | C       | nein           | `facets.md`          | offen  |
-| Countdown        | `<ut-countdown>`       | `.ut-countdown`     | H D     | nein           | `countdown.md`       | offen  |
+| Facets           | `<ut-facets>`          | `.ut-facets`        | C       | sections       | `facets.md`          | offen  |
+| Countdown        | `<ut-countdown>`       | `.ut-countdown`     | H D     | clock, sections (über Drop-Sections) | `countdown.md` | offen  |
 | Sticky Bar       | `<ut-sticky-bar>`      | `.ut-sticky-bar`    | P       | nein           | `sticky-bar.md`      | offen  |
 
+Spalte **Nutzt ut-api**: welche Teile des Adapters (`cart`, `sections`, `clock`).
+Section Rendering läuft ausschließlich über `ut-api.js` (Review K7, Migrations-Risiko R8).
+
 Basis-Utilities (`.ut-skip-link`, `.ut-visually-hidden`) leben in `base.css` und
-brauchen keine Spec.
+brauchen keine Spec. Verhalten, das mehrere Komponenten betrifft (Drop-Status,
+Countdown, Restmenge, Warteliste), steht in `design/logic/` und nicht in den
+Komponenten-Specs.
 
 ## Snippets (Render-Helfer, keine Komponenten)
 
@@ -87,7 +93,7 @@ Nach Abhängigkeiten; jede Phase liefert eine benutzbare Seite.
 | A     | Button, Icon, Image, Badge, Price, Rich Text, Form Field, Section Header, Empty State            | Primitive, Styleguide-Seite |
 | B     | Header, Drawer, Cart Count, Announcement Bar, Footer, Newsletter                                  | Rahmen auf allen Seiten  |
 | C     | Product Card, Product Grid, Pagination, Collection Header, Facets                                | Collection-Seite         |
-| D     | Gallery, Variant Picker, Quantity Input, Product Form, Buy Box, Stock Status, Accordion, Dialog, Lookbook, Carousel, Sticky Bar | PDP |
+| D     | Gallery, Variant Picker, Quantity Input, Product Form, Buy Box, Stock Status, Waitlist, Accordion, Dialog, Lookbook, Carousel, Sticky Bar | PDP |
 | E     | Cart Line, Cart Summary, Cart Drawer                                                             | Warenkorb                |
 | F     | Hero, Countdown, Drop Card, Teaser Card/Grid, Ticker, Split                                      | Drop-Seite, Startseite   |
 

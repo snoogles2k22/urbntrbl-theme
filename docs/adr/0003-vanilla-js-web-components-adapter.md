@@ -25,5 +25,8 @@ Shopify-Endpunkte. Events sind namespaced: `ut:<element>:<event>`.
 
 - Keine Dependencies. Wer eine braucht, schreibt ein ADR und folgt ADR 0007.
 - Kein globales `window.*`-Objekt. Zugriff ausschließlich per `import { cart } from 'ut-api.js'`.
-- Section Rendering API (Shopify) wird in einem eigenen Adapter-Teil gekapselt, sobald
-  sie gebraucht wird (Variant Picker, Cart Drawer).
+- Section Rendering API (Shopify) läuft über `sections.render(id, url?)` im Adapter,
+  Serverzeit über `clock.now()`. Beide werden mit der ersten Komponente gebaut, die
+  sie braucht (Review 2026-11-17, K7).
+- `ut:cart:updated` trägt `{ cart, source }`, damit Empfänger zwischen Hinzufügen und
+  Ändern unterscheiden.

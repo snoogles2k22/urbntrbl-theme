@@ -14,11 +14,20 @@
  *   cart.add({ variantId, quantity, props }) -> Promise<Cart>
  *   cart.update({ lineKey, quantity })      -> Promise<Cart>
  *   cart.remove({ lineKey })                -> Promise<Cart>
- *   events: window dispatches `ut:cart:updated` with { detail: Cart }
+ *   events: window dispatches `ut:cart:updated` with
+ *           { detail: { cart: Cart, source: 'add' | 'update' | 'remove' } }
+ *
+ * Planned (added with the components that need them, see design/logic/drop.md
+ * and docs/migration.md R8):
+ *   clock.now()                             -> Promise<number> (server-corrected ms)
+ *   sections.render(sectionId, url?)        -> Promise<string> (HTML)
  *
  * Cart shape (neutral):
  *   { itemCount: number, totalPrice: number (minor units), currency: string,
- *     lines: [{ key, variantId, productId, title, quantity, price, image, url }] }
+ *     lines: [{ key, variantId, productId, title, variantTitle, quantity,
+ *               price, comparePrice, image, url }] }
+ * Fields that /cart.js cannot deliver (metafields, inventory) are Liquid-only
+ * in v1; see design/blueprints/cart.md.
  */
 
 const ROOT = window.Shopify?.routes?.root ?? '/';
@@ -55,15 +64,24 @@ function normalizeCart(raw) {
       variantTitle: item.variant_title,
       quantity: item.quantity,
       price: item.final_line_price,
+      comparePrice: item.original_line_price,
       image: item.image,
       url: item.url,
     })),
   };
 }
 
-function emit(cart) {
-  window.dispatchEvent(new CustomEvent('ut:cart:updated', { detail: cart }));
+function emit(cart, source) {
+  window.dispatchEvent(new CustomEvent('ut:cart:updated', { detail: { cart, source } }));
   return cart;
+}
+
+async function change(lineKey, quantity) {
+  const raw = await request('cart/change.js', {
+    method: 'POST',
+    body: JSON.stringify({ id: lineKey, quantity }),
+  });
+  return normalizeCart(raw);
 }
 
 export const cart = {
@@ -76,19 +94,15 @@ export const cart = {
       method: 'POST',
       body: JSON.stringify({ items: [{ id: variantId, quantity, properties: props }] }),
     });
-    return emit(await this.get());
+    return emit(await this.get(), 'add');
   },
 
   async update({ lineKey, quantity }) {
-    const raw = await request('cart/change.js', {
-      method: 'POST',
-      body: JSON.stringify({ id: lineKey, quantity }),
-    });
-    return emit(normalizeCart(raw));
+    return emit(await change(lineKey, quantity), 'update');
   },
 
   async remove({ lineKey }) {
-    return this.update({ lineKey, quantity: 0 });
+    return emit(await change(lineKey, 0), 'remove');
   },
 };
 

@@ -46,9 +46,11 @@ Anzahl der Sections sind im Editor frei, das hier ist der Default.
 | 5 | `image-with-text.liquid`     | `.ut-split`, `.ut-image`, `.ut-rich-text`, `.ut-button`                          | `image`, `image_position` (`start`/`end`), `eyebrow`, `heading`, `text` (richtext), `cta_label/url`, `tone` (`default`/`inverse`) |
 | 6 | `newsletter.liquid`          | `.ut-newsletter`, `.ut-form-field`, `.ut-button`                                 | `heading`, `text`, `success_text`, `tone`                                                                                  |
 
-`tone: inverse` ist das einzige „Design“-Setting und zeigt auf einen Token-Scope
-(`[data-tone="inverse"]` setzt `--ut-color-bg-default` und `--ut-color-text-default`
-auf die Inverse-Werte). Siehe ADR 0004.
+`tone: inverse` ist das einzige „Design“-Setting und zeigt auf einen Token-Scope.
+Die Section setzt `data-tone="inverse"` auf ihr Wurzelelement. Der Scope ist in
+`tokens.json` unter `$scopes.inverse` definiert und wird generiert (ADR 0001, 0004).
+Sections mit Tone-Setting setzen auf ihrem Wurzelelement
+`background: var(--ut-color-bg-default)` und `color: var(--ut-color-text-default)`.
 
 ## Datenbedarf
 

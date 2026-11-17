@@ -11,7 +11,11 @@
       "tax_note_included": "incl. VAT",
       "tax_note_kleinunternehmer": "No VAT shown pursuant to § 19 UStG (German small business regulation).",
       "shipping_note_html": "plus {{ link }}",
-      "shipping_link_text": "shipping costs"
+      "shipping_link_text": "shipping costs",
+      "compare_label_lowest_30d": "Lowest price in the last 30 days",
+      "compare_label_rrp": "RRP",
+      "footnote_kleinunternehmer": "* No VAT pursuant to § 19 UStG, plus shipping.",
+      "footnote_included": "* incl. VAT, plus shipping"
     }
   },
   "sections": {
