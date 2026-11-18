@@ -67,7 +67,7 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Facets           | `<ut-facets>`          | `.ut-facets`        | C       | sections       | `facets.md`          | offen  |
 | Countdown        | `<ut-countdown>`       | `.ut-countdown`     | H D     | clock, sections (über Drop-Sections) | `countdown.md` | offen  |
 | Sticky Bar       | `<ut-sticky-bar>`      | `.ut-sticky-bar`    | P       | nein           | `sticky-bar.md`      | offen  |
-| Copy Button      | `<ut-copy-button>`     | `.ut-copy-button`   | G       | nein (Browser-API) | `copy-button.md` | Spec   |
+| Copy Button      | `<ut-copy-button>`     | `.ut-copy-button`   | G       | nein (Browser-API) | `copy-button.md` | In Arbeit |
 
 Spalte **Nutzt ut-api**: welche Teile des Adapters (`cart`, `sections`, `clock`).
 Section Rendering läuft ausschließlich über `ut-api.js` (Review K7, Migrations-Risiko R8).
