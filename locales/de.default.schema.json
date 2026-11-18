@@ -44,6 +44,14 @@
         "text_info": "Leer lassen für den Standardtext (nächster Drop-Termin). Keine Preise oder Rabatte.",
         "link": "Link"
       }
+    },
+    "header": {
+      "name": "Header",
+      "settings": {
+        "menu": "Menü",
+        "menu_info": "Annahme Phase B: Drop 1, Über uns, Kontakt. Einträge im Admin unter Inhalte → Menüs pflegen. Nur die erste Ebene wird angezeigt.",
+        "sticky": "Header beim Scrollen fixieren"
+      }
     }
   }
 }

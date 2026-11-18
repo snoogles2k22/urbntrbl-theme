@@ -44,6 +44,14 @@
         "text_info": "Leave empty for the default text (next drop date). No prices or discounts.",
         "link": "Link"
       }
+    },
+    "header": {
+      "name": "Header",
+      "settings": {
+        "menu": "Menu",
+        "menu_info": "Assumption phase B: Drop 1, About, Contact. Maintain entries in Admin under Content → Menus. Only the first level is shown.",
+        "sticky": "Keep header visible on scroll"
+      }
     }
   }
 }

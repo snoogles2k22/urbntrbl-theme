@@ -109,6 +109,11 @@
       "label": "Cart",
       "items_one": "item",
       "items_other": "items"
+    },
+    "header": {
+      "nav_label": "Main navigation",
+      "menu": "Menu",
+      "menu_open": "Open menu"
     }
   }
 }

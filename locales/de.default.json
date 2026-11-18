@@ -109,6 +109,11 @@
       "label": "Warenkorb",
       "items_one": "Artikel",
       "items_other": "Artikel"
+    },
+    "header": {
+      "nav_label": "Hauptnavigation",
+      "menu": "Menü",
+      "menu_open": "Menü öffnen"
     }
   }
 }
