@@ -10,6 +10,8 @@
   assign shop_label = 'gift_cards.issued.shop_link' | t
   assign label_expired = 'gift_cards.issued.expired' | t
   assign label_disabled = 'gift_cards.issued.disabled' | t
+  assign label_copy_code = 'gift_cards.issued.copy_code' | t
+  assign label_copied = 'gift_cards.issued.copied' | t
 -%}
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
@@ -26,7 +28,9 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'component-button.css' | asset_url | stylesheet_tag }}
     {{ 'component-badge.css' | asset_url | stylesheet_tag }}
+    {{ 'component-copy-button.css' | asset_url | stylesheet_tag }}
     {{ 'component-gift-card.css' | asset_url | stylesheet_tag }}
+    <script type="module" src="{{ 'ut-copy-button.js' | asset_url }}"></script>
 
     {{ content_for_header }}
   </head>
@@ -64,7 +68,15 @@
         {%- endif -%}
         <div class="ut-gift-card__row">
           <dt>{{ 'gift_cards.issued.code' | t }}</dt>
-          <dd><code class="ut-gift-card__code">{{ gift_card.code | format_code }}</code></dd>
+          <dd>
+            <code id="GiftCardCode" class="ut-gift-card__code">{{ gift_card.code | format_code }}</code>
+            {%- render 'copy-button',
+              value: gift_card.code,
+              label: label_copy_code,
+              copied_label: label_copied,
+              target: 'GiftCardCode'
+            -%}
+          </dd>
         </div>
         {%- if gift_card.expires_on -%}
           <div class="ut-gift-card__row">

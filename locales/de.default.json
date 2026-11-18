@@ -18,7 +18,9 @@
       "disabled": "Deaktiviert",
       "how_to_use": "Gib den Code im Checkout ein. Ein Restbetrag bleibt für den nächsten Einkauf erhalten.",
       "shop_link": "Jetzt einkaufen",
-      "add_to_apple_wallet": "Zu Apple Wallet hinzufügen"
+      "add_to_apple_wallet": "Zu Apple Wallet hinzufügen",
+      "copy_code": "Code kopieren",
+      "copied": "Kopiert"
     }
   },
   "products": {

@@ -54,6 +54,9 @@
   }
 
   .ut-gift-card__row dd {
+    display: grid;
+    justify-items: start;
+    gap: var(--ut-space-3);
     margin: 0;
     font-size: var(--ut-font-size-lg);
   }
