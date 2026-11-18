@@ -130,6 +130,10 @@ selbst bleibt statisch. Der Versand-Link ist ein normaler `<a>`.
 | `products.price.compare_label_rrp`          | UVP                                                  | RRP                                             |
 | `products.price.footnote_kleinunternehmer`  | * Gemäß § 19 UStG wird keine Umsatzsteuer berechnet, zzgl. Versandkosten. | * No VAT pursuant to § 19 UStG, plus shipping. |
 | `products.price.footnote_included`          | * inkl. MwSt., zzgl. Versandkosten                   | * incl. VAT, plus shipping                      |
+| `products.price.footnote_none`              | * zzgl. Versandkosten                                | * plus shipping                                 |
+
+Die Fußnoten rendert der Footer (`footer.md`) passend zu `price_tax_mode`, mit Link
+„Versandinformationen“, wenn eine Versandseite existiert. **[RECHT-PRÜFEN]** Wortlaut.
 
 Der Versandhinweis wird als `shipping_note_html` mit `link:` Parameter gerendert, damit
 Satzbau und Link-Position pro Sprache frei sind.

@@ -44,7 +44,8 @@
       "compare_label_lowest_30d": "Lowest price in the last 30 days",
       "compare_label_rrp": "RRP",
       "footnote_kleinunternehmer": "* No VAT pursuant to § 19 UStG, plus shipping.",
-      "footnote_included": "* incl. VAT, plus shipping"
+      "footnote_included": "* incl. VAT, plus shipping",
+      "footnote_none": "* plus shipping"
     }
   },
   "styleguide": {
@@ -124,6 +125,18 @@
       "nav_label": "Main navigation",
       "menu": "Menu",
       "menu_open": "Open menu"
+    },
+    "footer": {
+      "nav_label": "Footer navigation",
+      "legal_label": "Legal",
+      "legal": {
+        "imprint": "Legal notice",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "withdrawal": "Right of withdrawal"
+      },
+      "shipping_info": "Shipping information",
+      "copyright": "© {{ year }} {{ shop }}"
     }
   }
 }

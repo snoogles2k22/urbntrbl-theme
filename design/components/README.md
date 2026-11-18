@@ -47,7 +47,7 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Cart Line         | `.ut-cart-line`          | K         | `cart-line.md`          | offen  |
 | Cart Summary      | `.ut-cart-summary`       | K         | `cart-summary.md`       | offen  |
 | Announcement Bar  | `.ut-announcement-bar`   | R         | `announcement-bar.md`   | In Arbeit |
-| Footer            | `.ut-footer`             | R         | `footer.md`             | offen  |
+| Footer            | `.ut-footer`             | R         | `footer.md`             | In Arbeit |
 
 ## Interaktiv (Custom Element + BEM-Block)
 

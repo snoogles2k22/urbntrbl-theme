@@ -52,6 +52,23 @@
         "menu_info": "Annahme Phase B: Drop 1, Über uns, Kontakt. Einträge im Admin unter Inhalte → Menüs pflegen. Nur die erste Ebene wird angezeigt.",
         "sticky": "Header beim Scrollen fixieren"
       }
+    },
+    "footer": {
+      "name": "Footer",
+      "settings": {
+        "tone": "Ton",
+        "tone_info": "Zeigt auf einen Token-Scope in tokens.json, keine freie Farbwahl.",
+        "tone_default": "Standard",
+        "tone_inverse": "Invers",
+        "show_newsletter": "Newsletter-Formular anzeigen",
+        "menu": "Footer-Menü (optional)",
+        "legal_header": "Rechtliches",
+        "legal_info": "Ohne URL erscheint der Eintrag als Platzhaltertext ohne Link. Datenschutz, AGB und Widerruf fallen auf die Shopify-Richtlinien zurück (Widerruf = Rückerstattungsrichtlinie). Vor Launch rechtlich prüfen lassen.",
+        "imprint_url": "Impressum",
+        "privacy_url": "Datenschutzerklärung",
+        "terms_url": "AGB",
+        "withdrawal_url": "Widerrufsbelehrung"
+      }
     }
   }
 }

@@ -52,6 +52,23 @@
         "menu_info": "Assumption phase B: Drop 1, About, Contact. Maintain entries in Admin under Content → Menus. Only the first level is shown.",
         "sticky": "Keep header visible on scroll"
       }
+    },
+    "footer": {
+      "name": "Footer",
+      "settings": {
+        "tone": "Tone",
+        "tone_info": "Points to a token scope in tokens.json, not a free color choice.",
+        "tone_default": "Default",
+        "tone_inverse": "Inverse",
+        "show_newsletter": "Show newsletter form",
+        "menu": "Footer menu (optional)",
+        "legal_header": "Legal",
+        "legal_info": "Without a URL the entry renders as placeholder text without a link. Privacy, terms and withdrawal fall back to the Shopify policies (withdrawal = refund policy). Have this reviewed before launch.",
+        "imprint_url": "Legal notice",
+        "privacy_url": "Privacy policy",
+        "terms_url": "Terms of service",
+        "withdrawal_url": "Right of withdrawal"
+      }
     }
   }
 }

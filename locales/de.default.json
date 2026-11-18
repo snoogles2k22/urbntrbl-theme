@@ -44,7 +44,8 @@
       "compare_label_lowest_30d": "Niedrigster Preis der letzten 30 Tage",
       "compare_label_rrp": "UVP",
       "footnote_kleinunternehmer": "* Gemäß § 19 UStG wird keine Umsatzsteuer berechnet, zzgl. Versandkosten.",
-      "footnote_included": "* inkl. MwSt., zzgl. Versandkosten"
+      "footnote_included": "* inkl. MwSt., zzgl. Versandkosten",
+      "footnote_none": "* zzgl. Versandkosten"
     }
   },
   "styleguide": {
@@ -124,6 +125,18 @@
       "nav_label": "Hauptnavigation",
       "menu": "Menü",
       "menu_open": "Menü öffnen"
+    },
+    "footer": {
+      "nav_label": "Footer-Navigation",
+      "legal_label": "Rechtliches",
+      "legal": {
+        "imprint": "Impressum",
+        "privacy": "Datenschutz",
+        "terms": "AGB",
+        "withdrawal": "Widerruf"
+      },
+      "shipping_info": "Versandinformationen",
+      "copyright": "© {{ year }} {{ shop }}"
     }
   }
 }
