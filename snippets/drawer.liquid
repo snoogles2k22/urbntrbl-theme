@@ -1,0 +1,39 @@
+{% doc %}
+  Side drawer shell (modal dialog). Requires component-drawer.css,
+  component-icon.css and ut-drawer.js. Any element with
+  aria-controls="<id>" opens it.
+  Spec: design/components/drawer.md
+
+  @param {string} id - Unique on the page, target of aria-controls
+  @param {string} title - Visible title, names the dialog
+  @param {string} content - Body HTML (captured by the caller)
+  @param {string} [side] - start (default) or end
+
+  @example
+  {% assign menu_title = 'layout.header.menu' | t %}
+  {% capture menu_html %}<ul role="list">…</ul>{% endcapture %}
+  {% render 'drawer', id: 'MenuDrawer', title: menu_title, content: menu_html %}
+{% enddoc %}
+{%- liquid
+  assign drawer_side = side | default: 'start'
+  if drawer_side != 'end'
+    assign drawer_side = 'start'
+  endif
+  assign drawer_title_id = id | append: '-title'
+  assign close_label = 'layout.drawer.close' | t
+-%}
+<ut-drawer id="{{ id }}">
+  <dialog class="ut-drawer ut-drawer--{{ drawer_side }}" aria-labelledby="{{ drawer_title_id }}">
+    <div class="ut-drawer__panel">
+      <div class="ut-drawer__header">
+        <h2 id="{{ drawer_title_id }}" class="ut-drawer__title">{{ title }}</h2>
+        <button type="button" class="ut-drawer__close" data-drawer-close aria-label="{{ close_label | escape }}">
+          {%- render 'icon', name: 'close' -%}
+        </button>
+      </div>
+      <div class="ut-drawer__body">
+        {{- content -}}
+      </div>
+    </div>
+  </dialog>
+</ut-drawer>

@@ -1,0 +1,119 @@
+/*
+ * Drawer. Spec: design/components/drawer.md
+ *
+ * The <dialog> covers the viewport and is the overlay itself (no ::backdrop:
+ * older engines do not inherit custom properties there).
+ */
+@layer components {
+  .ut-drawer {
+    position: fixed;
+    inset: 0;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--ut-color-bg-overlay);
+    color: var(--ut-color-text-default);
+  }
+
+  .ut-drawer::backdrop {
+    background: transparent;
+  }
+
+  .ut-drawer[open] {
+    display: flex;
+    animation: ut-drawer-fade var(--ut-motion-duration-base) var(--ut-motion-easing-enter);
+  }
+
+  .ut-drawer__panel {
+    display: flex;
+    flex-direction: column;
+    inline-size: min(100%, var(--ut-size-drawer));
+    block-size: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--ut-color-bg-default);
+    color: var(--ut-color-text-default);
+    box-shadow: var(--ut-shadow-lg);
+  }
+
+  .ut-drawer--end .ut-drawer__panel {
+    margin-inline-start: auto;
+  }
+
+  .ut-drawer[open] .ut-drawer__panel {
+    animation: ut-drawer-in-start var(--ut-motion-duration-base) var(--ut-motion-easing-enter);
+  }
+
+  .ut-drawer--end[open] .ut-drawer__panel,
+  [dir='rtl'] .ut-drawer--start[open] .ut-drawer__panel {
+    animation-name: ut-drawer-in-end;
+  }
+
+  [dir='rtl'] .ut-drawer--end[open] .ut-drawer__panel {
+    animation-name: ut-drawer-in-start;
+  }
+
+  .ut-drawer__header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ut-space-4);
+    min-block-size: var(--ut-layout-header-height);
+    padding-inline: var(--ut-layout-gutter);
+    border-block-end: var(--ut-border-width-hairline) solid var(--ut-color-border-default);
+  }
+
+  .ut-drawer__title {
+    font-size: var(--ut-font-size-sm);
+    font-weight: var(--ut-font-weight-bold);
+    font-stretch: var(--ut-font-width-condensed);
+    letter-spacing: var(--ut-font-letter-spacing-caps);
+    text-transform: uppercase;
+  }
+
+  .ut-drawer__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--ut-size-control-md);
+    block-size: var(--ut-size-control-md);
+    color: inherit;
+  }
+
+  .ut-drawer__close:hover {
+    color: var(--ut-color-action-primary-bg-hover);
+  }
+
+  .ut-drawer__body {
+    flex: 1 1 auto;
+    padding-block: var(--ut-space-6);
+    padding-inline: var(--ut-layout-gutter);
+  }
+
+  html:has(.ut-drawer[open]) {
+    overflow: hidden;
+  }
+
+  @keyframes ut-drawer-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes ut-drawer-in-start {
+    from {
+      translate: -100% 0;
+    }
+  }
+
+  @keyframes ut-drawer-in-end {
+    from {
+      translate: 100% 0;
+    }
+  }
+}
