@@ -36,6 +36,14 @@
         "image": "Sample image",
         "richtext": "Sample text"
       }
+    },
+    "announcement_bar": {
+      "name": "Announcement bar",
+      "settings": {
+        "text": "Text",
+        "text_info": "Leave empty for the default text (next drop date). No prices or discounts.",
+        "link": "Link"
+      }
     }
   }
 }

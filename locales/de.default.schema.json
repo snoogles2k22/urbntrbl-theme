@@ -36,6 +36,14 @@
         "image": "Beispielbild",
         "richtext": "Beispieltext"
       }
+    },
+    "announcement_bar": {
+      "name": "Ankündigungsleiste",
+      "settings": {
+        "text": "Text",
+        "text_info": "Leer lassen für den Standardtext (nächster Drop-Termin). Keine Preise oder Rabatte.",
+        "link": "Link"
+      }
     }
   }
 }

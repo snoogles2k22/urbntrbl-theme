@@ -96,5 +96,11 @@
       "wordmark": "URBN TRBL",
       "invalid_value": "nicht-gueltig"
     }
+  },
+  "layout": {
+    "announcement_bar": {
+      "label": "Ankündigung",
+      "default_text": "Drop 1 · 20.03.2027"
+    }
   }
 }
