@@ -41,6 +41,17 @@
     "title": "Styleguide",
     "intro": "Alle Primitive in allen Zuständen, einmal im Standard-Ton und einmal im Ton „inverse“. Temporär bis Phase F.",
     "tone": "Ton",
+    "tones": {
+      "default": "Standard",
+      "inverse": "Invers"
+    },
+    "type": {
+      "hero": "Hero-Headline · Display · h1-Rolle",
+      "title": "Section-Titel · Display · h2-Rolle",
+      "wordmark": "Wortmarke · Display · Mindestgröße 32 px",
+      "heading": "Überschriften unter 32 px · Archivo",
+      "body": "Fließtext · Archivo"
+    },
     "groups": {
       "colors": "Farben (Semantik)",
       "typography": "Typografie",
@@ -81,7 +92,9 @@
       "body": "Schwere Stoffe, klare Schnitte, kleine Auflagen. Jeder Drop erscheint einmal.",
       "empty_heading": "Dein Warenkorb ist leer",
       "empty_text": "Der aktuelle Drop läuft noch. Schau rein, bevor er weg ist.",
-      "empty_cta": "Zum aktuellen Drop"
+      "empty_cta": "Zum aktuellen Drop",
+      "wordmark": "URBN TRBL",
+      "invalid_value": "nicht-gueltig"
     }
   }
 }

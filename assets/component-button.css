@@ -121,10 +121,10 @@
   .ut-button:is([disabled], [aria-disabled='true']) {
     --_bg: var(--ut-color-action-disabled-bg);
     --_fg: var(--ut-color-action-disabled-text);
-    --_border: var(--ut-color-action-disabled-bg);
+    --_border: var(--ut-color-action-disabled-border);
     --_bg-hover: var(--ut-color-action-disabled-bg);
     --_fg-hover: var(--ut-color-action-disabled-text);
-    --_border-hover: var(--ut-color-action-disabled-bg);
+    --_border-hover: var(--ut-color-action-disabled-border);
 
     cursor: not-allowed;
   }

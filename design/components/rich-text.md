@@ -24,7 +24,7 @@ Blocks, weil das HTML keine Klassen hat.
 └── Modifier: --narrow (max-inline-size container-narrow) | --center | --sm (kleinere Schrift)
 ```
 
-`h1` wird wie `h2` gesetzt, weil die Seite ihr `h1` selbst vergibt.
+`h1` wird wie `h2` gesetzt, weil die Seite ihr `h1` selbst vergibt. Alle Rich-Text-Überschriften sind Archivo (`font.family.heading`), nie Display: sie liegen unter `font.display.min-size`.
 
 ## 3. Datenvertrag
 

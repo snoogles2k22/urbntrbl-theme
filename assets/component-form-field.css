@@ -37,7 +37,7 @@
   }
 
   .ut-form-field__control[aria-invalid='true'] {
-    border-color: var(--ut-color-text-error);
+    border-color: var(--ut-color-border-error);
   }
 
   .ut-form-field__control:disabled {

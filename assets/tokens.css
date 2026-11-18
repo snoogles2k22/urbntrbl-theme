@@ -6,66 +6,69 @@
 :root {
 
   /* color */
-  --ut-color-neutral-0: #ffffff;
-  --ut-color-neutral-50: #f7f7f7;
-  --ut-color-neutral-100: #ededed;
-  --ut-color-neutral-200: #d9d9d9;
-  --ut-color-neutral-300: #b8b8b8;
-  --ut-color-neutral-400: #8f8f8f;
-  --ut-color-neutral-500: #6b6b6b;
-  --ut-color-neutral-600: #4d4d4d;
-  --ut-color-neutral-700: #333333;
-  --ut-color-neutral-800: #1f1f1f;
-  --ut-color-neutral-900: #111111;
+  --ut-color-neutral-0: #FFFFFF;
+  --ut-color-neutral-50: #F6F5EF;
+  --ut-color-neutral-100: #E9E6DA;
+  --ut-color-neutral-200: #DCD8CA;
+  --ut-color-neutral-300: #BBB6A6;
+  --ut-color-neutral-400: #928D7F;
+  --ut-color-neutral-500: #5F5B51;
+  --ut-color-neutral-600: #4E4B43;
+  --ut-color-neutral-700: #34322D;
+  --ut-color-neutral-800: #201F1B;
+  --ut-color-neutral-900: #121110;
   --ut-color-neutral-1000: #000000;
-  --ut-color-brand-primary: #111111;
-  --ut-color-brand-primary-contrast: #ffffff;
-  --ut-color-brand-accent: #ff4d00;
-  --ut-color-brand-accent-strong: #c23a00;
-  --ut-color-brand-accent-contrast: #111111;
+  --ut-color-brand-black: #0A0A0A;
+  --ut-color-brand-offwhite: #F1EFE4;
+  --ut-color-brand-red: #CE1211;
+  --ut-color-brand-red-bright: #F60302;
   --ut-color-signal-success: #1f7a3a;
   --ut-color-signal-warning: #b36b00;
   --ut-color-signal-error: #b3261e;
   --ut-color-signal-info: #1f5fa8;
-  --ut-color-text-default: var(--ut-color-neutral-900);
+  --ut-color-text-default: var(--ut-color-brand-black);
   --ut-color-text-muted: var(--ut-color-neutral-500);
   --ut-color-text-subtle: var(--ut-color-neutral-400);
-  --ut-color-text-inverse: var(--ut-color-neutral-0);
-  --ut-color-text-link: var(--ut-color-neutral-900);
-  --ut-color-text-sale: var(--ut-color-brand-accent-strong);
+  --ut-color-text-inverse: var(--ut-color-brand-offwhite);
+  --ut-color-text-link: var(--ut-color-brand-black);
+  --ut-color-text-sale: var(--ut-color-brand-red);
   --ut-color-text-error: var(--ut-color-signal-error);
   --ut-color-text-success: var(--ut-color-signal-success);
-  --ut-color-text-on-accent: var(--ut-color-brand-accent-contrast);
-  --ut-color-text-on-signal: var(--ut-color-neutral-0);
-  --ut-color-bg-default: var(--ut-color-neutral-0);
-  --ut-color-bg-subtle: var(--ut-color-neutral-50);
-  --ut-color-bg-muted: var(--ut-color-neutral-100);
-  --ut-color-bg-inverse: var(--ut-color-neutral-900);
-  --ut-color-bg-accent: var(--ut-color-brand-accent);
-  --ut-color-bg-success: var(--ut-color-signal-success);
+  --ut-color-text-on-accent: var(--ut-color-brand-offwhite);
+  --ut-color-indicator-live: var(--ut-color-brand-red-bright);
+  --ut-color-bg-default: var(--ut-color-brand-offwhite);
+  --ut-color-bg-subtle: var(--ut-color-neutral-100);
+  --ut-color-bg-muted: var(--ut-color-neutral-200);
+  --ut-color-bg-inverse: var(--ut-color-brand-black);
+  --ut-color-bg-accent: var(--ut-color-brand-red);
   --ut-color-bg-overlay: rgb(0 0 0 / 0.55);
   --ut-color-border-default: var(--ut-color-neutral-200);
-  --ut-color-border-strong: var(--ut-color-neutral-900);
+  --ut-color-border-strong: var(--ut-color-brand-black);
+  --ut-color-border-error: var(--ut-color-signal-error);
   --ut-color-border-subtle: var(--ut-color-neutral-100);
   --ut-color-border-control: var(--ut-color-neutral-500);
-  --ut-color-border-focus: var(--ut-color-brand-accent);
-  --ut-color-action-primary-bg: var(--ut-color-brand-primary);
-  --ut-color-action-primary-bg-hover: var(--ut-color-neutral-700);
-  --ut-color-action-primary-text: var(--ut-color-brand-primary-contrast);
+  --ut-color-border-focus: var(--ut-color-brand-red);
+  --ut-color-action-primary-bg: var(--ut-color-brand-black);
+  --ut-color-action-primary-bg-hover: var(--ut-color-brand-red);
+  --ut-color-action-primary-text: var(--ut-color-brand-offwhite);
   --ut-color-action-secondary-bg: transparent;
-  --ut-color-action-secondary-border: var(--ut-color-neutral-900);
-  --ut-color-action-secondary-text: var(--ut-color-neutral-900);
-  --ut-color-action-disabled-bg: var(--ut-color-neutral-100);
-  --ut-color-action-disabled-text: var(--ut-color-neutral-400);
+  --ut-color-action-secondary-border: var(--ut-color-brand-black);
+  --ut-color-action-secondary-text: var(--ut-color-brand-black);
+  --ut-color-action-disabled-bg: var(--ut-color-bg-muted);
+  --ut-color-action-disabled-border: var(--ut-color-bg-muted);
+  --ut-color-action-disabled-text: var(--ut-color-text-muted);
 
   /* font */
-  --ut-font-family-heading: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --ut-font-family-body: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --ut-font-family-display: "UT Display", Georgia, serif;
+  --ut-font-family-heading: Archivo, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --ut-font-family-body: Archivo, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --ut-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --ut-font-weight-regular: 400;
   --ut-font-weight-medium: 500;
   --ut-font-weight-semibold: 600;
   --ut-font-weight-bold: 700;
+  --ut-font-width-normal: 100%;
+  --ut-font-width-condensed: 80%;
   --ut-font-size-xs: 0.75rem;
   --ut-font-size-sm: 0.875rem;
   --ut-font-size-md: 1rem;
@@ -73,7 +76,11 @@
   --ut-font-size-xl: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
   --ut-font-size-2xl: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
   --ut-font-size-3xl: clamp(1.875rem, 1.5rem + 1.7vw, 2.75rem);
-  --ut-font-size-display: clamp(2.5rem, 1.8rem + 3.1vw, 4.5rem);
+  --ut-font-size-hero: clamp(2.75rem, 8vw, 7rem);
+  --ut-font-size-title: clamp(2rem, 4vw, 3rem);
+  --ut-font-display-min-size: 2rem;
+  --ut-font-display-letter-spacing: -0.01em;
+  --ut-font-display-weight: 400;
   --ut-font-line-height-tight: 1.1;
   --ut-font-line-height-snug: 1.25;
   --ut-font-line-height-normal: 1.5;
@@ -82,6 +89,22 @@
   --ut-font-letter-spacing-normal: 0;
   --ut-font-letter-spacing-wide: 0.06em;
   --ut-font-letter-spacing-caps: 0.1em;
+
+  /* component */
+  --ut-component-wordmark-font-family: var(--ut-font-family-display);
+  --ut-component-wordmark-font-size: var(--ut-font-display-min-size);
+  --ut-component-wordmark-font-weight: var(--ut-font-display-weight);
+  --ut-component-wordmark-letter-spacing: var(--ut-font-display-letter-spacing);
+  --ut-component-hero-headline-font-family: var(--ut-font-family-display);
+  --ut-component-hero-headline-font-size: var(--ut-font-size-hero);
+  --ut-component-hero-headline-font-weight: var(--ut-font-display-weight);
+  --ut-component-hero-headline-letter-spacing: var(--ut-font-display-letter-spacing);
+  --ut-component-hero-headline-line-height: var(--ut-font-line-height-tight);
+  --ut-component-section-title-font-family: var(--ut-font-family-display);
+  --ut-component-section-title-font-size: var(--ut-font-size-title);
+  --ut-component-section-title-font-weight: var(--ut-font-display-weight);
+  --ut-component-section-title-letter-spacing: var(--ut-font-display-letter-spacing);
+  --ut-component-section-title-line-height: var(--ut-font-line-height-tight);
 
   /* space */
   --ut-space-0: 0;
@@ -170,28 +193,33 @@
   --ut-z-toast: 600;
 }
 
-/* scope: inverse (Dunkle Flächen (Section-Setting tone: inverse). Überschreibt nur Semantik, nie Primitive. PLATZHALTER bis zur Brand-Freigabe.) */
+/* scope: inverse (Dunkle Flächen (Section-Setting tone: inverse). Überschreibt nur Semantik, nie Primitive. Dunkle Flächen sind ausschließlich brand.black, keine dunklen Graustufen als Fläche.) */
 [data-tone="inverse"] {
   /* overrides */
-  --ut-color-text-default: var(--ut-color-neutral-0);
+  --ut-color-text-default: var(--ut-color-brand-offwhite);
   --ut-color-text-muted: var(--ut-color-neutral-300);
   --ut-color-text-subtle: var(--ut-color-neutral-400);
-  --ut-color-text-inverse: var(--ut-color-neutral-900);
-  --ut-color-text-link: var(--ut-color-neutral-0);
-  --ut-color-text-sale: var(--ut-color-brand-accent);
-  --ut-color-bg-default: var(--ut-color-neutral-900);
-  --ut-color-bg-subtle: var(--ut-color-neutral-800);
-  --ut-color-bg-muted: var(--ut-color-neutral-700);
-  --ut-color-bg-inverse: var(--ut-color-neutral-0);
+  --ut-color-text-inverse: var(--ut-color-brand-black);
+  --ut-color-text-link: var(--ut-color-brand-offwhite);
+  --ut-color-text-sale: var(--ut-color-brand-red-bright);
+  --ut-color-text-error: var(--ut-color-brand-red-bright);
+  --ut-color-indicator-live: var(--ut-color-brand-red);
+  --ut-color-bg-default: var(--ut-color-brand-black);
+  --ut-color-bg-subtle: var(--ut-color-brand-black);
+  --ut-color-bg-muted: var(--ut-color-brand-black);
+  --ut-color-bg-inverse: var(--ut-color-brand-offwhite);
   --ut-color-border-default: var(--ut-color-neutral-700);
-  --ut-color-border-strong: var(--ut-color-neutral-0);
+  --ut-color-border-strong: var(--ut-color-brand-offwhite);
+  --ut-color-border-error: var(--ut-color-brand-red-bright);
   --ut-color-border-subtle: var(--ut-color-neutral-800);
   --ut-color-border-control: var(--ut-color-neutral-400);
-  --ut-color-action-primary-bg: var(--ut-color-neutral-0);
-  --ut-color-action-primary-bg-hover: var(--ut-color-neutral-200);
-  --ut-color-action-primary-text: var(--ut-color-neutral-900);
-  --ut-color-action-secondary-border: var(--ut-color-neutral-0);
-  --ut-color-action-secondary-text: var(--ut-color-neutral-0);
-  --ut-color-action-disabled-bg: var(--ut-color-neutral-800);
-  --ut-color-action-disabled-text: var(--ut-color-neutral-500);
+  --ut-color-border-focus: var(--ut-color-brand-red-bright);
+  --ut-color-action-primary-bg: var(--ut-color-brand-offwhite);
+  --ut-color-action-primary-bg-hover: var(--ut-color-brand-red-bright);
+  --ut-color-action-primary-text: var(--ut-color-brand-black);
+  --ut-color-action-secondary-border: var(--ut-color-brand-offwhite);
+  --ut-color-action-secondary-text: var(--ut-color-brand-offwhite);
+  --ut-color-action-disabled-bg: var(--ut-color-brand-black);
+  --ut-color-action-disabled-border: var(--ut-color-neutral-700);
+  --ut-color-action-disabled-text: var(--ut-color-neutral-400);
 }

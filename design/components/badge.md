@@ -20,7 +20,8 @@ Metafeld `badge`; Reihenfolge sold_out > sale > badge > new laut `docs/metafield
 
 ```
 .ut-badge
-└── Modifier (Tone): --neutral (Default) | --accent | --muted | --outline | --success
+└── Modifier (Tone): --neutral (Default) | --accent | --muted | --outline | --live
+    └── --live::before                   Statuspunkt (dekorativ, rein CSS)
 ```
 
 | Verwendung        | Tone      |
@@ -28,7 +29,7 @@ Metafeld `badge`; Reihenfolge sold_out > sale > badge > new laut `docs/metafield
 | Sale              | accent    |
 | Ausverkauft       | muted     |
 | Neu, Limitiert, Collab, Restock | neutral |
-| Drop live         | success   |
+| Drop live         | live (Neutral-Fläche + roter Punkt) |
 | Drop demnächst    | outline   |
 | Drop beendet      | muted     |
 
@@ -53,8 +54,8 @@ n/a
 - `--ut-color-bg-accent`, `--ut-color-text-on-accent` (accent)
 - `--ut-color-bg-muted`, `--ut-color-text-muted` (muted)
 - `--ut-color-border-strong`, `--ut-color-text-default` (outline)
-- `--ut-color-bg-success`, `--ut-color-text-on-signal` (success)
-- `--ut-space-1`, `--ut-space-2`, `--ut-font-size-xs`, `--ut-font-weight-semibold`, `--ut-font-letter-spacing-caps`, `--ut-font-line-height-tight`, `--ut-radius-badge`, `--ut-border-width-hairline`
+- `--ut-color-indicator-live`, `--ut-radius-full` (live; Fläche wie neutral)
+- `--ut-space-1`, `--ut-space-2`, `--ut-font-family-heading`, `--ut-font-size-xs`, `--ut-font-weight-bold`, `--ut-font-width-condensed`, `--ut-font-letter-spacing-caps`, `--ut-font-line-height-tight`, `--ut-radius-badge`, `--ut-border-width-hairline`
 
 ## 7. Verhalten und JS
 
@@ -63,7 +64,7 @@ Kein JS.
 ## 8. Accessibility
 
 - Text, nicht nur Farbe. Großschreibung per CSS, der DOM-Text bleibt normal geschrieben (Screenreader buchstabieren sonst).
-- Kontraste: alle Tones ≥ 4.5:1 (on-accent 5.7, on-signal 5.4, muted 4.6 gegen bg.muted).
+- Kontraste: alle Tones ≥ 4.5:1 (on-accent 4.90 offwhite auf red, muted 4.75 gegen bg.muted, neutral/live 17.17; Stand 2026-11-18). Live-Punkt: red-bright auf black 4.65, im inverse-Ton red auf offwhite 4.90 (≥ 3:1 für Grafik). Kein roter Text auf bg.muted (Graustufe). Kein Grün: `signal.success` ist nur Formular-Feedback.
 
 ## 9. Texte
 

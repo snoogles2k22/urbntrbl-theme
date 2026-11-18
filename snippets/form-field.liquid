@@ -19,7 +19,9 @@
   @param {string} [attributes] - Extra raw attributes on the control
 
   @example
-  {% render 'form-field', id: 'NewsletterEmail', name: 'contact[email]', type: 'email', label: 'E-Mail', autocomplete: 'email', required: true, inline_button: 'Anmelden' %}
+  {% assign email_label = 'newsletter.email' | t %}
+  {% assign submit_label = 'newsletter.submit' | t %}
+  {% render 'form-field', id: 'NewsletterEmail', name: 'contact[email]', type: 'email', label: email_label, autocomplete: 'email', required: true, inline_button: submit_label %}
 {% enddoc %}
 {%- liquid
   assign field_type = type | default: 'text'

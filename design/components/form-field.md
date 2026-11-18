@@ -57,12 +57,12 @@ n/a
 |-----------|------------------------|-----------------------------------------------|
 | default   | –                      | Rahmen `border.control`                       |
 | focus     | `:focus-visible`       | globaler Fokusring                            |
-| invalid   | `[aria-invalid=true]`  | Rahmen und Fehlertext `text.error`, Icon       |
+| invalid   | `[aria-invalid=true]`  | Rahmen `border.error`, Fehlertext `text.error`, Icon |
 | disabled  | `[disabled]`           | `action.disabled-*`                           |
 
 ## 6. Verwendete Tokens
 
-- `--ut-color-border-control`, `--ut-color-bg-default`, `--ut-color-text-default`, `--ut-color-text-muted`, `--ut-color-text-error`, `--ut-color-action-primary-bg`, `--ut-color-action-disabled-bg`, `--ut-color-action-disabled-text`
+- `--ut-color-border-control`, `--ut-color-bg-default`, `--ut-color-text-default`, `--ut-color-text-muted`, `--ut-color-text-error`, `--ut-color-border-error`, `--ut-color-action-primary-bg`, `--ut-color-action-disabled-bg`, `--ut-color-action-disabled-text`
 - `--ut-size-control-md`, `--ut-size-icon-sm`, `--ut-size-icon-md`
 - `--ut-space-1`, `-2`, `-3`, `--ut-font-size-xs`, `-sm`, `-md`, `--ut-font-weight-medium`, `--ut-font-line-height-snug`
 - `--ut-radius-control`, `--ut-border-width-hairline`

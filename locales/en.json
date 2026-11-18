@@ -41,6 +41,17 @@
     "title": "Styleguide",
     "intro": "Every primitive in every state, once in the default tone and once in tone \"inverse\". Temporary until phase F.",
     "tone": "Tone",
+    "tones": {
+      "default": "Default",
+      "inverse": "Inverse"
+    },
+    "type": {
+      "hero": "Hero headline · Display · h1 role",
+      "title": "Section title · Display · h2 role",
+      "wordmark": "Wordmark · Display · minimum 32 px",
+      "heading": "Headings below 32 px · Archivo",
+      "body": "Body text · Archivo"
+    },
     "groups": {
       "colors": "Colors (semantic)",
       "typography": "Typography",
@@ -81,7 +92,9 @@
       "body": "Heavy fabrics, clean cuts, small runs. Every drop happens once.",
       "empty_heading": "Your cart is empty",
       "empty_text": "The current drop is still running. Take a look before it is gone.",
-      "empty_cta": "Go to current drop"
+      "empty_cta": "Go to current drop",
+      "wordmark": "URBN TRBL",
+      "invalid_value": "not-valid"
     }
   }
 }

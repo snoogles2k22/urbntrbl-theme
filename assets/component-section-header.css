@@ -16,17 +16,25 @@
   }
 
   .ut-section-header__eyebrow {
+    font-family: var(--ut-font-family-heading);
     font-size: var(--ut-font-size-xs);
-    font-weight: var(--ut-font-weight-semibold);
+    font-weight: var(--ut-font-weight-bold);
+    font-stretch: var(--ut-font-width-condensed);
     letter-spacing: var(--ut-font-letter-spacing-caps);
     text-transform: uppercase;
     color: var(--ut-color-text-muted);
   }
 
+  /* Display role, independent of the heading level passed in */
   .ut-section-header__heading {
-    font-size: var(--ut-font-size-2xl);
-    font-weight: var(--ut-font-weight-bold);
-    line-height: var(--ut-font-line-height-tight);
+    font-family: var(--ut-component-section-title-font-family);
+    font-size: var(--ut-component-section-title-font-size);
+    font-weight: var(--ut-component-section-title-font-weight);
+    font-stretch: normal;
+    font-synthesis: none;
+    line-height: var(--ut-component-section-title-line-height);
+    letter-spacing: var(--ut-component-section-title-letter-spacing);
+    text-transform: none;
   }
 
   .ut-section-header__text {

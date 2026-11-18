@@ -10,10 +10,13 @@
     padding-inline: var(--ut-layout-gutter);
   }
 
+  /* Wordmark until the logo is final */
   .ut-gift-card__shop-name {
-    font-size: var(--ut-font-size-lg);
-    font-weight: var(--ut-font-weight-bold);
-    letter-spacing: var(--ut-font-letter-spacing-caps);
+    font-family: var(--ut-component-wordmark-font-family);
+    font-size: var(--ut-component-wordmark-font-size);
+    font-weight: var(--ut-component-wordmark-font-weight);
+    font-synthesis: none;
+    letter-spacing: var(--ut-component-wordmark-letter-spacing);
     text-transform: uppercase;
   }
 
@@ -41,8 +44,10 @@
   }
 
   .ut-gift-card__row dt {
+    font-family: var(--ut-font-family-heading);
     font-size: var(--ut-font-size-xs);
-    font-weight: var(--ut-font-weight-semibold);
+    font-weight: var(--ut-font-weight-bold);
+    font-stretch: var(--ut-font-width-condensed);
     letter-spacing: var(--ut-font-letter-spacing-caps);
     text-transform: uppercase;
     color: var(--ut-color-text-muted);

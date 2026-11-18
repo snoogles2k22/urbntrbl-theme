@@ -21,7 +21,7 @@ Recommendations.
 .ut-section-header
 ├── .ut-section-header__content
 │   ├── .ut-section-header__eyebrow
-│   ├── .ut-section-header__heading   (h2 Default, h1 möglich)
+│   ├── .ut-section-header__heading   (h2 Default, h1 möglich; Display über component.section-title, unabhängig vom Tag)
 │   └── .ut-section-header__text
 ├── .ut-section-header__link          .ut-button--text mit Icon arrow-right
 └── Modifier: --center
@@ -50,7 +50,9 @@ n/a
 ## 6. Verwendete Tokens
 
 - `--ut-color-text-default`, `--ut-color-text-muted`
-- `--ut-font-size-xs`, `-md`, `-2xl`, `--ut-font-weight-semibold`, `-bold`, `--ut-font-letter-spacing-caps`, `--ut-font-line-height-tight`
+- Titel: `--ut-component-section-title-font-family`, `-font-size`, `-font-weight`, `-letter-spacing`, `-line-height` (Display, 32–48px, `font-synthesis: none`)
+- Eyebrow: `--ut-font-family-heading`, `--ut-font-size-xs`, `--ut-font-weight-bold`, `--ut-font-width-condensed`, `--ut-font-letter-spacing-caps`
+- Text: `--ut-font-size-md`
 - `--ut-space-2`, `-4`, `-8`, `--ut-layout-container-narrow`
 
 ## 7. Verhalten und JS

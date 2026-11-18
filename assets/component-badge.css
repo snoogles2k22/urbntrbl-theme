@@ -14,8 +14,10 @@
     border-radius: var(--ut-radius-badge);
     background: var(--_bg);
     color: var(--_fg);
+    font-family: var(--ut-font-family-heading);
     font-size: var(--ut-font-size-xs);
-    font-weight: var(--ut-font-weight-semibold);
+    font-weight: var(--ut-font-weight-bold);
+    font-stretch: var(--ut-font-width-condensed);
     line-height: var(--ut-font-line-height-tight);
     letter-spacing: var(--ut-font-letter-spacing-caps);
     text-transform: uppercase;
@@ -40,9 +42,13 @@
     --_border: var(--ut-color-border-strong);
   }
 
-  .ut-badge--success {
-    --_bg: var(--ut-color-bg-success);
-    --_fg: var(--ut-color-text-on-signal);
-    --_border: var(--ut-color-bg-success);
+  /* Same surface as neutral, plus a red status dot */
+  .ut-badge--live::before {
+    content: '';
+    flex: none;
+    inline-size: var(--ut-space-2);
+    block-size: var(--ut-space-2);
+    border-radius: var(--ut-radius-full);
+    background: var(--ut-color-indicator-live);
   }
 }

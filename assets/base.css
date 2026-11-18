@@ -6,6 +6,37 @@
  */
 @layer reset, base, components, utilities;
 
+/*
+ * Display face URBN TRBL Gothic, demo version 0.2 (kerning not final).
+ * Missing glyphs fall back to the next family in --ut-font-family-display.
+ * Applied only through the --ut-component-{wordmark,hero-headline,section-title}-*
+ * tokens and never below --ut-font-display-min-size. Never via tag selectors,
+ * never body, prices or forms. Users set font-synthesis: none (regular only).
+ */
+@font-face {
+  font-family: 'UT Display';
+  src: url('URBNTRBLGothic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Archivo (OFL), variable font, latin subset. Body and heading face.
+ * Axes: wght 100-900, wdth 62-125 (driven by font-stretch).
+ */
+@font-face {
+  font-family: 'Archivo';
+  src: url('Archivo-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
 @layer reset {
   *,
   *::before,
@@ -90,6 +121,19 @@
     line-height: var(--ut-font-line-height-tight);
     letter-spacing: var(--ut-font-letter-spacing-tight);
     text-wrap: balance;
+  }
+
+  h1,
+  h2 {
+    font-weight: var(--ut-font-weight-bold);
+  }
+
+  h3,
+  h4 {
+    font-weight: var(--ut-font-weight-bold);
+    font-stretch: var(--ut-font-width-condensed);
+    letter-spacing: var(--ut-font-letter-spacing-wide);
+    text-transform: uppercase;
   }
 
   a {

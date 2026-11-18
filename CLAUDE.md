@@ -52,9 +52,25 @@ Sprache: Doku und Specs auf Deutsch, Code, Kommentare im Code und Identifier auf
    Scan mit `nvidia-skillspector`, Risiko-Score nennen, **auf OK warten**. Keine
    Installation ohne explizites OK. Aktuell hat das Repo **null** npm-Dependencies,
    das soll so bleiben, solange es geht.
-7. Brand-Werte (Logo, Farben, Schrift) sind noch offen. Platzhalter sind in `tokens.json`
-   mit `"$description": "PLATZHALTER …"` markiert. Platzhalter nicht „verbessern“,
-   sondern bis zur Freigabe stehen lassen.
+7. Brand-Farben sind freigegeben (2026-11-17, `color.brand.*`: black, offwhite, red,
+   red-bright). `red-bright` nur auf dunklem Grund. Dunkle Flächen sind nur `brand.black`;
+   auf Graustufen (`neutral.*`, `bg.muted`) kein roter Text. Die Neutralskala ist warm
+   gestimmt. Grün (`signal.success`) ist nicht Teil der Marke: nur Formular-Feedback,
+   nie Badges oder Flächen. Live-Status = schwarze Badge mit rotem Punkt.
+   Body- und Heading-Schrift ist Archivo (OFL, `assets/Archivo-Variable.woff2`).
+   Logo und Radien sind noch offen: Platzhalter sind in `tokens.json` mit
+   `"$description": "PLATZHALTER …"` markiert. Platzhalter nicht „verbessern“, sondern bis zur Freigabe stehen lassen.
+   **Display-Font:** `font.family.display` („UT Display“, `assets/URBNTRBLGothic-Regular.woff2`,
+   URBN TRBL Gothic) ist eine **Demo-Version 0.2, Kerning noch offen**. Fallback Georgia, serif.
+   Regeln:
+   - Display nur über die Komponenten-Tokens `component.wordmark`, `component.hero-headline`
+     und `component.section-title`, **nie über Tag-Selektoren** (`h1`, `h2` sind Archivo).
+   - Mindestgröße `font.display.min-size` (32px). Alles darunter ist Archivo, auch
+     Styleguide-Labels, Rich-Text-Überschriften, h3/h4, Body, Preise, Formulare.
+   - Größen: Hero/h1-Rolle `font.size.hero` = clamp(2.75rem, 8vw, 7rem),
+     Section-Titel/h2-Rolle `font.size.title` = clamp(2rem, 4vw, 3rem).
+   - Nur Regular, `font-synthesis: none` an jeder Verwendung.
+   - Letter-Spacing `font.display.letter-spacing` = -0.01em bis Font v0.3.
 8. Theme-Editor-Settings (`config/settings_schema.json`) enthalten **nur Inhalt und
    Verhalten** (Texte, Bilder, Ein/Aus, Anzahl), **keine** Farben, Fonts oder Abstände.
    Die kommen ausschließlich aus Tokens (siehe `docs/adr/0004`).
@@ -66,7 +82,7 @@ assets/            Shopify-Assets: tokens.css (generiert), base.css, component-*
 blocks/            Shopify Theme Blocks (wiederverwendbar in Sections)
 config/            settings_schema.json, settings_data.json
 layout/            theme.liquid, password.liquid
-locales/           en.default.json, de.json (Shop-Sprache ist Deutsch)
+locales/           de.default.json (Default), en.json (zweitsprachig), *.schema.json analog
 sections/          Shopify Sections (Liquid + {% schema %})
 snippets/          Liquid-Partials (Render-Helfer, kein Design)
 templates/         JSON-Templates (+ templates/customers/)

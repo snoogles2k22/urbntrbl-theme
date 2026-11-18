@@ -19,7 +19,7 @@
 {{ 'component-empty-state.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign swatches = 'text-default,text-muted,text-sale,text-error,bg-default,bg-subtle,bg-muted,bg-inverse,bg-accent,bg-success,border-default,border-control,border-strong,border-focus,action-primary-bg,action-disabled-bg' | split: ','
+  assign swatches = 'text-default,text-muted,text-sale,text-error,bg-default,bg-subtle,bg-muted,bg-inverse,bg-accent,indicator-live,text-success,border-default,border-control,border-strong,border-focus,action-primary-bg,action-primary-bg-hover,action-disabled-bg' | split: ','
   assign icons = 'menu,close,search,account,cart,chevron-up,chevron-down,chevron-left,chevron-right,arrow-right,plus,minus,check,alert' | split: ','
   assign tones = 'default,inverse' | split: ','
 
@@ -47,6 +47,8 @@
   assign t_eyebrow = 'styleguide.sample.eyebrow' | t
   assign t_heading = 'styleguide.sample.heading' | t
   assign t_body = 'styleguide.sample.body' | t
+  assign t_wordmark = 'styleguide.sample.wordmark' | t
+  assign t_invalid_value = 'styleguide.sample.invalid_value' | t
 
   assign t_empty_heading = 'styleguide.sample.empty_heading' | t
   assign t_empty_text = 'styleguide.sample.empty_text' | t
@@ -71,9 +73,10 @@
       assign id_inline = 'SgInline-' | append: tone
       assign id_consent = 'SgConsent-' | append: tone
       assign id_note = 'SgNote-' | append: tone
+      assign tone_key = 'styleguide.tones.' | append: tone
     -%}
     <div class="ut-styleguide__tone" data-tone="{{ tone }}">
-      <h2 class="ut-styleguide__tone-title">{{ 'styleguide.tone' | t }}: {{ tone }}</h2>
+      <h2 class="ut-styleguide__tone-title">{{ 'styleguide.tone' | t }}: {{ tone_key | t }}</h2>
 
       <section class="ut-styleguide__group">
         <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.colors' | t }}</h3>
@@ -89,10 +92,17 @@
 
       <section class="ut-styleguide__group">
         <h3 class="ut-styleguide__group-title">{{ 'styleguide.groups.typography' | t }}</h3>
-        <p class="ut-styleguide__type ut-styleguide__type--display">URBN TRBL</p>
+        <p class="ut-styleguide__label">{{ 'styleguide.type.hero' | t }}</p>
+        <p class="ut-styleguide__type ut-styleguide__type--hero">{{ t_wordmark }}</p>
+        <p class="ut-styleguide__label">{{ 'styleguide.type.title' | t }}</p>
+        <p class="ut-styleguide__type ut-styleguide__type--title">{{ t_heading }}</p>
+        <p class="ut-styleguide__label">{{ 'styleguide.type.wordmark' | t }}</p>
+        <p class="ut-styleguide__type ut-styleguide__type--wordmark">{{ t_wordmark }}</p>
+        <p class="ut-styleguide__label">{{ 'styleguide.type.heading' | t }}</p>
         <p class="ut-styleguide__type ut-styleguide__type--3xl">{{ t_heading }}</p>
         <p class="ut-styleguide__type ut-styleguide__type--2xl">{{ t_heading }}</p>
         <p class="ut-styleguide__type ut-styleguide__type--xl">{{ t_heading }}</p>
+        <p class="ut-styleguide__label">{{ 'styleguide.type.body' | t }}</p>
         <p class="ut-styleguide__type">{{ t_body }}</p>
         <p class="ut-styleguide__type ut-styleguide__type--sm">{{ t_body }}</p>
       </section>
@@ -136,7 +146,7 @@
           {%- render 'badge', label: t_badge_sale, tone: 'accent' -%}
           {%- render 'badge', label: t_badge_sold_out, tone: 'muted' -%}
           {%- render 'badge', label: t_badge_upcoming, tone: 'outline' -%}
-          {%- render 'badge', label: t_badge_live, tone: 'success' -%}
+          {%- render 'badge', label: t_badge_live, tone: 'live' -%}
         </div>
       </section>
 
@@ -205,7 +215,7 @@
             name: 'styleguide[email_error]',
             type: 'email',
             label: t_email,
-            value: 'nicht-gueltig',
+            value: t_invalid_value,
             error: t_error,
             required: true
           -%}

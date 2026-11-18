@@ -63,11 +63,13 @@ n/a. Die aufrufende Section liefert Label und URL aus ihren Settings.
 | disabled  | `[disabled]`, `[aria-disabled]`  | `action.disabled-*`, `cursor: not-allowed`               |
 | busy      | `[aria-busy="true"]`             | Label unsichtbar (Breite bleibt), Spinner zentriert       |
 
+Primary-Hover: Fläche `brand.red`, Text offwhite (4.90:1). Im inverse-Ton Fläche `brand.red-bright`, Text black (4.65:1).
+
 ## 6. Verwendete Tokens
 
 - `--ut-color-action-primary-bg`, `-primary-bg-hover`, `-primary-text`
 - `--ut-color-action-secondary-bg`, `-secondary-border`, `-secondary-text`
-- `--ut-color-action-disabled-bg`, `-disabled-text`
+- `--ut-color-action-disabled-bg`, `-disabled-border`, `-disabled-text`
 - `--ut-color-bg-default`, `--ut-color-text-link`
 - `--ut-size-control-sm`, `-md`, `-lg`, `--ut-size-icon-sm`, `--ut-size-icon-md`
 - `--ut-space-2`, `--ut-space-4`, `--ut-space-6`, `--ut-space-8`

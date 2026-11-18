@@ -46,7 +46,6 @@
 
   .ut-styleguide__group-title {
     font-size: var(--ut-font-size-sm);
-    font-weight: var(--ut-font-weight-semibold);
     letter-spacing: var(--ut-font-letter-spacing-caps);
     text-transform: uppercase;
     color: var(--ut-color-text-muted);
@@ -110,7 +109,33 @@
   }
 
   .ut-styleguide__type { margin-block-end: var(--ut-space-3); }
-  .ut-styleguide__type--display { font-size: var(--ut-font-size-display); font-weight: var(--ut-font-weight-bold); line-height: var(--ut-font-line-height-tight); }
+
+  /* Display samples read the same component tokens as the real components */
+  .ut-styleguide__type:is(.ut-styleguide__type--hero, .ut-styleguide__type--title, .ut-styleguide__type--wordmark) {
+    font-synthesis: none;
+  }
+  .ut-styleguide__type--hero {
+    font-family: var(--ut-component-hero-headline-font-family);
+    font-size: var(--ut-component-hero-headline-font-size);
+    font-weight: var(--ut-component-hero-headline-font-weight);
+    line-height: var(--ut-component-hero-headline-line-height);
+    letter-spacing: var(--ut-component-hero-headline-letter-spacing);
+  }
+  .ut-styleguide__type--title {
+    font-family: var(--ut-component-section-title-font-family);
+    font-size: var(--ut-component-section-title-font-size);
+    font-weight: var(--ut-component-section-title-font-weight);
+    line-height: var(--ut-component-section-title-line-height);
+    letter-spacing: var(--ut-component-section-title-letter-spacing);
+  }
+  .ut-styleguide__type--wordmark {
+    font-family: var(--ut-component-wordmark-font-family);
+    font-size: var(--ut-component-wordmark-font-size);
+    font-weight: var(--ut-component-wordmark-font-weight);
+    letter-spacing: var(--ut-component-wordmark-letter-spacing);
+    text-transform: uppercase;
+  }
+
   .ut-styleguide__type--3xl { font-size: var(--ut-font-size-3xl); font-weight: var(--ut-font-weight-bold); line-height: var(--ut-font-line-height-tight); }
   .ut-styleguide__type--2xl { font-size: var(--ut-font-size-2xl); font-weight: var(--ut-font-weight-bold); line-height: var(--ut-font-line-height-tight); }
   .ut-styleguide__type--xl  { font-size: var(--ut-font-size-xl); font-weight: var(--ut-font-weight-semibold); }
