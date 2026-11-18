@@ -64,7 +64,7 @@ Kein JS.
 ## 8. Accessibility
 
 - Text, nicht nur Farbe. Großschreibung per CSS, der DOM-Text bleibt normal geschrieben (Screenreader buchstabieren sonst).
-- Kontraste: alle Tones ≥ 4.5:1 (on-accent 4.90 offwhite auf red, muted 4.75 gegen bg.muted, neutral/live 17.17; Stand 2026-11-18). Live-Punkt: red-bright auf black 4.65, im inverse-Ton red auf offwhite 4.90 (≥ 3:1 für Grafik). Kein roter Text auf bg.muted (Graustufe). Kein Grün: `signal.success` ist nur Formular-Feedback.
+- Kontraste: alle Tones ≥ 4.5:1 (on-accent 4.90 offwhite auf red, muted 4.75 gegen bg.muted, neutral/live 17.17; Stand 2026-11-18). Live-Punkt: red-bright auf black 4.65, im inverse-Ton red auf offwhite 4.90 (≥ 3:1 für Grafik). Kein roter Text auf bg.muted (Graustufe). Kein Grün: `text.success` ist gedecktes Rot (`brand.red-muted`).
 
 ## 9. Texte
 
