@@ -104,6 +104,11 @@
     },
     "drawer": {
       "close": "Close"
+    },
+    "cart_count": {
+      "label": "Cart",
+      "items_one": "item",
+      "items_other": "items"
     }
   }
 }

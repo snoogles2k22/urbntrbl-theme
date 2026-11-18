@@ -104,6 +104,11 @@
     },
     "drawer": {
       "close": "Schließen"
+    },
+    "cart_count": {
+      "label": "Warenkorb",
+      "items_one": "Artikel",
+      "items_other": "Artikel"
     }
   }
 }

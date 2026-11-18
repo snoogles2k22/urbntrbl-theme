@@ -1,0 +1,43 @@
+/* Cart count. Spec: design/components/cart-count.md */
+@layer components {
+  .ut-cart-count {
+    display: inline-flex;
+  }
+
+  .ut-cart-count__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--ut-size-control-md);
+    block-size: var(--ut-size-control-md);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ut-cart-count__link:hover {
+    color: var(--ut-color-action-primary-bg-hover);
+  }
+
+  .ut-cart-count__bubble {
+    position: absolute;
+    inset-block-start: var(--ut-space-1);
+    inset-inline-end: 0;
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--ut-size-icon-sm);
+    block-size: var(--ut-size-icon-sm);
+    padding-inline: var(--ut-space-1);
+    border-radius: var(--ut-radius-full);
+    background: var(--ut-color-bg-inverse);
+    color: var(--ut-color-text-inverse);
+    font-size: var(--ut-font-size-xs);
+    font-weight: var(--ut-font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--ut-font-line-height-tight);
+  }
+
+  .ut-cart-count__bubble[hidden] {
+    display: none;
+  }
+}

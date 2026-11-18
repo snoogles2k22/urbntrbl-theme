@@ -1,0 +1,41 @@
+{% doc %}
+  Cart link with item count. Requires component-cart-count.css,
+  component-icon.css and ut-cart-count.js.
+  Spec: design/components/cart-count.md
+
+  @param {number} [count] - Item count, defaults to cart.item_count
+
+  @example
+  {% render 'cart-count' %}
+{% enddoc %}
+{%- liquid
+  assign item_count = count | default: cart.item_count | default: 0
+  assign cart_label = 'layout.cart_count.label' | t
+  assign items_one = 'layout.cart_count.items_one' | t
+  assign items_other = 'layout.cart_count.items_other' | t
+  if item_count == 1
+    assign items_word = items_one
+  else
+    assign items_word = items_other
+  endif
+  if item_count > 99
+    assign visible_count = '99+'
+  else
+    assign visible_count = item_count
+  endif
+-%}
+<ut-cart-count
+  class="ut-cart-count"
+  data-count="{{ item_count }}"
+  data-label="{{ cart_label | escape }}"
+  data-items-one="{{ items_one | escape }}"
+  data-items-other="{{ items_other | escape }}"
+>
+  <a href="{{ routes.cart_url }}" class="ut-cart-count__link">
+    {%- render 'icon', name: 'cart' -%}
+    <span class="ut-cart-count__label ut-visually-hidden">{{ cart_label }}, {{ item_count }} {{ items_word }}</span>
+    <span class="ut-cart-count__bubble" aria-hidden="true"{% if item_count == 0 %} hidden{% endif %}>
+      {{- visible_count -}}
+    </span>
+  </a>
+</ut-cart-count>
