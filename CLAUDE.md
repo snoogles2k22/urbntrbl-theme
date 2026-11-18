@@ -53,10 +53,11 @@ Sprache: Doku und Specs auf Deutsch, Code, Kommentare im Code und Identifier auf
    Installation ohne explizites OK. Aktuell hat das Repo **null** npm-Dependencies,
    das soll so bleiben, solange es geht.
 7. Brand-Farben sind freigegeben (2026-11-17, `color.brand.*`: black, offwhite, red,
-   red-bright). `red-bright` nur auf dunklem Grund. Dunkle Flächen sind nur `brand.black`;
+   red-bright; 2026-11-18: red-muted). `red-bright` nur auf dunklem Grund. Dunkle Flächen sind nur `brand.black`;
    auf Graustufen (`neutral.*`, `bg.muted`) kein roter Text. Die Neutralskala ist warm
-   gestimmt. Grün (`signal.success`) ist nicht Teil der Marke: nur Formular-Feedback,
-   nie Badges oder Flächen. Live-Status = schwarze Badge mit rotem Punkt.
+   gestimmt. Es gibt kein Grün in der Marke. Erfolgs-Feedback nutzt `text.success`
+   (`brand.red-muted`, #9E2E2E, gedecktes Rot) und erscheint immer mit Text oder
+   Häkchen-Icon, nie nur über Farbe. Live-Status = schwarze Badge mit rotem Punkt.
    Body- und Heading-Schrift ist Archivo (OFL, `assets/Archivo-Variable.woff2`).
    Logo und Radien sind noch offen: Platzhalter sind in `tokens.json` mit
    `"$description": "PLATZHALTER …"` markiert. Platzhalter nicht „verbessern“, sondern bis zur Freigabe stehen lassen.
