@@ -4,7 +4,17 @@
   },
   "general": {
     "loading": "Loading",
-    "view_all": "View all"
+    "view_all": "View all",
+    "newsletter": {
+      "heading": "Newsletter",
+      "text": "New drops first. No spam.",
+      "email_label": "Email address",
+      "submit": "Sign up",
+      "success": "Thanks! Please confirm your sign-up via the link in the email.",
+      "error": "Please enter a valid email address.",
+      "consent_html": "By signing up you agree to receive emails about new drops. You can unsubscribe at any time. More in our {{ link }}.",
+      "privacy_link": "privacy policy"
+    }
   },
   "gift_cards": {
     "issued": {

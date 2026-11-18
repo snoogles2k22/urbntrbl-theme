@@ -1,0 +1,50 @@
+/* Newsletter. Spec: design/components/newsletter.md */
+@layer components {
+  .ut-newsletter {
+    display: grid;
+    gap: var(--ut-space-3);
+  }
+
+  .ut-newsletter__heading {
+    font-size: var(--ut-font-size-xl);
+  }
+
+  .ut-newsletter__text {
+    font-size: var(--ut-font-size-sm);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-newsletter__form {
+    display: grid;
+    gap: var(--ut-space-2);
+  }
+
+  /* Success uses text.default plus icon, never green (brand rule). */
+  .ut-newsletter__status {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ut-space-2);
+    color: var(--ut-color-text-default);
+    font-size: var(--ut-font-size-sm);
+    font-weight: var(--ut-font-weight-bold);
+  }
+
+  .ut-newsletter__status:empty {
+    display: none;
+  }
+
+  .ut-newsletter__consent {
+    font-size: var(--ut-font-size-xs);
+    line-height: var(--ut-font-line-height-snug);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-newsletter__link {
+    color: var(--ut-color-text-link);
+  }
+
+  .ut-newsletter__link:hover {
+    color: var(--ut-color-action-primary-bg-hover);
+    text-decoration-thickness: var(--ut-border-width-thick);
+  }
+}

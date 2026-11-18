@@ -4,7 +4,17 @@
   },
   "general": {
     "loading": "Wird geladen",
-    "view_all": "Alle ansehen"
+    "view_all": "Alle ansehen",
+    "newsletter": {
+      "heading": "Newsletter",
+      "text": "Neue Drops zuerst. Kein Spam.",
+      "email_label": "E-Mail-Adresse",
+      "submit": "Anmelden",
+      "success": "Danke! Bitte bestätige deine Anmeldung über den Link in der E-Mail.",
+      "error": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "consent_html": "Mit der Anmeldung willigst du ein, per E-Mail über neue Drops informiert zu werden. Abmeldung jederzeit möglich. Mehr in der {{ link }}.",
+      "privacy_link": "Datenschutzerklärung"
+    }
   },
   "gift_cards": {
     "issued": {

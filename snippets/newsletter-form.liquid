@@ -1,0 +1,71 @@
+{% doc %}
+  Newsletter sign-up via the Shopify customer form (tag "newsletter").
+  Requires component-newsletter.css, component-form-field.css,
+  component-button.css and component-icon.css.
+  Spec: design/components/newsletter.md
+  [RECHT-PRÜFEN] Consent and success wording (assumes double opt-in).
+
+  @param {string} id - Unique form id on the page, e.g. 'NewsletterFooter'
+  @param {boolean} [show_heading] - Render heading and intro text (default true)
+  @param {string} [privacy_url] - Privacy policy URL, falls back to shop.privacy_policy.url
+
+  @example
+  {% render 'newsletter-form', id: 'NewsletterFooter' %}
+{% enddoc %}
+{%- liquid
+  assign newsletter_heading = 'general.newsletter.heading' | t
+  assign newsletter_text = 'general.newsletter.text' | t
+  assign email_label = 'general.newsletter.email_label' | t
+  assign submit_label = 'general.newsletter.submit' | t
+  assign success_text = 'general.newsletter.success' | t
+  assign error_text = 'general.newsletter.error' | t
+  assign privacy_text = 'general.newsletter.privacy_link' | t
+
+  assign privacy_href = privacy_url | default: shop.privacy_policy.url
+  if privacy_href != blank
+    assign privacy_link = '<a class="ut-newsletter__link" href="' | append: privacy_href | append: '">' | append: privacy_text | append: '</a>'
+  else
+    assign privacy_link = privacy_text
+  endif
+  assign consent_html = 'general.newsletter.consent_html' | t: link: privacy_link
+
+  assign field_id = id | append: '-email'
+-%}
+<div class="ut-newsletter">
+  {%- unless show_heading == false -%}
+    <h2 class="ut-newsletter__heading">{{ newsletter_heading }}</h2>
+    <p class="ut-newsletter__text">{{ newsletter_text }}</p>
+  {%- endunless -%}
+
+  {%- form 'customer', id: id, class: 'ut-newsletter__form' -%}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <div class="ut-newsletter__status" role="status">
+      {%- if form.posted_successfully? -%}
+        {%- render 'icon', name: 'check', size: 'sm' -%}
+        <span>{{ success_text }}</span>
+      {%- endif -%}
+    </div>
+    {%- unless form.posted_successfully? -%}
+      {%- liquid
+        assign field_value = form.email | default: customer.email
+        assign field_error = ''
+        if form.errors
+          assign field_error = error_text
+        endif
+      -%}
+      {%- render 'form-field',
+        id: field_id,
+        name: 'contact[email]',
+        type: 'email',
+        label: email_label,
+        value: field_value,
+        autocomplete: 'email',
+        required: true,
+        hide_label: true,
+        error: field_error,
+        inline_button: submit_label
+      -%}
+    {%- endunless -%}
+    <p class="ut-newsletter__consent">{{ consent_html }}</p>
+  {%- endform -%}
+</div>

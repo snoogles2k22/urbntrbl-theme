@@ -40,7 +40,7 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Ticker            | `.ut-ticker`             | H         | `ticker.md`             | offen  |
 | Accordion         | `.ut-accordion` (`<details>`) | P    | `accordion.md`          | offen  |
 | Pagination        | `.ut-pagination`         | C         | `pagination.md`         | offen  |
-| Newsletter        | `.ut-newsletter`         | H R       | `newsletter.md`         | offen  |
+| Newsletter        | `.ut-newsletter`         | H R       | `newsletter.md`         | In Arbeit |
 | Waitlist          | `.ut-waitlist`           | P D       | `waitlist.md`           | offen  |
 | Buy Box           | `.ut-buy-box`            | P         | `buy-box.md`            | offen  |
 | Cart (Seite)      | `.ut-cart`               | K         | `cart-page.md`          | offen  |
