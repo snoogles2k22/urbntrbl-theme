@@ -61,13 +61,8 @@
         "tone_default": "Standard",
         "tone_inverse": "Invers",
         "show_newsletter": "Newsletter-Formular anzeigen",
-        "menu": "Footer-Menü (optional)",
-        "legal_header": "Rechtliches",
-        "legal_info": "Ohne URL erscheint der Eintrag als Platzhaltertext ohne Link. Datenschutz, AGB und Widerruf fallen auf die Shopify-Richtlinien zurück (Widerruf = Rückerstattungsrichtlinie). Vor Launch rechtlich prüfen lassen.",
-        "imprint_url": "Impressum",
-        "privacy_url": "Datenschutzerklärung",
-        "terms_url": "AGB",
-        "withdrawal_url": "Widerrufsbelehrung"
+        "menu": "Rechtslinks (Menü)",
+        "menu_info": "Menü mit Impressum, Datenschutz, AGB und Widerruf, in dieser Reihenfolge. Im Admin unter Inhalte → Menüs pflegen (Standard: Menü „footer“). Jeder Eintrag wird als Link angezeigt, auch wenn die Richtlinie noch leer ist. Vor Launch alle Richtlinien füllen."
       }
     }
   }

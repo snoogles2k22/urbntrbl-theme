@@ -1,8 +1,10 @@
 {%- comment -%}
   Footer. Spec: design/components/footer.md
-  [RECHT-PRÜFEN] Footnote wording (§ 19 UStG) and legal link set are
-  assumptions, not legal advice. Legal links without URL render as plain
-  placeholder text, never as dead links.
+  [RECHT-PRÜFEN] Price note wording (§ 19 UStG) and legal link set are
+  assumptions, not legal advice.
+  Legal links come from the shop menu (default handle "footer"). Every menu
+  entry renders with its href; nothing is hidden because a policy is still
+  empty. Order and titles are maintained in the menu.
   Note: render arguments do not evaluate filters; values are assigned first.
 {%- endcomment -%}
 {{ 'component-icon.css' | asset_url | stylesheet_tag }}
@@ -13,35 +15,18 @@
 
 {%- liquid
   assign footer_tone = section.settings.tone | default: 'inverse'
-  assign footer_menu = linklists[section.settings.menu]
-  assign nav_label = 'layout.footer.nav_label' | t
+  assign legal_menu = linklists[section.settings.menu]
   assign legal_label = 'layout.footer.legal_label' | t
+  assign privacy_url = shop.privacy_policy.url
+  assign price_note = 'layout.footer.price_note' | t
 
-  # Legal links: section setting first, then the matching Shopify policy.
-  # Withdrawal falls back to the refund policy [ANNAHME]. Imprint has no fallback.
-  assign imprint_url = section.settings.imprint_url
-  assign privacy_url = section.settings.privacy_url
-  if privacy_url == blank and shop.privacy_policy.body != blank
-    assign privacy_url = shop.privacy_policy.url
+  # Footnote for the * marker. The tax statement is the price note above it,
+  # so kleinunternehmer and none only name the shipping costs.
+  if settings.price_tax_mode == 'included'
+    assign footnote = 'products.price.footnote_included' | t
+  else
+    assign footnote = 'products.price.footnote_none' | t
   endif
-  assign terms_url = section.settings.terms_url
-  if terms_url == blank and shop.terms_of_service.body != blank
-    assign terms_url = shop.terms_of_service.url
-  endif
-  assign withdrawal_url = section.settings.withdrawal_url
-  if withdrawal_url == blank and shop.refund_policy.body != blank
-    assign withdrawal_url = shop.refund_policy.url
-  endif
-  assign legal_keys = 'imprint,privacy,terms,withdrawal' | split: ','
-
-  case settings.price_tax_mode
-    when 'included'
-      assign footnote = 'products.price.footnote_included' | t
-    when 'kleinunternehmer'
-      assign footnote = 'products.price.footnote_kleinunternehmer' | t
-    else
-      assign footnote = 'products.price.footnote_none' | t
-  endcase
   assign shipping_url = ''
   if shop.shipping_policy.body != blank
     assign shipping_url = shop.shipping_policy.url
@@ -55,64 +40,34 @@
 
 <div class="ut-footer" data-tone="{{ footer_tone }}">
   <div class="ut-footer__inner">
-    {%- if section.settings.show_newsletter or footer_menu.links.size > 0 -%}
-      <div class="ut-footer__top">
-        {%- if section.settings.show_newsletter -%}
-          <div class="ut-footer__newsletter">
-            {%- render 'newsletter-form', id: 'NewsletterFooter', privacy_url: privacy_url -%}
-          </div>
-        {%- endif -%}
-
-        {%- if footer_menu.links.size > 0 -%}
-          <nav class="ut-footer__nav" aria-label="{{ nav_label | escape }}">
-            <ul class="ut-footer__list" role="list">
-              {%- for link in footer_menu.links -%}
-                <li>
-                  <a
-                    href="{{ link.url }}"
-                    class="ut-footer__link"
-                    {% if link.current %}
-                      aria-current="page"
-                    {% endif %}
-                  >
-                    {{- link.title | escape -}}
-                  </a>
-                </li>
-              {%- endfor -%}
-            </ul>
-          </nav>
-        {%- endif -%}
+    {%- if section.settings.show_newsletter -%}
+      <div class="ut-footer__newsletter">
+        {%- render 'newsletter-form', id: 'NewsletterFooter', privacy_url: privacy_url -%}
       </div>
     {%- endif -%}
 
     <div class="ut-footer__bottom">
-      <nav class="ut-footer__legal" aria-label="{{ legal_label | escape }}">
-        <ul class="ut-footer__legal-list" role="list">
-          {%- for legal_key in legal_keys -%}
-            {%- liquid
-              assign legal_label_key = 'layout.footer.legal.' | append: legal_key
-              assign legal_text = legal_label_key | t
-              case legal_key
-                when 'imprint'
-                  assign legal_url = imprint_url
-                when 'privacy'
-                  assign legal_url = privacy_url
-                when 'terms'
-                  assign legal_url = terms_url
-                when 'withdrawal'
-                  assign legal_url = withdrawal_url
-              endcase
-            -%}
-            <li>
-              {%- if legal_url != blank -%}
-                <a href="{{ legal_url }}" class="ut-footer__link">{{ legal_text }}</a>
-              {%- else -%}
-                <span class="ut-footer__placeholder">{{ legal_text }}</span>
-              {%- endif -%}
-            </li>
-          {%- endfor -%}
-        </ul>
-      </nav>
+      {%- if legal_menu.links.size > 0 -%}
+        <nav class="ut-footer__legal" aria-label="{{ legal_label | escape }}">
+          <ul class="ut-footer__legal-list" role="list">
+            {%- for link in legal_menu.links -%}
+              <li>
+                <a
+                  href="{{ link.url }}"
+                  class="ut-footer__link"
+                  {% if link.current %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+
+      <p class="ut-footer__price-note">{{ price_note }}</p>
 
       <p class="ut-footer__footnote">
         {{ footnote }}
@@ -153,35 +108,9 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:sections.footer.settings.menu"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.footer.settings.legal_header"
-    },
-    {
-      "type": "paragraph",
-      "content": "t:sections.footer.settings.legal_info"
-    },
-    {
-      "type": "url",
-      "id": "imprint_url",
-      "label": "t:sections.footer.settings.imprint_url"
-    },
-    {
-      "type": "url",
-      "id": "privacy_url",
-      "label": "t:sections.footer.settings.privacy_url"
-    },
-    {
-      "type": "url",
-      "id": "terms_url",
-      "label": "t:sections.footer.settings.terms_url"
-    },
-    {
-      "type": "url",
-      "id": "withdrawal_url",
-      "label": "t:sections.footer.settings.withdrawal_url"
+      "label": "t:sections.footer.settings.menu",
+      "info": "t:sections.footer.settings.menu_info",
+      "default": "footer"
     }
   ]
 }
