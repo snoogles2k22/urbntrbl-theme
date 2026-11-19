@@ -22,7 +22,7 @@
   --ut-color-brand-offwhite: #F1EFE4;
   --ut-color-brand-red: #CE1211;
   --ut-color-brand-red-bright: #F60302;
-  --ut-color-signal-success: #1f7a3a;
+  --ut-color-brand-red-muted: #9E2E2E;
   --ut-color-signal-warning: #b36b00;
   --ut-color-signal-error: #b3261e;
   --ut-color-signal-info: #1f5fa8;
@@ -33,7 +33,7 @@
   --ut-color-text-link: var(--ut-color-brand-black);
   --ut-color-text-sale: var(--ut-color-brand-red);
   --ut-color-text-error: var(--ut-color-signal-error);
-  --ut-color-text-success: var(--ut-color-signal-success);
+  --ut-color-text-success: var(--ut-color-brand-red-muted);
   --ut-color-text-on-accent: var(--ut-color-brand-offwhite);
   --ut-color-indicator-live: var(--ut-color-brand-red-bright);
   --ut-color-bg-default: var(--ut-color-brand-offwhite);
@@ -203,6 +203,7 @@
   --ut-color-text-link: var(--ut-color-brand-offwhite);
   --ut-color-text-sale: var(--ut-color-brand-red-bright);
   --ut-color-text-error: var(--ut-color-brand-red-bright);
+  --ut-color-text-success: var(--ut-color-brand-red-bright);
   --ut-color-indicator-live: var(--ut-color-brand-red);
   --ut-color-bg-default: var(--ut-color-brand-black);
   --ut-color-bg-subtle: var(--ut-color-brand-black);

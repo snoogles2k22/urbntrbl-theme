@@ -7,7 +7,7 @@ Präfix `ut-`, alle Custom Elements ebenfalls.
 Spalte **Seiten**: H = Home, C = Collection, P = PDP, D = Drop, K = Cart (Drawer + Seite), R = Rahmen (Header/Footer), G = Gutschein-Seite.
 
 Seiten-Blöcke ohne eigene Komponenten-Spec (der Blueprint ist die Spec):
-`.ut-gift-card` (`blueprints/gift-card.md`, nutzt Button und Badge), `.ut-styleguide`
+`.ut-gift-card` (`blueprints/gift-card.md`, nutzt Button, Badge und Copy Button), `.ut-styleguide`
 (temporär, Entwicklung).
 Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 
@@ -67,6 +67,7 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Facets           | `<ut-facets>`          | `.ut-facets`        | C       | sections       | `facets.md`          | offen  |
 | Countdown        | `<ut-countdown>`       | `.ut-countdown`     | H D     | clock, sections (über Drop-Sections) | `countdown.md` | offen  |
 | Sticky Bar       | `<ut-sticky-bar>`      | `.ut-sticky-bar`    | P       | nein           | `sticky-bar.md`      | offen  |
+| Copy Button      | `<ut-copy-button>`     | `.ut-copy-button`   | G       | nein (Browser-API) | `copy-button.md` | In Arbeit |
 
 Spalte **Nutzt ut-api**: welche Teile des Adapters (`cart`, `sections`, `clock`).
 Section Rendering läuft ausschließlich über `ut-api.js` (Review K7, Migrations-Risiko R8).

@@ -1,0 +1,40 @@
+/*
+ * Copy button. Spec: design/components/copy-button.md
+ * Reuses .ut-button (min 44px tap target). Hover is red via the local
+ * properties of the button component; they only point at tokens.
+ */
+@layer components {
+  .ut-copy-button {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ut-space-2) var(--ut-space-3);
+  }
+
+  .ut-copy-button .ut-copy-button__trigger {
+    --_bg-hover: var(--ut-color-action-primary-bg-hover);
+    --_fg-hover: var(--ut-color-action-primary-text);
+    --_border-hover: var(--ut-color-action-primary-bg-hover);
+  }
+
+  /* .ut-button sets display; keep [hidden] effective until JS enables it. */
+  .ut-copy-button .ut-copy-button__trigger[hidden] {
+    display: none;
+  }
+
+  .ut-copy-button__status {
+    color: var(--ut-color-text-default);
+    font-size: var(--ut-font-size-sm);
+    font-weight: var(--ut-font-weight-bold);
+  }
+
+  .ut-copy-button__status:empty {
+    display: none;
+  }
+
+  @media print {
+    .ut-copy-button {
+      display: none;
+    }
+  }
+}

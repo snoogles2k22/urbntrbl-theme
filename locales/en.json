@@ -18,7 +18,9 @@
       "disabled": "Disabled",
       "how_to_use": "Enter the code at checkout. Any remaining balance stays on the card for your next order.",
       "shop_link": "Start shopping",
-      "add_to_apple_wallet": "Add to Apple Wallet"
+      "add_to_apple_wallet": "Add to Apple Wallet",
+      "copy_code": "Copy code",
+      "copied": "Copied"
     }
   },
   "products": {
