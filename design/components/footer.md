@@ -12,11 +12,15 @@
 
 ## 1. Zweck
 
-Fußzeile auf allen Seiten mit Layout: Newsletter (`newsletter.md`), optionale
-Footer-Navigation, Rechtliches (Impressum, Datenschutz, AGB, Widerruf), die
-Preis-Fußnote zum Marker `*` in Produktlisten (`price.md`, Review K1/O5) und
-Copyright. Keine Social-Links, keine Zahlungs-Icons, kein Länder-/Sprachwähler
-(kein Blueprint fordert sie bisher).
+Fußzeile auf allen Seiten mit Layout: Newsletter (`newsletter.md`), Rechtliches
+(Impressum, Datenschutz, AGB, Widerruf), Preis-Hinweis nach § 19 UStG, die Fußnote zum
+Marker `*` in Produktlisten (`price.md`, Review K1/O5) und Copyright. Keine
+Social-Links, keine Zahlungs-Icons, kein Länder-/Sprachwähler, keine allgemeine
+Footer-Navigation (kein Blueprint fordert sie bisher).
+
+**Rechtslinks kommen aus dem Shopify-Menü `footer` (`linklists.footer`)**, nicht aus
+Einzel-Settings und nicht aus dem Vorhandensein der Richtlinientexte. Das Menü enthält
+die Policy-URLs; es ist die einzige Quelle für Titel, URL und Reihenfolge.
 
 ## 2. Anatomie (BEM)
 
@@ -24,36 +28,32 @@ Copyright. Keine Social-Links, keine Zahlungs-Icons, kein Länder-/Sprachwähler
 footer.ut-footer-section             Section-Wrapper (Landmark contentinfo)
 └── .ut-footer[data-tone]            Ton default | inverse (Scope aus tokens.json)
     └── .ut-footer__inner            Container
-        ├── .ut-footer__top
-        │   ├── .ut-footer__newsletter   .ut-newsletter
-        │   └── nav.ut-footer__nav       optional, Menü (erste Ebene)
-        │       └── ul.ut-footer__list > li > a.ut-footer__link
+        ├── .ut-footer__newsletter       .ut-newsletter (optional)
         └── .ut-footer__bottom
-            ├── nav.ut-footer__legal     ul.ut-footer__legal-list > li > a.ut-footer__link | span.ut-footer__placeholder
-            ├── p.ut-footer__footnote    Preis-Fußnote (+ Link Versandinformationen)
+            ├── nav.ut-footer__legal     ul.ut-footer__legal-list > li > a.ut-footer__link (aus linklists.footer)
+            ├── p.ut-footer__price-note  Preis-Hinweis § 19 UStG, immer gerendert
+            ├── p.ut-footer__footnote    Fußnote zum Marker * (+ Link Versandinformationen)
             └── p.ut-footer__copyright
 ```
 
-| Breakpoint   | Layout                                                 |
-|--------------|--------------------------------------------------------|
-| < md (768px) | alles einspaltig                                       |
-| ≥ md         | `__top` zweispaltig (Newsletter 1fr, Navigation auto)  |
+Alle Breakpoints einspaltig, Container begrenzt auf `layout.container-max`.
 
 ## 3. Datenvertrag (plattformneutral)
 
 | Feld              | Typ                         | Pflicht | Quelle Shopify                                   | Quelle Medusa |
 |-------------------|-----------------------------|---------|--------------------------------------------------|---------------|
-| `navItems[]`      | `{ title, url, active }`    | nein    | `linklists[section.settings.menu].links`         | CMS / Config  |
-| `legal.imprint`   | URL \| null                 | ja*     | Setting `imprint_url`                            | CMS-Seite     |
-| `legal.privacy`   | URL \| null                 | ja*     | Setting `privacy_url`, Fallback `shop.privacy_policy.url` | CMS-Seite |
-| `legal.terms`     | URL \| null                 | ja*     | Setting `terms_url`, Fallback `shop.terms_of_service.url` | CMS-Seite |
-| `legal.withdrawal`| URL \| null                 | ja*     | Setting `withdrawal_url`, Fallback `shop.refund_policy.url` **[ANNAHME]** | CMS-Seite |
+| `legalLinks[]`    | `{ title, url, active }`    | ja*     | `linklists[section.settings.menu].links` (`link.title`, `link.url`, `link.current`), Menü-Handle `footer` | CMS / Config |
+| `privacyUrl`      | URL \| null                 | nein    | `shop.privacy_policy.url` (nur für den Link im Newsletter-Einwilligungstext) | CMS-Seite |
 | `taxMode`         | `included` \| `kleinunternehmer` \| `none` | ja | Theme-Setting `price_tax_mode`            | Store-Config  |
 | `shippingInfoUrl` | URL \| null                 | nein    | `shop.shipping_policy.url`, Fallback `price_shipping_page` (wie `price.liquid`) | CMS-Seite |
 | `shopName`, `year`| string, int                 | ja      | `shop.name`, `'now' \| date: '%Y'`               | Site-Config   |
 
-\* Pflicht vor Launch. Bis die Seiten existieren, rendert der Footer den Text als
-**Platzhalter** ohne Link (`.ut-footer__placeholder`), nie einen toten Link.
+\* Pflicht vor Launch. Der Footer rendert **jeden Menüeintrag mit `href`**. Er blendet
+nichts aus, weil die Richtlinie in Shopify noch leer ist, und er ersetzt keinen Eintrag
+durch Platzhaltertext. Ein Link auf eine noch leere Richtlinie ist vor Launch ein
+Pflegefehler im Admin, kein Theme-Fall (Abnahme unten). Sollen Impressum, Datenschutz,
+AGB und Widerruf in dieser Reihenfolge stehen, wird sie im Menü gepflegt; der Footer
+sortiert nicht um, weil Titel und Handles Shop-Daten sind.
 
 ## 4. Einstellungen (Section)
 
@@ -61,28 +61,29 @@ footer.ut-footer-section             Section-Wrapper (Landmark contentinfo)
 |-------------------|-----------|-----------|-------------------------------------------------------|
 | `tone`            | select    | `inverse` | `default` / `inverse`, setzt `data-tone` (Scope, ADR 0004) |
 | `show_newsletter` | checkbox  | true      | Newsletter-Formular anzeigen                          |
-| `menu`            | link_list | leer      | optionale Footer-Navigation                           |
-| `imprint_url`     | url       | leer      | Impressum                                             |
-| `privacy_url`     | url       | leer      | Datenschutzerklärung (auch Link im Newsletter)        |
-| `terms_url`       | url       | leer      | AGB                                                   |
-| `withdrawal_url`  | url       | leer      | Widerrufsbelehrung                                    |
+| `menu`            | link_list | `footer`  | Menü mit den Rechtslinks (Impressum, Datenschutz, AGB, Widerruf) |
+
+Entfallen sind `imprint_url`, `privacy_url`, `terms_url` und `withdrawal_url` (ersetzt
+durch das Menü; sie waren ohne Wert, darum fehlten die Links). Es kommt kein neues
+Setting hinzu. Der Preis-Hinweis hat bewusst keinen Schalter.
 
 ## 5. Zustände
 
 | Zustand          | Auslöser                           | Darstellung                                    |
 |------------------|------------------------------------|------------------------------------------------|
 | default          | –                                  | wie Anatomie                                   |
-| no menu          | Menü leer                          | `__nav` nicht gerendert, Newsletter volle Breite |
+| no legal menu    | Menü `footer` fehlt oder ist leer  | `__legal` nicht gerendert. **[RECHT-PRÜFEN]** Vor Launch Pflicht, Menü anlegen |
 | no newsletter    | `show_newsletter` aus              | `__newsletter` nicht gerendert                 |
-| legal placeholder| keine URL für einen Rechtslink     | `span.ut-footer__placeholder` statt Link       |
-| tax mode         | `price_tax_mode`                   | Fußnote `footnote_kleinunternehmer` / `footnote_included` / `footnote_none` |
+| empty policy     | Menülink zeigt auf leere Richtlinie | Link bleibt mit `href` stehen (kein Ausblenden) |
+| price note       | immer                              | `__price-note` mit `layout.footer.price_note`, unabhängig von Settings |
+| footnote         | `price_tax_mode`                   | `kleinunternehmer` und `none`: `footnote_none` („* zzgl. Versandkosten“, die Steuerangabe steht im Preis-Hinweis); `included`: `footnote_included` |
 
 ## 6. Verwendete Tokens
 
 - `--ut-color-bg-default`, `--ut-color-text-default`, `--ut-color-text-muted`, `--ut-color-border-default`, `--ut-color-action-primary-bg-hover` (Link-Hover)
 - `--ut-layout-container-max`, `--ut-layout-gutter`, `--ut-layout-gutter-lg`, `--ut-layout-section-gap`
 - `--ut-space-1`, `--ut-space-2`, `--ut-space-4`, `--ut-space-6`, `--ut-space-10`
-- `--ut-font-size-xs`, `--ut-font-size-sm`, `--ut-font-line-height-snug`
+- `--ut-font-size-xs`, `--ut-font-size-sm`, `--ut-font-line-height-snug` (Preis-Hinweis, Fußnote und Copyright teilen sich Stil: `text.muted`, `font-size.xs`)
 - `--ut-border-width-hairline`, `--ut-border-width-thick`
 - `--ut-size-control-sm`
 
@@ -94,10 +95,15 @@ Kein roter Text auf Graustufen, kein Grün.
 
 Kein JS. Der Newsletter ist ein normales Formular (`newsletter.md`).
 
+Preis-Hinweis und Fußnote: Der Preis-Hinweis (`layout.footer.price_note`) wird immer
+gerendert und nennt § 19 UStG. Er gilt für den Kleinunternehmer-Betrieb. Wechselt der
+Shop auf Regelbesteuerung (`price_tax_mode: included`), widerspricht er der Fußnote
+„inkl. MwSt.“ und muss dann geändert oder entfernt werden. **[RECHT-PRÜFEN]**
+
 ## 8. Accessibility
 
 - Section-Wurzel ist `<footer>` (Landmark `contentinfo`).
-- Zwei benannte Navigationen: `layout.footer.nav_label`, `layout.footer.legal_label`.
+- Eine benannte Navigation: `layout.footer.legal_label`.
 - Fußnote beginnt mit „*“ und entspricht dem Marker `.ut-price__marker` (der ist `aria-hidden`,
   darum steht der Hinweis als vollständiger Satz im Footer).
 - Links unterstrichen erkennbar über Hover (Dicke) und Farbe; Zielhöhe `size.control-sm`.
@@ -106,28 +112,29 @@ Kein JS. Der Newsletter ist ein normales Formular (`newsletter.md`).
 
 | Key                                    | DE                      | EN                   |
 |----------------------------------------|-------------------------|----------------------|
-| `layout.footer.nav_label`              | Footer-Navigation       | Footer navigation    |
 | `layout.footer.legal_label`            | Rechtliches             | Legal                |
-| `layout.footer.legal.imprint`          | Impressum               | Legal notice         |
-| `layout.footer.legal.privacy`          | Datenschutz             | Privacy              |
-| `layout.footer.legal.terms`            | AGB                     | Terms                |
-| `layout.footer.legal.withdrawal`       | Widerruf                | Right of withdrawal  |
+| `layout.footer.price_note`             | Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer erhoben und ausgewiesen. | All prices are final prices. No VAT is levied or shown pursuant to § 19 UStG (German small business regulation). |
 | `layout.footer.shipping_info`          | Versandinformationen    | Shipping information |
 | `layout.footer.copyright`              | © {{ year }} {{ shop }} | © {{ year }} {{ shop }} |
-| `products.price.footnote_kleinunternehmer` | * Gemäß § 19 UStG wird keine Umsatzsteuer berechnet, zzgl. Versandkosten. | (bestehend, `price.md`) |
-| `products.price.footnote_included`     | * inkl. MwSt., zzgl. Versandkosten (bestehend) | |
-| `products.price.footnote_none`         | * zzgl. Versandkosten (neu) | * plus shipping  |
+| `products.price.footnote_included`     | * inkl. MwSt., zzgl. Versandkosten (bestehend) | * incl. VAT, plus shipping |
+| `products.price.footnote_none`          | * zzgl. Versandkosten (bestehend) | * plus shipping |
+| `products.price.footnote_kleinunternehmer` | bleibt für den Styleguide und `price.md`, im Footer ersetzt durch Preis-Hinweis + `footnote_none` | |
 
-**[RECHT-PRÜFEN]** Wortlaut der Fußnote nach § 19 UStG und ihr Platz im Footer (Review O5),
-Zuordnung „Widerruf“ → Shopify-Rückerstattungsrichtlinie, Vollständigkeit der Rechtslinks
-(z. B. Versand, Zahlung, OS-Plattform-Hinweis). Annahmen, keine Rechtsberatung.
+Die Titel der Rechtslinks sind keine Locale-Keys, sie kommen aus dem Menü (in
+Shopify über Translate & Adapt übersetzbar). Entfallen sind die Keys
+`layout.footer.nav_label` und `layout.footer.legal.*`.
+
+**[RECHT-PRÜFEN]** Wortlaut des Preis-Hinweises nach § 19 UStG (durch Steuerberater oder
+Rechtstexte-Anbieter bestätigen lassen) und sein Platz im Footer (Review O5), Zuordnung
+der Menüeinträge zu den Richtlinien (Widerruf → Rückerstattungsrichtlinie), Vollständigkeit
+der Rechtslinks (z. B. Versand, Zahlung, OS-Plattform-Hinweis). Annahmen, keine Rechtsberatung.
 Der Marker steht bewusst nicht im sichtbaren Locale-Wert, damit „[RECHT-PRÜFEN]“
 nie im Shop erscheint.
 
 ## 10. Port-Hinweise (Next.js + Medusa)
 
-- Server Component `<Footer>`; Menüs und Rechtslinks aus CMS/Config statt `linklists`
-  und Section-Settings (`docs/migration.md`).
+- Server Component `<Footer>`; Rechtslinks aus CMS/Config statt `linklists`
+  (`docs/migration.md`). Datenform `legalLinks[]` bleibt gleich.
 - `taxMode` aus Store-Config (wie `<Price>`), Fußnote mit identischen Keys.
 - Newsletter als Client Component (`newsletter.md`).
 
@@ -136,6 +143,7 @@ nie im Shop erscheint.
 - [x] Alle Abschnitte gefüllt
 - [x] CSS nur Tokens, Layer `components`, BEM
 - [ ] `shopify theme check` grün (CLI nicht installiert, lesend geprüft)
-- [ ] Rechtslink-URLs gesetzt (vor Launch)
-- [ ] **[RECHT-PRÜFEN]** Fußnote und Rechtslinks geprüft
+- [ ] Menü `footer` enthält Impressum, Datenschutz, AGB, Widerruf in dieser Reihenfolge (vor Launch)
+- [ ] Alle vier Richtlinien in Shopify gefüllt, jeder Footer-Link öffnet eine Seite mit Inhalt (vor Launch)
+- [ ] **[RECHT-PRÜFEN]** Preis-Hinweis und Rechtslinks geprüft
 - [x] Metafelder: keine
