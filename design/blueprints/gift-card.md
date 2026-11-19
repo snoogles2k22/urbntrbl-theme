@@ -53,7 +53,8 @@ Keine Metafelder.
 | aktiv        | `enabled` und nicht `expired` | Code und CTA                             |
 | teilweise eingelöst | `balance != initial_value` | Restguthaben zusätzlich                 |
 | Code kopiert | Klick auf „Code kopieren“ | Statusmeldung „Kopiert“ für 2 s, `aria-live="polite"` |
-| ohne JS / ohne Clipboard-API | Custom Element nicht definiert oder `navigator.clipboard` fehlt | Kopierbutton bleibt ausgeblendet, Code bleibt per `user-select: all` markierbar |
+| Kopieren fehlgeschlagen | Clipboard-API und `execCommand('copy')` scheitern | Code bleibt markiert, Statustext „Code markiert. Zum Kopieren Cmd oder Strg + C drücken.“ (`aria-live`, 6 s) |
+| ohne JS / ohne Kopierfunktion | Custom Element nicht definiert, weder `navigator.clipboard` noch `execCommand('copy')` verfügbar | Kopierbutton bleibt ausgeblendet, Code bleibt per `user-select: all` markierbar |
 | abgelaufen   | `expired`                 | Badge „Abgelaufen“, Code bleibt sichtbar     |
 | deaktiviert  | nicht `enabled`           | Badge „Deaktiviert“                          |
 
@@ -68,9 +69,11 @@ Keine Metafelder.
 Ab Version 0.2 gibt es einen Button „Code kopieren“ neben dem Code. Er ist ein
 Custom Element (`<ut-copy-button>`), weil er `navigator.clipboard.writeText` nutzt. Das
 ist eine Browser-API und keine Commerce-Plattform, darum geht sie nicht über `ut-api.js`.
-Progressive Enhancement: Ohne JS oder ohne Clipboard-API bleibt der Button ausgeblendet,
+Fallback-Kette bei Ablehnung: Clipboard-API → Auswahl + `execCommand('copy')` → manueller
+Hinweis (Details in der Spec). Progressive Enhancement: Ohne JS oder ohne Kopierfunktion bleibt der Button ausgeblendet,
 der Code ist weiterhin per `user-select: all` mit einem Klick markierbar. Der Button
-wird im Druck ausgeblendet. Texte: `gift_cards.issued.copy_code`, `gift_cards.issued.copied`.
+wird im Druck ausgeblendet. Texte: `gift_cards.issued.copy_code`, `gift_cards.issued.copied`,
+`gift_cards.issued.copy_failed`.
 
 ## Accessibility und SEO
 
