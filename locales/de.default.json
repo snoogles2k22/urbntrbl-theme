@@ -130,14 +130,8 @@
       "menu_open": "Menü öffnen"
     },
     "footer": {
-      "nav_label": "Footer-Navigation",
       "legal_label": "Rechtliches",
-      "legal": {
-        "imprint": "Impressum",
-        "privacy": "Datenschutz",
-        "terms": "AGB",
-        "withdrawal": "Widerruf"
-      },
+      "price_note": "Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer erhoben und ausgewiesen.",
       "shipping_info": "Versandinformationen",
       "copyright": "© {{ year }} {{ shop }}"
     }

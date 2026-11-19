@@ -130,14 +130,8 @@
       "menu_open": "Open menu"
     },
     "footer": {
-      "nav_label": "Footer navigation",
       "legal_label": "Legal",
-      "legal": {
-        "imprint": "Legal notice",
-        "privacy": "Privacy",
-        "terms": "Terms",
-        "withdrawal": "Right of withdrawal"
-      },
+      "price_note": "All prices are final prices. No VAT is levied or shown pursuant to § 19 UStG (German small business regulation).",
       "shipping_info": "Shipping information",
       "copyright": "© {{ year }} {{ shop }}"
     }

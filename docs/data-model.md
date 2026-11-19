@@ -131,8 +131,8 @@ in Liquid verfügbar sind. Medusa: `GET /store/carts/:id`, `line_items[]` mit `v
 | `announcement`            | Section-Settings `announcement-bar`        | CMS                           | R          |
 | Navigation (Haupt, Footer)| Shopify-Menüs (`linklists`)                | CMS / JSON-Config             | R          |
 | Policies                  | `shop.policies`                            | CMS-Seiten                    | R K        |
-| Rechtslinks (Impressum, Datenschutz, AGB, Widerruf) | Section-Settings `footer` (`*_url`), Fallback `shop.privacy_policy`, `shop.terms_of_service`, `shop.refund_policy` (Widerruf, **[ANNAHME]**) | CMS-Seiten / Site-Config | R |
-| Preis-Fußnote             | Locale `products.price.footnote_*` nach Theme-Setting `price_tax_mode` | Store-Config + i18n | R |
+| Rechtslinks (Impressum, Datenschutz, AGB, Widerruf) | Shopify-Menü `footer` (`linklists.footer`), Titel, URL und Reihenfolge aus dem Menü | CMS-Seiten / Site-Config | R |
+| Preis-Hinweis, Fußnote    | Locale `layout.footer.price_note` (immer), `products.price.footnote_*` nach Theme-Setting `price_tax_mode` | Store-Config + i18n | R |
 | `customer` (Login-Zustand, E-Mail) | nativ                             | Medusa Customer               | D R        |
 
 ## Theme-Settings-Registry

@@ -7,11 +7,7 @@
       "settings": {
         "tone": "inverse",
         "show_newsletter": true,
-        "menu": "",
-        "imprint_url": "",
-        "privacy_url": "",
-        "terms_url": "",
-        "withdrawal_url": ""
+        "menu": "footer"
       }
     }
   },

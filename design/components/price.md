@@ -133,7 +133,9 @@ selbst bleibt statisch. Der Versand-Link ist ein normaler `<a>`.
 | `products.price.footnote_none`              | * zzgl. Versandkosten                                | * plus shipping                                 |
 
 Die Fußnoten rendert der Footer (`footer.md`) passend zu `price_tax_mode`, mit Link
-„Versandinformationen“, wenn eine Versandseite existiert. **[RECHT-PRÜFEN]** Wortlaut.
+„Versandinformationen“, wenn eine Versandseite existiert. Im Kleinunternehmer-Betrieb steht
+die Steuerangabe (§ 19 UStG) im Footer als eigener Preis-Hinweis (`layout.footer.price_note`),
+die Fußnote selbst nennt dann nur die Versandkosten (`footnote_none`). **[RECHT-PRÜFEN]** Wortlaut.
 
 Der Versandhinweis wird als `shipping_note_html` mit `link:` Parameter gerendert, damit
 Satzbau und Link-Position pro Sprache frei sind.

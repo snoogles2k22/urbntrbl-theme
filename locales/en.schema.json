@@ -61,13 +61,8 @@
         "tone_default": "Default",
         "tone_inverse": "Inverse",
         "show_newsletter": "Show newsletter form",
-        "menu": "Footer menu (optional)",
-        "legal_header": "Legal",
-        "legal_info": "Without a URL the entry renders as placeholder text without a link. Privacy, terms and withdrawal fall back to the Shopify policies (withdrawal = refund policy). Have this reviewed before launch.",
-        "imprint_url": "Legal notice",
-        "privacy_url": "Privacy policy",
-        "terms_url": "Terms of service",
-        "withdrawal_url": "Right of withdrawal"
+        "menu": "Legal links (menu)",
+        "menu_info": "Menu with legal notice, privacy, terms and withdrawal, in this order. Maintain it in Admin under Content → Menus (default: menu \"footer\"). Every entry is shown as a link, even if the policy is still empty. Fill all policies before launch."
       }
     }
   }
