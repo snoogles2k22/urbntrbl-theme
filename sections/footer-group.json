@@ -1,0 +1,19 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tone": "inverse",
+        "show_newsletter": true,
+        "menu": "",
+        "imprint_url": "",
+        "privacy_url": "",
+        "terms_url": "",
+        "withdrawal_url": ""
+      }
+    }
+  },
+  "order": ["footer"]
+}

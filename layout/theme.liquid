@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}" dir="{{ settings.text_direction | default: 'ltr' }}">
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ settings.text_direction | default: 'ltr' }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,11 +36,17 @@
   <body class="template-{{ request.page_type | handle }}">
     <a class="ut-skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
 
-    {%- comment -%} Header/footer section groups follow in step 2. {%- endcomment -%}
+    {%- comment -%}
+      Frame (design/blueprints/README.md): announcement bar and header in the
+      header group, footer in the footer group. cart-drawer follows in phase E.
+    {%- endcomment -%}
+    {% sections 'header-group' %}
 
     <main id="MainContent" class="main" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
+
+    {% sections 'footer-group' %}
 
     <script type="module" src="{{ 'ut-api.js' | asset_url }}"></script>
   </body>

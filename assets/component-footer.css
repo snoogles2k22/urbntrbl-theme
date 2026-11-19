@@ -1,0 +1,107 @@
+/*
+ * Footer. Spec: design/components/footer.md
+ * Colors come from the tone scope on .ut-footer[data-tone] (base.css applies
+ * bg/text for every [data-tone]).
+ */
+@layer components {
+  .ut-footer__inner {
+    display: grid;
+    gap: var(--ut-space-10);
+    max-inline-size: var(--ut-layout-container-max);
+    margin-inline: auto;
+    padding-block: var(--ut-layout-section-gap) var(--ut-space-6);
+    padding-inline: var(--ut-layout-gutter);
+  }
+
+  .ut-footer__top {
+    display: grid;
+    gap: var(--ut-space-10);
+  }
+
+  .ut-footer__newsletter {
+    max-inline-size: var(--ut-layout-container-narrow);
+  }
+
+  .ut-footer__list,
+  .ut-footer__legal-list {
+    margin: 0;
+  }
+
+  .ut-footer__list {
+    display: grid;
+    gap: var(--ut-space-1);
+  }
+
+  .ut-footer__legal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--ut-space-6);
+  }
+
+  .ut-footer__link,
+  .ut-footer__placeholder {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--ut-size-control-sm);
+  }
+
+  .ut-footer__link {
+    color: inherit;
+    font-size: var(--ut-font-size-sm);
+    text-decoration: none;
+  }
+
+  .ut-footer__link:hover {
+    color: var(--ut-color-action-primary-bg-hover);
+    text-decoration: underline;
+    text-decoration-thickness: var(--ut-border-width-thick);
+  }
+
+  .ut-footer__link[aria-current='page'] {
+    text-decoration: underline;
+  }
+
+  .ut-footer__placeholder {
+    font-size: var(--ut-font-size-sm);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-footer__bottom {
+    display: grid;
+    gap: var(--ut-space-2);
+    padding-block-start: var(--ut-space-6);
+    border-block-start: var(--ut-border-width-hairline) solid var(--ut-color-border-default);
+  }
+
+  .ut-footer__footnote,
+  .ut-footer__copyright {
+    font-size: var(--ut-font-size-xs);
+    line-height: var(--ut-font-line-height-snug);
+    color: var(--ut-color-text-muted);
+  }
+
+  .ut-footer__footnote .ut-footer__link {
+    display: inline;
+    min-block-size: 0;
+    font-size: inherit;
+    color: var(--ut-color-text-default);
+    text-decoration: underline;
+  }
+
+  .ut-footer__footnote .ut-footer__link:hover {
+    color: var(--ut-color-action-primary-bg-hover);
+  }
+
+  @media (min-width: 768px) {
+    .ut-footer__top {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ut-footer__inner {
+      padding-inline: var(--ut-layout-gutter-lg);
+    }
+  }
+}

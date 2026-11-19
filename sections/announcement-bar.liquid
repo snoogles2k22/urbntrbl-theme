@@ -1,0 +1,51 @@
+{%- comment -%}
+  Announcement bar. Spec: design/components/announcement-bar.md
+  Assumption phase B: drop date only, never a price.
+{%- endcomment -%}
+{{ 'component-announcement-bar.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign announcement_text = section.settings.text
+  if announcement_text == blank
+    assign announcement_text = 'layout.announcement_bar.default_text' | t
+  endif
+-%}
+<aside
+  class="ut-announcement-bar"
+  data-tone="inverse"
+  aria-label="{{ 'layout.announcement_bar.label' | t | escape }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="ut-announcement-bar__inner">
+    <p class="ut-announcement-bar__text">
+      {%- if section.settings.link != blank -%}
+        <a class="ut-announcement-bar__link" href="{{ section.settings.link }}">{{ announcement_text | escape }}</a>
+      {%- else -%}
+        {{ announcement_text | escape }}
+      {%- endif -%}
+    </p>
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "t:sections.announcement_bar.name",
+  "tag": "div",
+  "class": "ut-section-announcement-bar",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:sections.announcement_bar.settings.text",
+      "info": "t:sections.announcement_bar.settings.text_info"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:sections.announcement_bar.settings.link"
+    }
+  ],
+  "presets": [{ "name": "t:sections.announcement_bar.name" }]
+}
+{% endschema %}

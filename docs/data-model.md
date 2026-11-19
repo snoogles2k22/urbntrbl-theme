@@ -131,12 +131,17 @@ in Liquid verfügbar sind. Medusa: `GET /store/carts/:id`, `line_items[]` mit `v
 | `announcement`            | Section-Settings `announcement-bar`        | CMS                           | R          |
 | Navigation (Haupt, Footer)| Shopify-Menüs (`linklists`)                | CMS / JSON-Config             | R          |
 | Policies                  | `shop.policies`                            | CMS-Seiten                    | R K        |
+| Rechtslinks (Impressum, Datenschutz, AGB, Widerruf) | Section-Settings `footer` (`*_url`), Fallback `shop.privacy_policy`, `shop.terms_of_service`, `shop.refund_policy` (Widerruf, **[ANNAHME]**) | CMS-Seiten / Site-Config | R |
+| Preis-Fußnote             | Locale `products.price.footnote_*` nach Theme-Setting `price_tax_mode` | Store-Config + i18n | R |
 | `customer` (Login-Zustand, E-Mail) | nativ                             | Medusa Customer               | D R        |
 
 ## Theme-Settings-Registry
 
 Globale Einstellungen in `config/settings_schema.json`. Nur Inhalt und Verhalten
 (ADR 0004). Section-Settings stehen in den Blueprints, nicht hier.
+Phase B (Rahmen) legt keine globalen Settings an; Header nutzt das bestehende `logo`,
+Footer das bestehende `price_tax_mode` und `price_shipping_page`. Alle übrigen
+Rahmen-Settings sind Section-Settings (`blueprints/README.md`).
 Status: `angelegt` (im Schema), `geplant` (kommt mit der genannten Phase).
 
 | ID                          | Typ        | Default            | Zweck                                              | Quelle                     | Phase | Status   |

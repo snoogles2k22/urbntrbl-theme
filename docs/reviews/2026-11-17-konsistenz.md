@@ -43,7 +43,7 @@ Das ist keine Rechtsberatung.
 | O2  | Versand der Warteliste-Benachrichtigungen (Flow + Shopify Email, Klaviyo, manuell). Hängt an den Prüfpunkten V1 und V2 in `logic/drop.md`. | vor erstem Drop     |
 | O3  | Serverseitiges Kauflimit per Shopify Function (Cart Validation).                         | vor erstem limitierten Drop |
 | O4  | Checkout-Strategie im Port (Medusa-Checkout vs. externer Checkout), größter Aufwandsposten in `migration.md`. | vor Port-Start      |
-| O5  | Fußnoten-Text für Listen (K1): Wortlaut und Platz im Footer.                             | Phase B (Footer)    |
+| O5  | Fußnoten-Text für Listen (K1): Wortlaut und Platz im Footer. **Umgesetzt Phase B** in `components/footer.md` (Keys `products.price.footnote_*`, je nach `price_tax_mode`), Wortlaut **[RECHT-PRÜFEN]**. | Phase B (Footer), Prüfung vor Launch |
 
 ## Abgleich ohne Befund
 

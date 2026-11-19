@@ -1,0 +1,134 @@
+{%- comment -%}
+  Header. Spec: design/components/header.md
+  Only the first menu level is rendered. Menu entries are shop data
+  (Admin > Content > Menus), never hard-coded here.
+  Note: render arguments do not evaluate filters; translated values are
+  assigned first.
+{%- endcomment -%}
+{{ 'component-icon.css' | asset_url | stylesheet_tag }}
+{{ 'component-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-count.css' | asset_url | stylesheet_tag }}
+{{ 'component-header.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'ut-drawer.js' | asset_url }}"></script>
+<script type="module" src="{{ 'ut-cart-count.js' | asset_url }}"></script>
+<script type="module" src="{{ 'ut-header.js' | asset_url }}"></script>
+
+{%- liquid
+  assign main_menu = linklists[section.settings.menu]
+  assign has_menu = false
+  if main_menu.links.size > 0
+    assign has_menu = true
+  endif
+  assign nav_label = 'layout.header.nav_label' | t
+  assign menu_title = 'layout.header.menu' | t
+  assign menu_open_label = 'layout.header.menu_open' | t
+  assign header_class = 'ut-header'
+  if section.settings.sticky
+    assign header_class = header_class | append: ' ut-header--sticky'
+  endif
+-%}
+
+<ut-header class="{{ header_class }}">
+  <div class="ut-header__inner">
+    {%- if has_menu -%}
+      <button
+        type="button"
+        class="ut-header__menu-toggle"
+        aria-controls="MenuDrawer"
+        aria-expanded="false"
+        aria-label="{{ menu_open_label | escape }}"
+      >
+        {%- render 'icon', name: 'menu' -%}
+      </button>
+    {%- endif -%}
+
+    <a
+      href="{{ routes.root_url }}"
+      class="ut-header__brand"
+      {% if request.page_type == 'index' %}
+        aria-current="page"
+      {% endif %}
+    >
+      {%- if settings.logo != blank -%}
+        {{
+          settings.logo
+          | image_url: width: 320
+          | image_tag: class: 'ut-header__logo', alt: shop.name, widths: '160, 320', sizes: '160px', loading: 'eager'
+        }}
+      {%- else -%}
+        <span class="ut-header__wordmark">{{ shop.name | escape }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- if has_menu -%}
+      <nav class="ut-header__nav" aria-label="{{ nav_label | escape }}">
+        <ul class="ut-header__list" role="list">
+          {%- for link in main_menu.links -%}
+            <li>
+              <a
+                href="{{ link.url }}"
+                class="ut-header__link"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{- link.title | escape -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="ut-header__actions">
+      {%- render 'cart-count' -%}
+    </div>
+  </div>
+
+  {%- if has_menu -%}
+    {%- capture menu_html -%}
+      <nav aria-label="{{ nav_label | escape }}">
+        <ul class="ut-header__drawer-list" role="list">
+          {%- for link in main_menu.links -%}
+            <li>
+              <a
+                href="{{ link.url }}"
+                class="ut-header__drawer-link"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{- link.title | escape -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endcapture -%}
+    {%- render 'drawer', id: 'MenuDrawer', title: menu_title, content: menu_html -%}
+  {%- endif -%}
+</ut-header>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "tag": "header",
+  "class": "ut-header-section",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.header.settings.menu",
+      "info": "t:sections.header.settings.menu_info",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "t:sections.header.settings.sticky",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

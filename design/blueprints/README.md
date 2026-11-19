@@ -43,3 +43,16 @@ Aus `layout/theme.liquid`, in dieser Reihenfolge:
 5. `cart-drawer` (Section, einmal pro Seite) mit `<ut-cart-drawer>`
 
 Der Rahmen wird in `home.md` nicht wiederholt.
+
+### Sections des Rahmens (Phase B)
+
+| Section                 | Group    | Komponenten                                                         | Settings (Editor)                                                                 |
+|-------------------------|----------|---------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `announcement-bar.liquid` | header | `.ut-announcement-bar`                                              | `text` (leer = Locale-Default, **[ANNAHME]** „Drop 1 · 20.03.2027“, kein Preis), `link` (url) |
+| `header.liquid`         | header   | `<ut-header>`, `.ut-header`, `<ut-drawer>` (Menü), `<ut-cart-count>`, `.ut-icon` | `menu` (link_list, Default `main-menu`, **[ANNAHME]** Drop 1, Über uns, Kontakt), `sticky` (bool) |
+| `footer.liquid`         | footer   | `.ut-footer`, `.ut-newsletter`, `.ut-form-field`, `.ut-button`      | `tone` (`default`/`inverse`, Default `inverse`), `show_newsletter` (bool), `menu` (link_list), `imprint_url`, `privacy_url`, `terms_url`, `withdrawal_url` (url) |
+
+Zustände des Rahmens: Header ohne Menü (nur Wortmarke und Warenkorb), Header ohne JS
+(Navigation sichtbar, kein Menü-Button), Rechtslink ohne URL (Platzhaltertext, kein
+Link). Die Preis-Fußnote im Footer folgt `price_tax_mode` (**[RECHT-PRÜFEN]**).
+Gutschein-Seite und Passwortseite rendern den Rahmen nicht.

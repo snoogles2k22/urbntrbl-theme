@@ -4,7 +4,17 @@
   },
   "general": {
     "loading": "Wird geladen",
-    "view_all": "Alle ansehen"
+    "view_all": "Alle ansehen",
+    "newsletter": {
+      "heading": "Newsletter",
+      "text": "Neue Drops zuerst. Kein Spam.",
+      "email_label": "E-Mail-Adresse",
+      "submit": "Anmelden",
+      "success": "Danke! Bitte bestätige deine Anmeldung über den Link in der E-Mail.",
+      "error": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "consent_html": "Mit der Anmeldung willigst du ein, per E-Mail über neue Drops informiert zu werden. Abmeldung jederzeit möglich. Mehr in der {{ link }}.",
+      "privacy_link": "Datenschutzerklärung"
+    }
   },
   "gift_cards": {
     "issued": {
@@ -36,7 +46,8 @@
       "compare_label_lowest_30d": "Niedrigster Preis der letzten 30 Tage",
       "compare_label_rrp": "UVP",
       "footnote_kleinunternehmer": "* Gemäß § 19 UStG wird keine Umsatzsteuer berechnet, zzgl. Versandkosten.",
-      "footnote_included": "* inkl. MwSt., zzgl. Versandkosten"
+      "footnote_included": "* inkl. MwSt., zzgl. Versandkosten",
+      "footnote_none": "* zzgl. Versandkosten"
     }
   },
   "styleguide": {
@@ -97,6 +108,37 @@
       "empty_cta": "Zum aktuellen Drop",
       "wordmark": "URBN TRBL",
       "invalid_value": "nicht-gueltig"
+    }
+  },
+  "layout": {
+    "announcement_bar": {
+      "label": "Ankündigung",
+      "default_text": "Drop 1 · 20.03.2027"
+    },
+    "drawer": {
+      "close": "Schließen"
+    },
+    "cart_count": {
+      "label": "Warenkorb",
+      "items_one": "Artikel",
+      "items_other": "Artikel"
+    },
+    "header": {
+      "nav_label": "Hauptnavigation",
+      "menu": "Menü",
+      "menu_open": "Menü öffnen"
+    },
+    "footer": {
+      "nav_label": "Footer-Navigation",
+      "legal_label": "Rechtliches",
+      "legal": {
+        "imprint": "Impressum",
+        "privacy": "Datenschutz",
+        "terms": "AGB",
+        "withdrawal": "Widerruf"
+      },
+      "shipping_info": "Versandinformationen",
+      "copyright": "© {{ year }} {{ shop }}"
     }
   }
 }

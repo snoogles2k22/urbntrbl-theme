@@ -40,22 +40,22 @@ Spalte **Status**: `offen` (keine Spec), `Spec`, `In Arbeit`, `Fertig`.
 | Ticker            | `.ut-ticker`             | H         | `ticker.md`             | offen  |
 | Accordion         | `.ut-accordion` (`<details>`) | P    | `accordion.md`          | offen  |
 | Pagination        | `.ut-pagination`         | C         | `pagination.md`         | offen  |
-| Newsletter        | `.ut-newsletter`         | H R       | `newsletter.md`         | offen  |
+| Newsletter        | `.ut-newsletter`         | H R       | `newsletter.md`         | In Arbeit |
 | Waitlist          | `.ut-waitlist`           | P D       | `waitlist.md`           | offen  |
 | Buy Box           | `.ut-buy-box`            | P         | `buy-box.md`            | offen  |
 | Cart (Seite)      | `.ut-cart`               | K         | `cart-page.md`          | offen  |
 | Cart Line         | `.ut-cart-line`          | K         | `cart-line.md`          | offen  |
 | Cart Summary      | `.ut-cart-summary`       | K         | `cart-summary.md`       | offen  |
-| Announcement Bar  | `.ut-announcement-bar`   | R         | `announcement-bar.md`   | offen  |
-| Footer            | `.ut-footer`             | R         | `footer.md`             | offen  |
+| Announcement Bar  | `.ut-announcement-bar`   | R         | `announcement-bar.md`   | In Arbeit |
+| Footer            | `.ut-footer`             | R         | `footer.md`             | In Arbeit |
 
 ## Interaktiv (Custom Element + BEM-Block)
 
 | Komponente       | Element                | BEM-Block           | Seiten  | Nutzt `ut-api` | Spec-Datei           | Status |
 |------------------|------------------------|---------------------|---------|----------------|----------------------|--------|
-| Header           | `<ut-header>`          | `.ut-header`        | R       | nein           | `header.md`          | offen  |
-| Drawer           | `<ut-drawer>`          | `.ut-drawer`        | R C K   | nein           | `drawer.md`          | offen  |
-| Cart Count       | `<ut-cart-count>`      | `.ut-cart-count`    | R       | Event          | `cart-count.md`      | offen  |
+| Header           | `<ut-header>`          | `.ut-header`        | R       | nein           | `header.md`          | In Arbeit |
+| Drawer           | `<ut-drawer>`          | `.ut-drawer`        | R C K   | nein           | `drawer.md`          | In Arbeit |
+| Cart Count       | `<ut-cart-count>`      | `.ut-cart-count`    | R       | Event          | `cart-count.md`      | In Arbeit |
 | Cart Drawer      | `<ut-cart-drawer>`     | `.ut-cart-drawer`   | K       | cart, sections | `cart-drawer.md`     | offen  |
 | Dialog           | `<ut-dialog>`          | `.ut-dialog`        | P       | nein           | `dialog.md`          | offen  |
 | Gallery          | `<ut-gallery>`         | `.ut-gallery`       | P       | nein           | `gallery.md`         | offen  |
