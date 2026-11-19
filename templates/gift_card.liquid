@@ -12,6 +12,7 @@
   assign label_disabled = 'gift_cards.issued.disabled' | t
   assign label_copy_code = 'gift_cards.issued.copy_code' | t
   assign label_copied = 'gift_cards.issued.copied' | t
+  assign label_copy_failed = 'gift_cards.issued.copy_failed' | t
 -%}
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
@@ -74,6 +75,7 @@
               value: gift_card.code,
               label: label_copy_code,
               copied_label: label_copied,
+              failed_label: label_copy_failed,
               target: 'GiftCardCode'
             -%}
           </dd>

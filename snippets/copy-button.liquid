@@ -1,5 +1,5 @@
 {% doc %}
-  Copy-to-clipboard button. Needs JS and the Clipboard API; otherwise the
+  Copy-to-clipboard button. Needs JS and the Clipboard API or execCommand; otherwise the
   button stays hidden. Requires component-copy-button.css, component-button.css
   and ut-copy-button.js.
   Spec: design/components/copy-button.md
@@ -7,17 +7,22 @@
   @param {string} value - Text to copy (raw value)
   @param {string} label - Button label (translated by the caller)
   @param {string} copied_label - Status text after copying (translated by the caller)
+  @param {string} [failed_label] - Status text when copying fails and the text is only selected (translated by the caller)
   @param {string} [target] - id of the element to select if copying is rejected
 
   @example
   {% assign copy_label = 'gift_cards.issued.copy_code' | t %}
   {% assign copied_label = 'gift_cards.issued.copied' | t %}
-  {% render 'copy-button', value: gift_card.code, label: copy_label, copied_label: copied_label, target: 'GiftCardCode' %}
+  {% assign failed_label = 'gift_cards.issued.copy_failed' | t %}
+  {% render 'copy-button', value: gift_card.code, label: copy_label, copied_label: copied_label, failed_label: failed_label, target: 'GiftCardCode' %}
 {% enddoc %}
 <ut-copy-button
   class="ut-copy-button"
   value="{{ value | escape }}"
   copied-label="{{ copied_label | escape }}"
+  {% if failed_label != blank %}
+    failed-label="{{ failed_label | escape }}"
+  {% endif %}
   {% if target != blank %}
     target="{{ target | escape }}"
   {% endif %}
