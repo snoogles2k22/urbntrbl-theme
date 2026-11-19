@@ -30,7 +30,8 @@
       "shop_link": "Jetzt einkaufen",
       "add_to_apple_wallet": "Zu Apple Wallet hinzufügen",
       "copy_code": "Code kopieren",
-      "copied": "Kopiert"
+      "copied": "Kopiert",
+      "copy_failed": "Code markiert. Zum Kopieren Cmd oder Strg + C drücken."
     }
   },
   "products": {

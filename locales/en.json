@@ -30,7 +30,8 @@
       "shop_link": "Start shopping",
       "add_to_apple_wallet": "Add to Apple Wallet",
       "copy_code": "Copy code",
-      "copied": "Copied"
+      "copied": "Copied",
+      "copy_failed": "Code selected. Press Cmd or Ctrl + C to copy."
     }
   },
   "products": {
